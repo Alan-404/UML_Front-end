@@ -43,11 +43,11 @@ const LoginScreen = () => {
     <div>
       
       <div className='text-center border d-flex' style={{margin: "auto auto", width: '60vw',height: '50vh',  marginTop: "15vh", borderRadius: '30px', boxShadow: "5px 10px 18px #888888"}}>
-        <div style={{flex: '1', backgroundColor: 'red', borderRadius: '30px 0 0 30px'}}>
+        <div className='w3-animate-top' style={{flex: '1', backgroundColor: 'red', borderRadius: '30px 0 0 30px'}}>
           <h2 className='text-light mt-5'>TECHGEAR</h2>
           <Image src={logo} style={{width: '15vw', height: '25vh'}}/>
         </div>
-        <div style={{flex: '1'}} className="mt-2 p-3" >
+        <div style={{flex: '1'}} className="mt-2 p-3 w3-animate-bottom" >
           <i className="fa fa-user border p-4 mb-3" style={{fontSize: '70px' ,borderRadius: '50%'}} aria-hidden="true"></i>
           <InputGroup className="mb-3">
             <InputGroup.Text id="basic-addon1"><i className="fa fa-envelope text-danger" aria-hidden="true"></i></InputGroup.Text>
