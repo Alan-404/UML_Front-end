@@ -1,7 +1,7 @@
 import thunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware } from "redux"
 
-import {loginAccountReducer} from './behaviors/reducers/account'
+import {loginAccountReducer} from './behaviors/reducers/user'
 
 const reducers = combineReducers({
     loginAccountReducer

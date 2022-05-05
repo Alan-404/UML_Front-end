@@ -1,8 +1,12 @@
 import React from 'react'
-
+import Header from './Header'
+import Dashboard from '../components/home/Dashboard'
 const HomeView = () => {
   return (
-    <div>HomeView</div>
+    <div>
+      <Header />
+      <Dashboard />
+    </div>
   )
 }
 

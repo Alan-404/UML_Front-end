@@ -7,6 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/login' element={<AuthView authRoute="login"/>}/>
+        <Route path='/register' element={<AuthView authRoute="register"/>}/>
         <Route path='/dashboard' element={<HomeView />}/>
         <Route exact path='/' element={<HomeView />}/>
         
