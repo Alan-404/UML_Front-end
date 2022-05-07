@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+
+
+
+.banner{
+  background-image: url('../../assets/img/bannerimg6.jpg');
+  height: 600px;
+  background-position: center;
+  background-size: cover;
+}
+
+.content{
+  top: 30%;
+  position: absolute;
+  left: 20%;
+}
+.content h1{
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+
+}
+.content a{
+  text-decoration: none;
+  background-color: #fff;
+  color: var(--primary-color);
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+.content a:hover{
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn {
+    height: 35px;
+    width: 170px;
+    border: none;
+    border-radius: 20px;
+    background-color: #090411;
+    font-size: 14px;
+    font-weight: 500
+}
+.text-center{
+  font-size: 23px;
+  font-weight: bold
+}
+.cardCategories{
+  height: 130px;
+  overflow: hidden;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  background-color: #fff;
+}
+.cardCategories-link{
+  text-decoration: none;
+  color: #000;
+}
+
+.cardCategories:hover{
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.cardCategories .imagename{
+  font-size: 18px;
+  font-weight: bold;
+
+}
+.cardCategories .icon{
+  font-size: 80px;
+}
+.stepBox{
+  background: #c31432;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+.stepBox h1{
+  font-size: 5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.stepBox p{
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+}
+.highlight{
+  color:var(--primary-color);
+  font-weight:bold;
+  font-style: italic;
+
+}
+
+
+.viewmoreBtn{
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.viewmoreBtn:hover{
+  background-color:#000;
+  color: var(--primary-color);
+}
+.productBox .card {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  background: #191919;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.productBox .card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  transform: skewY(345deg);
+  transition: 0.5s;
+}
+
+.productBox .card:hover::before {
+  top: -70%;
+  transform: skewY(390deg);
+}
+
+
+.productBox .card .imgBox {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1;
+}
+/*
+.card .imgBox img {
+    max-width: 100%;
+
+    transition: .5s;
+}
+
+.card:hover .imgBox img {
+    max-width: 50%;
+
+}
+*/
+.productBox .card .contentBox {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.productBox .card .contentBox h3 {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.productBox .card .contentBox .price {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.productBox .card .contentBox .buy {
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  padding: 10px 30px;
+  margin-top: 15px;
+  color: var(--primary-color);
+  text-decoration: none;
+  background: #fff;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+.productBox .card:hover .contentBox .buy {
+  top: 0;
+  opacity: 1;
+}
+
+.mouse {
+  height: 300px;
+  width: auto;
+}

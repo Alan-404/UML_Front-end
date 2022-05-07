@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:4200/ -->
+<html lang="en" nighteye="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>TechGear</title>
+  <!--<base href="/">--><base href=".">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="http://localhost:4200/favicon.ico">
+  <!-- icon -->
+  <link rel="stylesheet" href="./TechGear_files/bootstrap-icons.css">
+  <!-- css -->
+  <link href="./TechGear_files/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="./TechGear_files/styles.css"><style>.bg[_ngcontent-lrx-c23]{
+  background-color: rgb(235, 216, 216);
+  width: 100%;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usb0NBQW9DO0VBQ3BDLFdBQVc7QUFDYiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5iZ3tcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjM1LCAyMTYsIDIxNik7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbn1cclxuIl19 */</style><style>.navbar[_ngcontent-lrx-c21]{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.navbar-light[_ngcontent-lrx-c21]   .navbar-nav[_ngcontent-lrx-c21]   .nav-link.active-link[_ngcontent-lrx-c21]
+{
+  color: var(--primary-color);
+  font-weight: bold;
+  text-decoration: underline;
+
+}
+.navbar-light[_ngcontent-lrx-c21]   .navbar-nav[_ngcontent-lrx-c21]   .nav-link[_ngcontent-lrx-c21]
+{
+  color: var(--secondary-color);
+  font-weight: bold;
+  font-size: 24px;
+}
+.searchitem[_ngcontent-lrx-c21] {
+  position: relative
+}
+.searchitem[_ngcontent-lrx-c21]   i[_ngcontent-lrx-c21] {
+  position: absolute;
+  right: 18px;
+  top: 10px;
+  font-size: 13px
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5hdmJhci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7QUFDQTtFQUNFLGVBQWU7RUFDZixXQUFXO0VBQ1gsWUFBWTtBQUNkO0FBQ0E7O0VBRUUsMkJBQTJCO0VBQzNCLGlCQUFpQjtFQUNqQiwwQkFBMEI7O0FBRTVCO0FBRUE7O0VBRUUsNkJBQTZCO0VBQzdCLGlCQUFpQjtFQUNqQixlQUFlO0FBQ2pCO0FBRUE7RUFDRTtBQUNGO0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLFNBQVM7RUFDVDtBQUNGIiwiZmlsZSI6Im5hdmJhci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbi5uYXZiYXJ7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIHotaW5kZXg6IDEwMDtcclxufVxyXG4ubmF2YmFyLWxpZ2h0IC5uYXZiYXItbmF2IC5uYXYtbGluay5hY3RpdmUtbGlua1xyXG57XHJcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lO1xyXG5cclxufVxyXG5cclxuLm5hdmJhci1saWdodCAubmF2YmFyLW5hdiAubmF2LWxpbmtcclxue1xyXG4gIGNvbG9yOiB2YXIoLS1zZWNvbmRhcnktY29sb3IpO1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIGZvbnQtc2l6ZTogMjRweDtcclxufVxyXG5cclxuLnNlYXJjaGl0ZW0ge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZVxyXG59XHJcblxyXG4uc2VhcmNoaXRlbSBpIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgcmlnaHQ6IDE4cHg7XHJcbiAgdG9wOiAxMHB4O1xyXG4gIGZvbnQtc2l6ZTogMTNweFxyXG59XHJcblxyXG4iXX0= */</style><style>.footer[_ngcontent-lrx-c22]
+{
+  overflow: hidden;
+  position: sticky;
+  top:100%;
+  background-color: #000;
+  padding: 20px 10px;
+  margin-top: 30px;
+}
+
+h1[_ngcontent-lrx-c22]{
+  font-weight: bold;
+  color: #fff;
+  font-size: 20px;
+}
+
+p[_ngcontent-lrx-c22]{
+  color: #fff;
+  font-size: 12px;
+}
+
+a[_ngcontent-lrx-c22]{
+  color:#fff;
+  text-decoration: none;
+  padding: 0px 10px;
+  font-size: 17px;
+}
+
+a[_ngcontent-lrx-c22]:hover{
+  color:var(--primary-color);
+}
+
+i[_ngcontent-lrx-c22]{
+  padding: 0 10px;
+}
+
+i[_ngcontent-lrx-c22]:hover{
+  color:var(--primary-color);
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvb3Rlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOztFQUVFLGdCQUFnQjtFQUNoQixnQkFBZ0I7RUFDaEIsUUFBUTtFQUNSLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsZ0JBQWdCO0FBQ2xCOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLFdBQVc7RUFDWCxlQUFlO0FBQ2pCOztBQUNBO0VBQ0UsV0FBVztFQUNYLGVBQWU7QUFDakI7O0FBQ0E7RUFDRSxVQUFVO0VBQ1YscUJBQXFCO0VBQ3JCLGlCQUFpQjtFQUNqQixlQUFlO0FBQ2pCOztBQUNBO0VBQ0UsMEJBQTBCO0FBQzVCOztBQUNBO0VBQ0UsZUFBZTtBQUNqQjs7QUFDQTtFQUNFLDBCQUEwQjtBQUM1QiIsImZpbGUiOiJmb290ZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5mb290ZXJcclxue1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgcG9zaXRpb246IHN0aWNreTtcclxuICB0b3A6MTAwJTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAwO1xyXG4gIHBhZGRpbmc6IDIwcHggMTBweDtcclxuICBtYXJnaW4tdG9wOiAzMHB4O1xyXG59XHJcblxyXG5oMXtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBjb2xvcjogI2ZmZjtcclxuICBmb250LXNpemU6IDIwcHg7XHJcbn1cclxucHtcclxuICBjb2xvcjogI2ZmZjtcclxuICBmb250LXNpemU6IDEycHg7XHJcbn1cclxuYXtcclxuICBjb2xvcjojZmZmO1xyXG4gIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcclxuICBwYWRkaW5nOiAwcHggMTBweDtcclxuICBmb250LXNpemU6IDE3cHg7XHJcbn1cclxuYTpob3ZlcntcclxuICBjb2xvcjp2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxufVxyXG5pe1xyXG4gIHBhZGRpbmc6IDAgMTBweDtcclxufVxyXG5pOmhvdmVye1xyXG4gIGNvbG9yOnZhcigtLXByaW1hcnktY29sb3IpO1xyXG59XHJcbiJdfQ== */</style><style>@import url("https://fonts.googleapis.com/css2?family=Istok+Web:wght@400;700&display=swap");
+
+
+
+.banner[_ngcontent-lrx-c18]{
+  background-image: url('bannerimg6.jpg');
+  height: 600px;
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+.content[_ngcontent-lrx-c18]{
+  top: 30%;
+  position: absolute;
+  left: 20%;
+}
+
+
+
+.content[_ngcontent-lrx-c18]   h1[_ngcontent-lrx-c18]{
+  color: #fff;
+  font-size: 50px;
+  font-weight: bold;
+
+}
+
+
+
+.content[_ngcontent-lrx-c18]   a[_ngcontent-lrx-c18]{
+  text-decoration: none;
+  background-color: #fff;
+  color: var(--primary-color);
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+
+
+.content[_ngcontent-lrx-c18]   a[_ngcontent-lrx-c18]:hover{
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+
+
+.btn[_ngcontent-lrx-c18] {
+    height: 35px;
+    width: 170px;
+    border: none;
+    border-radius: 20px;
+    background-color: #090411;
+    font-size: 14px;
+    font-weight: 500
+}
+
+
+
+.text-center[_ngcontent-lrx-c18]{
+  font-size: 23px;
+  font-weight: bold
+}
+
+
+
+.cardCategories[_ngcontent-lrx-c18]{
+  height: 130px;
+  overflow: hidden;
+  border: 2px solid var(--primary-color);
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+
+
+.cardCategories-link[_ngcontent-lrx-c18]{
+  text-decoration: none;
+  color: #000;
+}
+
+
+
+.cardCategories[_ngcontent-lrx-c18]   .imagename[_ngcontent-lrx-c18]{
+  font-size: 18px;
+  font-weight: bold;
+
+}
+
+
+
+.cardCategories[_ngcontent-lrx-c18]   .icon[_ngcontent-lrx-c18]{
+  font-size: 80px;
+}
+
+
+
+.stepBox[_ngcontent-lrx-c18]{
+  background: #c31432;    
+  background: linear-gradient(to right, #240b36, #c31432); 
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+
+.stepBox[_ngcontent-lrx-c18]   h1[_ngcontent-lrx-c18]{
+  font-size: 50px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+
+
+.stepBox[_ngcontent-lrx-c18]   p[_ngcontent-lrx-c18]{
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+}
+
+
+
+.highlight[_ngcontent-lrx-c18]{
+  color:var(--primary-color);
+  font-weight:bold;
+  font-style: italic;
+
+}
+
+
+
+.viewmoreBtn[_ngcontent-lrx-c18]{
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+
+
+.viewmoreBtn[_ngcontent-lrx-c18]:hover{
+  background-color:#000;
+  color: var(--primary-color);
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18] {
+  position: relative;
+  width: 320px;
+  height: 480px;
+  background: #191919;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-color);
+  transform: skewY(345deg);
+  transition: 0.5s;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]:hover::before {
+  top: -70%;
+  transform: skewY(390deg);
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]   .imgBox[_ngcontent-lrx-c18] {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  z-index: 1;
+}
+
+
+
+
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]   .contentBox[_ngcontent-lrx-c18] {
+  position: relative;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 2;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]   .contentBox[_ngcontent-lrx-c18]   h3[_ngcontent-lrx-c18] {
+  font-size: 18px;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]   .contentBox[_ngcontent-lrx-c18]   .price[_ngcontent-lrx-c18] {
+  font-size: 24px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]   .contentBox[_ngcontent-lrx-c18]   .buy[_ngcontent-lrx-c18] {
+  position: relative;
+  top: 100px;
+  opacity: 0;
+  padding: 10px 30px;
+  margin-top: 15px;
+  color: var(--primary-color);
+  text-decoration: none;
+  background: #fff;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+
+
+.productBox[_ngcontent-lrx-c18]   .card[_ngcontent-lrx-c18]:hover   .contentBox[_ngcontent-lrx-c18]   .buy[_ngcontent-lrx-c18] {
+  top: 0;
+  opacity: 1;
+}
+
+
+
+.mouse[_ngcontent-lrx-c18] {
+  height: 300px;
+  width: auto;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyRkFBMkY7Ozs7QUFJM0Y7RUFDRSx1Q0FBMkQ7RUFDM0QsYUFBYTtFQUNiLDJCQUEyQjtFQUMzQixzQkFBc0I7QUFDeEI7Ozs7QUFFQTtFQUNFLFFBQVE7RUFDUixrQkFBa0I7RUFDbEIsU0FBUztBQUNYOzs7O0FBQ0E7RUFDRSxXQUFXO0VBQ1gsZUFBZTtFQUNmLGlCQUFpQjs7QUFFbkI7Ozs7QUFDQTtFQUNFLHFCQUFxQjtFQUNyQixzQkFBc0I7RUFDdEIsMkJBQTJCO0VBQzNCLGtCQUFrQjtFQUNsQixrQkFBa0I7QUFDcEI7Ozs7QUFDQTtFQUNFLHNDQUFzQztFQUN0QyxXQUFXO0FBQ2I7Ozs7QUFFQTtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osWUFBWTtJQUNaLG1CQUFtQjtJQUNuQix5QkFBeUI7SUFDekIsZUFBZTtJQUNmO0FBQ0o7Ozs7QUFDQTtFQUNFLGVBQWU7RUFDZjtBQUNGOzs7O0FBQ0E7RUFDRSxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLHNDQUFzQztFQUN0QyxtQkFBbUI7RUFDbkIsc0JBQXNCO0FBQ3hCOzs7O0FBQ0E7RUFDRSxxQkFBcUI7RUFDckIsV0FBVztBQUNiOzs7O0FBQ0E7RUFDRSxlQUFlO0VBQ2YsaUJBQWlCOztBQUVuQjs7OztBQUNBO0VBQ0UsZUFBZTtBQUNqQjs7OztBQUNBO0VBQ0UsbUJBQW1CLEdBQUcsOEJBQThCLEdBQ2MsK0JBQStCO0VBQ2pHLHVEQUF1RCxFQUFFLHFFQUFxRTtFQUM5SCxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGtCQUFrQjtBQUNwQjs7OztBQUNBO0VBQ0UsZUFBZTtFQUNmLGlCQUFpQjtFQUNqQiwyQkFBMkI7QUFDN0I7Ozs7QUFDQTtFQUNFLGVBQWU7RUFDZixpQkFBaUI7RUFDakIsa0JBQWtCO0VBQ2xCLFdBQVc7QUFDYjs7OztBQUNBO0VBQ0UsMEJBQTBCO0VBQzFCLGdCQUFnQjtFQUNoQixrQkFBa0I7O0FBRXBCOzs7O0FBR0E7RUFDRSxxQkFBcUI7RUFDckIsc0NBQXNDO0VBQ3RDLFdBQVc7RUFDWCxrQkFBa0I7RUFDbEIsa0JBQWtCO0VBQ2xCLGVBQWU7RUFDZixtQkFBbUI7QUFDckI7Ozs7QUFFQTtFQUNFLHFCQUFxQjtFQUNyQiwyQkFBMkI7QUFDN0I7Ozs7QUFDQTtFQUNFLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osYUFBYTtFQUNiLG1CQUFtQjtFQUNuQixtQkFBbUI7RUFDbkIsZ0JBQWdCO0FBQ2xCOzs7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsa0JBQWtCO0VBQ2xCLFNBQVM7RUFDVCxXQUFXO0VBQ1gsWUFBWTtFQUNaLGdDQUFnQztFQUNoQyx3QkFBd0I7RUFDeEIsZ0JBQWdCO0FBQ2xCOzs7O0FBRUE7RUFDRSxTQUFTO0VBQ1Qsd0JBQXdCO0FBQzFCOzs7O0FBR0E7RUFDRSxrQkFBa0I7RUFDbEIsV0FBVztFQUNYLGFBQWE7RUFDYix1QkFBdUI7RUFDdkIsbUJBQW1CO0VBQ25CLGlCQUFpQjtFQUNqQixVQUFVO0FBQ1o7Ozs7QUFDQTs7Ozs7Ozs7Ozs7Q0FXQzs7OztBQUNEO0VBQ0Usa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixzQkFBc0I7RUFDdEIsVUFBVTtBQUNaOzs7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGdCQUFnQjtFQUNoQix5QkFBeUI7RUFDekIsbUJBQW1CO0FBQ3JCOzs7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsWUFBWTtFQUNaLGdCQUFnQjtFQUNoQixtQkFBbUI7QUFDckI7Ozs7QUFFQTtFQUNFLGtCQUFrQjtFQUNsQixVQUFVO0VBQ1YsVUFBVTtFQUNWLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsMkJBQTJCO0VBQzNCLHFCQUFxQjtFQUNyQixnQkFBZ0I7RUFDaEIsbUJBQW1CO0VBQ25CLHlCQUF5QjtFQUN6QixtQkFBbUI7RUFDbkIsZ0JBQWdCO0FBQ2xCOzs7O0FBRUE7RUFDRSxNQUFNO0VBQ04sVUFBVTtBQUNaOzs7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsV0FBVztBQUNiIiwiZmlsZSI6ImhvbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIkBpbXBvcnQgdXJsKFwiaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1Jc3RvaytXZWI6d2dodEA0MDA7NzAwJmRpc3BsYXk9c3dhcFwiKTtcclxuXHJcblxyXG5cclxuLmJhbm5lcntcclxuICBiYWNrZ3JvdW5kLWltYWdlOiB1cmwoJy4uLy4uLy4uL2Fzc2V0cy9pbWcvYmFubmVyaW1nNi5qcGcnKTtcclxuICBoZWlnaHQ6IDYwMHB4O1xyXG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG59XHJcblxyXG4uY29udGVudHtcclxuICB0b3A6IDMwJTtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgbGVmdDogMjAlO1xyXG59XHJcbi5jb250ZW50IGgxe1xyXG4gIGNvbG9yOiAjZmZmO1xyXG4gIGZvbnQtc2l6ZTogNTBweDtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuXHJcbn1cclxuLmNvbnRlbnQgYXtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgcGFkZGluZzogMTVweCAyMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxufVxyXG4uY29udGVudCBhOmhvdmVye1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGNvbG9yOiAjZmZmO1xyXG59XHJcblxyXG4uYnRuIHtcclxuICAgIGhlaWdodDogMzVweDtcclxuICAgIHdpZHRoOiAxNzBweDtcclxuICAgIGJvcmRlcjogbm9uZTtcclxuICAgIGJvcmRlci1yYWRpdXM6IDIwcHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDkwNDExO1xyXG4gICAgZm9udC1zaXplOiAxNHB4O1xyXG4gICAgZm9udC13ZWlnaHQ6IDUwMFxyXG59XHJcbi50ZXh0LWNlbnRlcntcclxuICBmb250LXNpemU6IDIzcHg7XHJcbiAgZm9udC13ZWlnaHQ6IGJvbGRcclxufVxyXG4uY2FyZENhdGVnb3JpZXN7XHJcbiAgaGVpZ2h0OiAxMzBweDtcclxuICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gIGJvcmRlcjogMnB4IHNvbGlkIHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGJvcmRlci1yYWRpdXM6IDE1cHg7XHJcbiAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZjtcclxufVxyXG4uY2FyZENhdGVnb3JpZXMtbGlua3tcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbiAgY29sb3I6ICMwMDA7XHJcbn1cclxuLmNhcmRDYXRlZ29yaWVzIC5pbWFnZW5hbWV7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG5cclxufVxyXG4uY2FyZENhdGVnb3JpZXMgLmljb257XHJcbiAgZm9udC1zaXplOiA4MHB4O1xyXG59XHJcbi5zdGVwQm94e1xyXG4gIGJhY2tncm91bmQ6ICNjMzE0MzI7ICAvKiBmYWxsYmFjayBmb3Igb2xkIGJyb3dzZXJzICovXHJcbiAgYmFja2dyb3VuZDogLXdlYmtpdC1saW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICMyNDBiMzYsICNjMzE0MzIpOyAgLyogQ2hyb21lIDEwLTI1LCBTYWZhcmkgNS4xLTYgKi9cclxuICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQodG8gcmlnaHQsICMyNDBiMzYsICNjMzE0MzIpOyAvKiBXM0MsIElFIDEwKy8gRWRnZSwgRmlyZWZveCAxNissIENocm9tZSAyNissIE9wZXJhIDEyKywgU2FmYXJpIDcrICovXHJcbiAgcGFkZGluZzogMTBweCAyMHB4O1xyXG4gIGJvcmRlci1yYWRpdXM6IDVweDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbn1cclxuLnN0ZXBCb3ggaDF7XHJcbiAgZm9udC1zaXplOiA1MHB4O1xyXG4gIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gIGNvbG9yOiB2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxufVxyXG4uc3RlcEJveCBwe1xyXG4gIGZvbnQtc2l6ZTogMjBweDtcclxuICBmb250LXdlaWdodDogYm9sZDtcclxuICBmb250LXN0eWxlOiBpdGFsaWM7XHJcbiAgY29sb3I6ICNmZmY7XHJcbn1cclxuLmhpZ2hsaWdodHtcclxuICBjb2xvcjp2YXIoLS1wcmltYXJ5LWNvbG9yKTtcclxuICBmb250LXdlaWdodDpib2xkO1xyXG4gIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuXHJcbn1cclxuXHJcblxyXG4udmlld21vcmVCdG57XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG4gIGNvbG9yOiAjZmZmO1xyXG4gIHBhZGRpbmc6IDEwcHggMTBweDtcclxuICBib3JkZXItcmFkaXVzOiA1cHg7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG4gIG1hcmdpbi1ib3R0b206IDIwcHg7XHJcbn1cclxuXHJcbi52aWV3bW9yZUJ0bjpob3ZlcntcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiMwMDA7XHJcbiAgY29sb3I6IHZhcigtLXByaW1hcnktY29sb3IpO1xyXG59XHJcbi5wcm9kdWN0Qm94IC5jYXJkIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgd2lkdGg6IDMyMHB4O1xyXG4gIGhlaWdodDogNDgwcHg7XHJcbiAgYmFja2dyb3VuZDogIzE5MTkxOTtcclxuICBib3JkZXItcmFkaXVzOiAyMHB4O1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbn1cclxuXHJcbi5wcm9kdWN0Qm94IC5jYXJkOjpiZWZvcmUge1xyXG4gIGNvbnRlbnQ6IFwiXCI7XHJcbiAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gIHRvcDogLTUwJTtcclxuICB3aWR0aDogMTAwJTtcclxuICBoZWlnaHQ6IDEwMCU7XHJcbiAgYmFja2dyb3VuZDogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgdHJhbnNmb3JtOiBza2V3WSgzNDVkZWcpO1xyXG4gIHRyYW5zaXRpb246IDAuNXM7XHJcbn1cclxuXHJcbi5wcm9kdWN0Qm94IC5jYXJkOmhvdmVyOjpiZWZvcmUge1xyXG4gIHRvcDogLTcwJTtcclxuICB0cmFuc2Zvcm06IHNrZXdZKDM5MGRlZyk7XHJcbn1cclxuXHJcblxyXG4ucHJvZHVjdEJveCAuY2FyZCAuaW1nQm94IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIHBhZGRpbmctdG9wOiAyMHB4O1xyXG4gIHotaW5kZXg6IDE7XHJcbn1cclxuLypcclxuLmNhcmQgLmltZ0JveCBpbWcge1xyXG4gICAgbWF4LXdpZHRoOiAxMDAlO1xyXG5cclxuICAgIHRyYW5zaXRpb246IC41cztcclxufVxyXG5cclxuLmNhcmQ6aG92ZXIgLmltZ0JveCBpbWcge1xyXG4gICAgbWF4LXdpZHRoOiA1MCU7XHJcblxyXG59XHJcbiovXHJcbi5wcm9kdWN0Qm94IC5jYXJkIC5jb250ZW50Qm94IHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICB6LWluZGV4OiAyO1xyXG59XHJcblxyXG4ucHJvZHVjdEJveCAuY2FyZCAuY29udGVudEJveCBoMyB7XHJcbiAgZm9udC1zaXplOiAxOHB4O1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuICBmb250LXdlaWdodDogNTAwO1xyXG4gIHRleHQtdHJhbnNmb3JtOiB1cHBlcmNhc2U7XHJcbiAgbGV0dGVyLXNwYWNpbmc6IDFweDtcclxufVxyXG5cclxuLnByb2R1Y3RCb3ggLmNhcmQgLmNvbnRlbnRCb3ggLnByaWNlIHtcclxuICBmb250LXNpemU6IDI0cHg7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGZvbnQtd2VpZ2h0OiA3MDA7XHJcbiAgbGV0dGVyLXNwYWNpbmc6IDFweDtcclxufVxyXG5cclxuLnByb2R1Y3RCb3ggLmNhcmQgLmNvbnRlbnRCb3ggLmJ1eSB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIHRvcDogMTAwcHg7XHJcbiAgb3BhY2l0eTogMDtcclxuICBwYWRkaW5nOiAxMHB4IDMwcHg7XHJcbiAgbWFyZ2luLXRvcDogMTVweDtcclxuICBjb2xvcjogdmFyKC0tcHJpbWFyeS1jb2xvcik7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG4gIGJhY2tncm91bmQ6ICNmZmY7XHJcbiAgYm9yZGVyLXJhZGl1czogMzBweDtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGxldHRlci1zcGFjaW5nOiAxcHg7XHJcbiAgdHJhbnNpdGlvbjogMC41cztcclxufVxyXG5cclxuLnByb2R1Y3RCb3ggLmNhcmQ6aG92ZXIgLmNvbnRlbnRCb3ggLmJ1eSB7XHJcbiAgdG9wOiAwO1xyXG4gIG9wYWNpdHk6IDE7XHJcbn1cclxuXHJcbi5tb3VzZSB7XHJcbiAgaGVpZ2h0OiAzMDBweDtcclxuICB3aWR0aDogYXV0bztcclxufVxyXG4iXX0= */</style><link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin="true"><link rel="preconnect" href="https://fonts.gstatic.com/"><link rel="stylesheet" href="./TechGear_files/css2"></head>
+<body style="">
+  <app-root _nghost-lrx-c23="" ng-version="12.2.16"><div _ngcontent-lrx-c23="" class="container-xs bg"><app-navbar _ngcontent-lrx-c23="" _nghost-lrx-c21=""><nav _ngcontent-lrx-c21="" class="navbar navbar-expand-lg navbar-light bg-light"><div _ngcontent-lrx-c21="" class="container"><a _ngcontent-lrx-c21="" routerlink="" class="navbar-brand" ng-reflect-router-link="" href="http://localhost:4200/"> Tech Gear </a><button _ngcontent-lrx-c21="" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler collapsed"><span _ngcontent-lrx-c21="" class="navbar-toggler-icon"></span></button><div _ngcontent-lrx-c21="" id="navbarNavAltMarkup" class="navbar-collapse collapse" style=""><div _ngcontent-lrx-c21="" class="navbar-nav ms-auto"><a _ngcontent-lrx-c21="" aria-current="page" routerlink="" routerlinkactive="active-link" class="nav-link active active-link" ng-reflect-router-link="" ng-reflect-router-link-active="active-link" ng-reflect-router-link-active-options="[object Object]" href="http://localhost:4200/">Home</a><a _ngcontent-lrx-c21="" routerlink="menu" routerlinkactive="active-link" class="nav-link" ng-reflect-router-link="menu" ng-reflect-router-link-active="active-link" href="http://localhost:4200/menu">Menu</a><a _ngcontent-lrx-c21="" routerlink="about" routerlinkactive="active-link" class="nav-link" ng-reflect-router-link="about" ng-reflect-router-link-active="active-link" href="http://localhost:4200/about">About</a><a _ngcontent-lrx-c21="" routerlink="contact" routerlinkactive="active-link" class="nav-link" ng-reflect-router-link="contact" ng-reflect-router-link-active="active-link" href="http://localhost:4200/contact">Contact</a><form _ngcontent-lrx-c21="" class="d-flex"><input _ngcontent-lrx-c21="" type="search" placeholder="Search" aria-label="Search" class="form-control me-2"><button _ngcontent-lrx-c21="" type="submit" class="btn btn-danger">Search</button></form></div></div></div></nav></app-navbar><router-outlet _ngcontent-lrx-c23=""></router-outlet><app-home _nghost-lrx-c18=""><div _ngcontent-lrx-c18="" class="container"><div _ngcontent-lrx-c18="" class="banner"><div _ngcontent-lrx-c18="" class="content"><h1 _ngcontent-lrx-c18="" class="mb-5"> Shop Confidently with <br _ngcontent-lrx-c18="">30-Day Hassle-Free Returns. </h1><a _ngcontent-lrx-c18="" routerlink="menu" ng-reflect-router-link="menu" href="http://localhost:4200/menu">SHOPPING NOW <i _ngcontent-lrx-c18="" class="bi bi-arrow-right"></i></a></div></div></div><div _ngcontent-lrx-c18="" class="container"><div _ngcontent-lrx-c18="" class="d-flex justify-content-center align-items-center mt-5"><button _ngcontent-lrx-c18="" class="btn btn-dark">OUR CATEGORIES</button></div><div _ngcontent-lrx-c18="" class="d-flex justify-content-center mt-3"><span _ngcontent-lrx-c18="" class="text text-center">Finding Best Products Now<br _ngcontent-lrx-c18=""> in Your Fingertips</span></div><div _ngcontent-lrx-c18="" class="row mt-2 g-4"><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-1"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">CPUs / Processors </span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie1.png" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">Graphisc Cards</span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie2.png" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">Hard Drive / SSDs</span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie3.png" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">MotherBoards</span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie4.jpg" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2tr5"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">Monitor </span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie8.jpg" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">Power Supplies</span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie5.jpg" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">Memory </span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie7.jpg" height="100" width="100"></div></div></div></a></div><div _ngcontent-lrx-c18="" class="col-md-3"><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="cardCategories-link"><div _ngcontent-lrx-c18="" class="cardCategories p-2"><div _ngcontent-lrx-c18="" class="d-flex justify-content-between align-items-center p-2"><div _ngcontent-lrx-c18="" class="flex-column lh-1 imagename"><span _ngcontent-lrx-c18="">PC Case </span></div><div _ngcontent-lrx-c18=""><img _ngcontent-lrx-c18="" src="./TechGear_files/categorie6.jpg" height="100" width="100"></div></div></div></a></div></div></div><div _ngcontent-lrx-c18="" class="container mt-5 mb-5"><h1 _ngcontent-lrx-c18="" class="text-center">How to get <span _ngcontent-lrx-c18="" class="highlight">product</span></h1><div _ngcontent-lrx-c18="" class="row mt-5"><div _ngcontent-lrx-c18="" class="col-lg-4 mt-2"><div _ngcontent-lrx-c18="" class="stepBox"><h1 _ngcontent-lrx-c18="">1</h1><p _ngcontent-lrx-c18="">select product</p></div></div><div _ngcontent-lrx-c18="" class="col-lg-4 mt-2"><div _ngcontent-lrx-c18="" class="stepBox"><h1 _ngcontent-lrx-c18="">2</h1><p _ngcontent-lrx-c18="">fill in the details</p></div></div><div _ngcontent-lrx-c18="" class="col-lg-4 mt-2"><div _ngcontent-lrx-c18="" class="stepBox"><h1 _ngcontent-lrx-c18="">3</h1><p _ngcontent-lrx-c18="">your order delivered in day</p></div></div></div></div><div _ngcontent-lrx-c18="" class="container mt-4 mb-4"><h1 _ngcontent-lrx-c18="">Trending <span _ngcontent-lrx-c18="" class="highlight"> product</span></h1><div _ngcontent-lrx-c18="" class="row"><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product1.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product2.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product3.webp"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product4.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></div><a _ngcontent-lrx-c18="" routerlink="menu" class="viewmoreBtn" ng-reflect-router-link="menu" href="http://localhost:4200/menu">View more <i _ngcontent-lrx-c18="" class="bi bi-arrow-right"></i></a></div><div _ngcontent-lrx-c18="" class="container mt-4 mb-4"><h1 _ngcontent-lrx-c18="">New <span _ngcontent-lrx-c18="" class="highlight"> product</span></h1><div _ngcontent-lrx-c18="" class="row"><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product1.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product2.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product3.webp"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product4.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></div><a _ngcontent-lrx-c18="" routerlink="menu" class="viewmoreBtn" ng-reflect-router-link="menu" href="http://localhost:4200/menu">View more <i _ngcontent-lrx-c18="" class="bi bi-arrow-right"></i></a></div><div _ngcontent-lrx-c18="" class="container mt-4 mb-4"><h1 _ngcontent-lrx-c18="">Most sale <span _ngcontent-lrx-c18="" class="highlight"> product</span></h1><div _ngcontent-lrx-c18="" class="row"><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product1.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product2.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product3.webp"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><div _ngcontent-lrx-c18="" class="productBox"><div _ngcontent-lrx-c18="" class="card"><div _ngcontent-lrx-c18="" class="imgBox"><img _ngcontent-lrx-c18="" alt="mouse corsair" class="mouse" src="./TechGear_files/product4.png"></div><div _ngcontent-lrx-c18="" class="contentBox"><h3 _ngcontent-lrx-c18="">MSI Bravo 15</h3><h2 _ngcontent-lrx-c18="" class="price">₫2,000</h2><a _ngcontent-lrx-c18="" href="http://localhost:4200/#" class="buy">Buy Now</a></div></div></div><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><div _ngcontent-lrx-c18="" class="col-lg-3 mt-3"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></div><a _ngcontent-lrx-c18="" routerlink="menu" class="viewmoreBtn" ng-reflect-router-link="menu" href="http://localhost:4200/menu">View more <i _ngcontent-lrx-c18="" class="bi bi-arrow-right"></i></a></div></app-home><!--container--><app-footer _ngcontent-lrx-c23="" _nghost-lrx-c22=""><div _ngcontent-lrx-c22="" class="container-fluid footer mt-5"><div _ngcontent-lrx-c22="" class="row"><div _ngcontent-lrx-c22="" class="col-lg-6"><h1 _ngcontent-lrx-c22="">TechGear</h1><p _ngcontent-lrx-c22="">BEST BUY, BEST QUALITY</p></div><div _ngcontent-lrx-c22="" class="col-lg-4"><a _ngcontent-lrx-c22="" routerlink="" ng-reflect-router-link="" href="http://localhost:4200/">Home</a><a _ngcontent-lrx-c22="" routerlink="menu" ng-reflect-router-link="menu" href="http://localhost:4200/menu">Menu</a><a _ngcontent-lrx-c22="" routerlink="about" ng-reflect-router-link="about" href="http://localhost:4200/about">About</a><a _ngcontent-lrx-c22="" routerlink="contact" ng-reflect-router-link="contact" href="http://localhost:4200/contact">Contact</a></div><div _ngcontent-lrx-c22="" class="col-lg-2"><a _ngcontent-lrx-c22="" href="http://localhost:4200/#" target="_blank"><i _ngcontent-lrx-c22="" class="bi bi-facebook"></i></a><a _ngcontent-lrx-c22="" href="http://localhost:4200/#" target="_blank"><i _ngcontent-lrx-c22="" class="bi bi-whatsapp"></i></a><a _ngcontent-lrx-c22="" href="http://localhost:4200/#" target="_blank"><i _ngcontent-lrx-c22="" class="bi bi-instagram"></i></a><a _ngcontent-lrx-c22="" href="http://localhost:4200/#" target="_blank"><i _ngcontent-lrx-c22="" class="bi bi-youtube"></i></a></div></div></div></app-footer></div></app-root>
+  <script src="./TechGear_files/bootstrap.bundle.min.js.download" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="./TechGear_files/runtime.js.download" defer=""></script><script src="./TechGear_files/polyfills.js.download" defer=""></script><script src="./TechGear_files/styles.js.download" defer=""></script><script src="./TechGear_files/vendor.js.download" defer=""></script><script src="./TechGear_files/main.js.download" defer=""></script>
+
+<div id="volume-booster-visusalizer">
+                    <div class="sound">
+                        <div class="sound-icon"></div>
+                        <div class="sound-wave sound-wave_one"></div>
+                        <div class="sound-wave sound-wave_two"></div>
+                        <div class="sound-wave sound-wave_three"></div>
+                    </div>
+                    <div class="segments-box">
+                        <div data-range="1-20" class="segment"><span></span></div>
+                        <div data-range="21-40" class="segment"><span></span></div>
+                        <div data-range="41-60" class="segment"><span></span></div>
+                        <div data-range="61-80" class="segment"><span></span></div>
+                        <div data-range="81-100" class="segment"><span></span></div>
+                    </div>
+                </div></body></html>
