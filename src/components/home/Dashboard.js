@@ -3,8 +3,46 @@ import { Image } from "react-bootstrap";
 import gear from "../../images/gear.png";
 import styled from "styled-components";
 import "./Dashboard.css";
+import Trending from "./Trending";
 const Stylediv = styled.div``;
+
 const Dashboard = () => {
+  const productDetails = [
+    {
+      id: 1,
+      productName: "MSI Bravo 15",
+      productDetails: "lorem1",
+      productPrice: 2000,
+      productImg: "../../assets/img/product1.png",
+    },
+    {
+      id: 2,
+      productName: "MSI Bravo 15",
+      productDetails: "lorem2",
+      productPrice: 2000,
+      productImg: "../../assets/img/product2.png",
+    },
+    {
+      id: 3,
+      productName: "MSI Bravo 15",
+      productDetails: "lorem3",
+      productPrice: 2000,
+      productImg: "../../assets/img/product3.webp",
+    },
+    {
+      id: 4,
+      productName: "MSI Bravo 15",
+      productDetails: "lorem3",
+      productPrice: 2000,
+      productImg: "../../assets/img/product3.webp",
+    },
+  ];
+  const productList = productDetails.map((productDetail) => (
+    <Trending
+      key={productDetail.productDetails}
+      productDetail={productDetail}
+    />
+  ));
   return (
     // <div>
     //     <div classNameName='backgroundDashboard'>
@@ -218,6 +256,24 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="container mt-5 mb-5">
+        <h1>
+          Trending <span className="highlight"> product</span>
+        </h1>
+        <div className="row">{productList}</div>
+      </div>
+      <div className="container mt-5 mb-5">
+        <h1>
+          New <span className="highlight"> product</span>
+        </h1>
+        <div className="row">{productList}</div>
+      </div>
+      <div className="container mt-5 mb-5">
+        <h1>
+          Most sale <span className="highlight"> product</span>
+        </h1>
+        <div className="row">{productList}</div>
       </div>
     </div>
   );

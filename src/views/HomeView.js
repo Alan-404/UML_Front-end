@@ -1,15 +1,16 @@
-import React from 'react'
-import Header from './Header'
-import Dashboard from '../components/home/Dashboard'
-import Footer from './Footer'
+import React from "react";
+import Header from "./Header";
+import Dashboard from "../components/home/Dashboard";
+import Footer from "./Footer";
+import "./HomeView.css";
 const HomeView = () => {
   return (
-    <div>
+    <div className="container-xs bg">
       <Header />
       <Dashboard />
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default HomeView
+export default HomeView;
