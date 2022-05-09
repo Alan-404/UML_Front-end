@@ -3,8 +3,13 @@ import { Image } from "react-bootstrap";
 import gear from "../../images/gear.png";
 import styled from "styled-components";
 import "./Dashboard.css";
-import Trending from "./Trending";
+import img1 from '../../assets/img/product1.png'
+import img2 from '../../assets/img/product1.png'
+import img3 from '../../assets/img/product1.png'
+import ProductBox from "./ProductBox";
 const Stylediv = styled.div``;
+
+
 
 const Dashboard = () => {
   const productDetails = [
@@ -13,33 +18,33 @@ const Dashboard = () => {
       productName: "MSI Bravo 15",
       productDetails: "lorem1",
       productPrice: 2000,
-      productImg: "../../assets/img/product1.png",
+      productImg: img1,
     },
     {
       id: 2,
       productName: "MSI Bravo 15",
       productDetails: "lorem2",
       productPrice: 2000,
-      productImg: "../../assets/img/product2.png",
+      productImg: img2,
     },
     {
       id: 3,
       productName: "MSI Bravo 15",
       productDetails: "lorem3",
       productPrice: 2000,
-      productImg: "../../assets/img/product3.webp",
+      productImg: img3,
     },
     {
       id: 4,
       productName: "MSI Bravo 15",
       productDetails: "lorem3",
       productPrice: 2000,
-      productImg: "../../assets/img/product3.webp",
+      productImg: img3,
     },
   ];
   const productList = productDetails.map((productDetail) => (
-    <Trending
-      key={productDetail.productDetails}
+    <ProductBox
+      key={productDetail.id}
       productDetail={productDetail}
     />
   ));
