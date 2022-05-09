@@ -32,9 +32,10 @@ const StyledDiv = styled.div`
   }
   i {
     padding: 0 10px;
+    color: white !important;
   }
   i:hover {
-    color: var(--primary-color);
+    color: white !important;
   }
 `;
 const Footer = () => {

@@ -1,86 +1,26 @@
 import React from "react";
-import { Image } from "react-bootstrap";
-import gear from "../../images/gear.png";
 import styled from "styled-components";
 import "./Dashboard.css";
-import img1 from '../../assets/img/product1.png'
-import img2 from '../../assets/img/product1.png'
-import img3 from '../../assets/img/product1.png'
 import ProductBox from "./ProductBox";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
-const Stylediv = styled.div``;
-
+import {bootstrapMode1} from './constant'
 
 
 const Dashboard = () => {
+  console.log(bootstrapMode1)
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  const getProductsReducer = useSelector(state => state.getProductsReducer)
-  const {products} = getProductsReducer
-
+  const getProductsReducer = useSelector((state) => state.getProductsReducer);
+  const { products } = getProductsReducer;
 
   useEffect(() => {
-    dispatch(getProductsAction(0))
-  }, [dispatch])
-
-  const productDetails = [
-    {
-      id: 1,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem1",
-      productPrice: 2000,
-      productImg: img1,
-    },
-    {
-      id: 2,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem2",
-      productPrice: 2000,
-      productImg: img2,
-    },
-    {
-      id: 3,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem3",
-      productPrice: 2000,
-      productImg: img3,
-    },
-    {
-      id: 4,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem3",
-      productPrice: 2000,
-      productImg: img3,
-    },
-  ];
-  const productList = productDetails.map((productDetail) => (
-    <ProductBox
-      key={productDetail.id}
-      productDetail={productDetail}
-    />
-  ));
+    dispatch(getProductsAction(0));
+  }, [dispatch]);
   return (
-    // <div>
-    //     <div classNameName='backgroundDashboard'>
-    //         <div classNameName='px-5' style={{paddingTop: '20vh'}}>
-    //             <div classNameName='d-flex'>
-    //                 <Image style={{width: '30vw', height: '40vh'}} src={gear}/>
-    //                 <div>
-    //                     <h1 style={{fontSize: '110px'}} classNameName='text-light'>TECHGEAR</h1>
-    //                     <h2 style={{fontSize: '50px', color: 'gray'}}>Sự Bùng Nổ Công Nghệ</h2>
-    //                 </div>
-    //             </div>
-    //         </div>
-    //     </div>
-    // </div>
     <div>
-      <div>
-        {products ? (products.map((product, index) => <h2 id={product.id}>{product.name}</h2>)) : (<div>Khong co gi</div>)}
-      </div>
       <div className="container">
         <div className="banner">
           <div className="content">
@@ -280,23 +220,45 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      
       <div className="container mt-5 mb-5">
         <h1>
           Trending <span className="highlight"> product</span>
         </h1>
-        <div className="row">{productList}</div>
+        <div className="row">
+          {products &&
+            products
+              .slice(0, 4)
+              .map((product, index) => (
+                <ProductBox key={product.id} product={product} bootstrapMode={bootstrapMode1}/>
+              ))}
+        </div>
       </div>
       <div className="container mt-5 mb-5">
         <h1>
           New <span className="highlight"> product</span>
         </h1>
-        <div className="row">{productList}</div>
+        <div className="row">
+          {products &&
+            products
+              .slice(0, 4)
+              .map((product, index) => (
+                <ProductBox key={product.id} product={product} bootstrapMode={bootstrapMode1} />
+              ))}
+        </div>
       </div>
       <div className="container mt-5 mb-5">
         <h1>
           Most sale <span className="highlight"> product</span>
         </h1>
-        <div className="row">{productList}</div>
+        <div className="row">
+          {products &&
+            products
+              .slice(0, 4)
+              .map((product, index) => (
+                <ProductBox key={product.id} product={product} bootstrapMode={bootstrapMode1}/>
+              ))}
+        </div>
       </div>
     </div>
   );

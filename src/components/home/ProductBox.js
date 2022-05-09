@@ -1,17 +1,18 @@
 import React from "react";
 import "./Dashboard.css";
-function ProductBox({ productDetail }) {
+function ProductBox({ product , bootstrapMode }) {
+  console.log(bootstrapMode)
   return (
-    <div className="col-lg-3 mt-3">
+    <div className={bootstrapMode}>
       <div className="productBox">
         <div className="card">
           <div className="imgBox">
-            <img src={productDetail.productImg} alt="asd" className="mouse" />
+            <img src={`http://localhost:3456/${product.imageUrls}`} alt="asd" className="mouse" />
           </div>
 
           <div className="contentBox">
-            <h3>{productDetail.productName}</h3>
-            <h2 className="price">{productDetail.productPrice}</h2>
+            <h3>{product.name}</h3>
+            <h2 className="price">{product.price.toLocaleString()} VND</h2>
             <a className="buy">
               Buy Now &nbsp;<i className="bi bi-bag"></i>
             </a>

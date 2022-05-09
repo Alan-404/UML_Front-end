@@ -1,41 +1,17 @@
 import React from "react";
 import "./Menu.css";
-import MenuBox from "./MenuBox";
-import img1 from '../../assets/img/product1.png'
+import { useEffect } from "react";
+import { getProductsAction } from "../../behaviors/actions/product";
+import { useDispatch, useSelector } from "react-redux";
+import ProductBox from "./ProductBox";
+import { bootstrapMode2 } from "./constant";
 function Menu() {
-  const productDetails = [
-    {
-      id: 1,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem1",
-      productPrice: 2000,
-      productImg: img1,
-    },
-    {
-      id: 2,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem2",
-      productPrice: 2000,
-      productImg: img1,
-    },
-    {
-      id: 3,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem3",
-      productPrice: 2000,
-      productImg: img1,
-    },
-    {
-      id: 4,
-      productName: "MSI Bravo 15",
-      productDetails: "lorem3",
-      productPrice: 2000,
-      productImg: img1,
-    },
-  ];
-  const productList = productDetails.map((productDetail) => (
-    <MenuBox key={productDetail.id} productDetail={productDetail} />
-  ));
+  const dispatch = useDispatch();
+  const getProductsReducer = useSelector((state) => state.getProductsReducer);
+  const { products } = getProductsReducer;
+  useEffect(() => {
+    dispatch(getProductsAction(0));
+  }, [dispatch]);
   return (
     <div className="container">
       <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
@@ -205,7 +181,18 @@ function Menu() {
               </div>
             </div>
           </div>
-          <div className="row">{productList}</div>
+          <div className="row">
+            {products &&
+              products
+                .slice(0, 4)
+                .map((product, index) => (
+                  <ProductBox
+                    key={product.id}
+                    product={product}
+                    bootstrapMode={bootstrapMode2}
+                  />
+                ))}
+          </div>
         </div>
       </section>
     </div>
