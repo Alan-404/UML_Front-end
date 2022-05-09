@@ -8,7 +8,7 @@ const HomeView = () => {
   return (
     <div className="container-xs bg">
       <Header />
-      <Menu />
+      <Dashboard />
       <Footer />
     </div>
   );

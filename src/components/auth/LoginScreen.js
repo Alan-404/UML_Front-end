@@ -77,12 +77,12 @@ const LoginScreen = () => {
             />
           </InputGroup>
           <div className='d-flex'>
-            <p>Bạn không có tài khoản? </p>
+            <p style={{fontSize: '5px !important'}}>Bạn không có tài khoản? </p>
             &#160;
-            <Link to='/register'>Đăng ký</Link>
+            <Link style={{fontSize: '5px !important'}} to='/register'>Đăng ký</Link>
           </div>
           
-          <Button className='w-100 mt-1' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
+          <Button className='w-100 mt-1 text-light' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
         </div>
       </div>
     </div>

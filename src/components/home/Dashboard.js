@@ -7,11 +7,26 @@ import img1 from '../../assets/img/product1.png'
 import img2 from '../../assets/img/product1.png'
 import img3 from '../../assets/img/product1.png'
 import ProductBox from "./ProductBox";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getProductsAction } from "../../behaviors/actions/product";
+import { useSelector } from "react-redux";
 const Stylediv = styled.div``;
 
 
 
 const Dashboard = () => {
+
+  const dispatch = useDispatch()
+
+  const getProductsReducer = useSelector(state => state.getProductsReducer)
+  const {products} = getProductsReducer
+
+
+  useEffect(() => {
+    dispatch(getProductsAction(0))
+  }, [dispatch])
+
   const productDetails = [
     {
       id: 1,
@@ -63,6 +78,9 @@ const Dashboard = () => {
     //     </div>
     // </div>
     <div>
+      <div>
+        {products ? (products.map((product, index) => <h2 id={product.id}>{product.name}</h2>)) : (<div>Khong co gi</div>)}
+      </div>
       <div className="container">
         <div className="banner">
           <div className="content">
