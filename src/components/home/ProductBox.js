@@ -1,7 +1,6 @@
 import React from "react";
 import "./Dashboard.css";
 function ProductBox({ product , bootstrapMode }) {
-  console.log(bootstrapMode)
   return (
     <div className={bootstrapMode}>
       <div className="productBox">

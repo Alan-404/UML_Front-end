@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useDispatch, useSelector } from "react-redux";
 import ProductBox from "./ProductBox";
-import { bootstrapMode2 } from "./constant";
+import {bootstrapMode2} from "../../common/constants";
 function Menu() {
   const dispatch = useDispatch();
   const getProductsReducer = useSelector((state) => state.getProductsReducer);

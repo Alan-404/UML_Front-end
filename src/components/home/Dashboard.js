@@ -6,18 +6,23 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
-import {bootstrapMode1} from './constant'
+import { bootstrapMode1 } from "../../common/constants";
+import { getUserTokenAction } from "../../behaviors/actions/user";
 
 
 const Dashboard = () => {
-  console.log(bootstrapMode1)
   const dispatch = useDispatch();
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
 
+  const getUserTokenReducer = useSelector((state) => state.getUserTokenReducer)
+  const {user} = getUserTokenReducer
+
   useEffect(() => {
+    console.log(localStorage.getItem('uml'))
     dispatch(getProductsAction(0));
+    dispatch(getUserTokenAction())
   }, [dispatch]);
   return (
     <div>
