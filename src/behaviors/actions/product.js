@@ -90,7 +90,7 @@ export const getProductByIdAction = (id) => async(dispatch) => {
         })
 
         const {data} = await axios.get(`${apiUrl}/product/get/${id}`)
-
+        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_PRODUCT_BY_ID_SUCCESS,

@@ -9,8 +9,9 @@ function App() {
       <Routes>
         <Route path='/login' element={<AuthView authRoute="login"/>}/>
         <Route path='/register' element={<AuthView authRoute="register"/>}/>
-        <Route path='/dashboard' element={<HomeView />}/>
-        <Route exact path='/' element={<HomeView />}/>
+        <Route path='/dashboard' element={<HomeView homeRoute="dashboard" />}/>
+        <Route path='/product' element={<HomeView homeRoute="product" />}/>
+        <Route exact path='/' element={<HomeView homeRoute="dashboard" />}/>
         
       </Routes>
     </BrowserRouter>

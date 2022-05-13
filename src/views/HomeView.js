@@ -4,11 +4,18 @@ import Dashboard from "../components/home/Dashboard";
 import Footer from "./Footer";
 import "./HomeView.css";
 import Menu from "../components/home/Menu";
-const HomeView = () => {
+import ShowProduct from "../components/home/ShowProduct";
+const HomeView = ({homeRoute}) => {
+  let body = (
+    <div>
+      {homeRoute === 'dashboard' && <Dashboard />}
+      {homeRoute === 'product' && <ShowProduct />}
+    </div>
+  )
   return (
     <div className="container-xs bg">
       <Header />
-      <Dashboard />
+      {body}
       <Footer />
     </div>
   );
