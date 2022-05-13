@@ -265,8 +265,8 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/account/user/add`, {name, email, address, phone, gender, password}, config)
-
+        const {data} = await axios.post(`${apiUrl}/account/add`, {name, email, address, phone, gender, password})
+        console.log(data)
         if (data.id){
             dispatch({
                 type: ADD_USER_SUCCESS
