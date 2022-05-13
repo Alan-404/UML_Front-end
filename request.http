@@ -1,0 +1,3 @@
+GET http://localhost:3456/rest/account/user/get
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJubWRAZ21haWwuY29tIiwiZXhwIjoxNjUyNDM5NDYyLCJpYXQiOjE2NTI0MDM0NjJ9.dFKzPRGbqSRZDPTmPwR-RGqSeJF5VQpN-JanDXu7Bwk
