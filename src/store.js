@@ -12,9 +12,17 @@ import {
     addUserReducer,
     editUserReducer
 } from './behaviors/reducers/user'
-import { getProductsReducer } from "./behaviors/reducers/product";
+import { 
+    getProductsReducer,
+    editProductReducer,
+    getProductByIdReducer,
+    addProductReducer,
+    deleteProductReducer,
+    searchProductsReducer
+} from "./behaviors/reducers/product";
 
 const reducers = combineReducers({
+    //user
     loginAccountReducer,
     getProductsReducer,
     getUserTokenReducer,
@@ -24,7 +32,13 @@ const reducers = combineReducers({
     getUserByIdReducer,
     getAllUsersReducer,
     addUserReducer,
-    editUserReducer
+    editUserReducer,
+    //product
+    editProductReducer,
+    getProductByIdReducer,
+    addProductReducer,
+    deleteProductReducer,
+    searchProductsReducer
 })
 
 const middleware = [thunk]
