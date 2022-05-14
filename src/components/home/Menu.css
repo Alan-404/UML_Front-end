@@ -229,15 +229,20 @@
     }
   
     .productBox .card .contentBox h3 {
+      width: 100%;
       font-size: 18px;
       color: white;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 1px;
+      text-overflow: ellipsis; 
+      overflow: hidden; 
+      white-space:nowrap;
+      
     }
   
     .productBox .card .contentBox .price {
-      font-size: 24px;
+      font-size: 15px;
       color: white;
       font-weight: 700;
       letter-spacing: 1px;

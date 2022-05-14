@@ -50,20 +50,20 @@ const Footer = () => {
           <div className="col-lg-4">
             <a>Home</a>
             <a>Menu</a>
-            <a>About</a>
+            <a>About </a>
             <a>Contact</a>
           </div>
           <div className="col-lg-2">
-            <a href="#" target="_blank">
+            <a>
               <i className="bi bi-facebook"></i>
             </a>
-            <a href="#" target="_blank">
+            <a>
               <i className="bi bi-whatsapp"></i>
             </a>
-            <a href="#" target="_blank">
+            <a>
               <i className="bi bi-instagram"></i>
             </a>
-            <a href="#" target="_blank">
+            <a>
               <i className="bi bi-youtube"></i>
             </a>
           </div>
