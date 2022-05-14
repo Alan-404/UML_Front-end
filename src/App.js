@@ -11,6 +11,7 @@ function App() {
         <Route path='/register' element={<AuthView authRoute="register"/>}/>
         <Route path='/dashboard' element={<HomeView homeRoute="dashboard" />}/>
         <Route path='/product' element={<HomeView homeRoute="product" />}/>
+        <Route path='/profile' element={<HomeView homeRoute="profile" />}/>
         <Route exact path='/' element={<HomeView homeRoute="dashboard" />}/>
         
       </Routes>

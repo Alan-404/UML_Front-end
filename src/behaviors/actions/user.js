@@ -67,14 +67,13 @@ export const getUserTokenAction = () => async(dispatch) => {
             type: REQUEST_GET_USER_TOKEN
         })
 
-        var config = {
+        const config = {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
         console.log(config)
-        const {data} = await axios.get(`http://localhost:3456/rest/account/user/get`, config)
-        console.log(data)
+        const {data} = await axios.get(`${apiUrl}/account/user/get`, config)
         if (data.id){
             dispatch({
                 type: GET_USER_TOKEN_SUCCESS,

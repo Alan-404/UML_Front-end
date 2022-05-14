@@ -94,6 +94,15 @@ label {
   z-index: -1;
 }
 
+.authOption{
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.authOption:hover{
+  background-color: #b9b3b3;
+}
+
 
 
 
