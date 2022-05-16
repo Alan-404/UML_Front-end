@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
 import { bootstrapMode1 } from "../../common/constants";
+import { Link } from "react-router-dom";
 
 
 const Dashboard = () => {
@@ -28,9 +29,9 @@ const Dashboard = () => {
               Shop Confidently with <br />
               30-Day Hassle-Free Returns.
             </h1>
-            <a>
+            <Link to="/menu">
               SHOPPING NOW <i className="bi bi-arrow-right"></i>{" "}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

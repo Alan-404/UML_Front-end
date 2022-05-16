@@ -155,7 +155,7 @@ export const deleteProductAction = (id) => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.delete(`${apiUrl}/product/manager/delete/${id}`, config)
+        const {data} = await axios.get(`${apiUrl}/product/manager/delete/${id}`, config)
         if (data){
             dispatch({
                 type: DELETE_PRODUCT_SUCCESS

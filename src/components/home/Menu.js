@@ -184,13 +184,12 @@ function Menu() {
           <div className="row">
             {products &&
               products
-                .slice(0, 4)
                 .map((product, index) => (
                   <ProductBox
-                    key={product.id}
-                    product={product}
-                    bootstrapMode={bootstrapMode2}
-                  />
+                      key={product.id}
+                      product={product}
+                      bootstrapMode={bootstrapMode2}
+                    />
                 ))}
           </div>
         </div>

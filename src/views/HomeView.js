@@ -10,8 +10,11 @@ import Profile from "../components/home/Profile";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
-      {homeRoute === 'dashboard' && <Manager />}
+      {homeRoute === 'dashboard' && <Dashboard />}
       {homeRoute === 'product' && <ShowProduct />}
+      {homeRoute === 'manager' && <Manager />}
+      {homeRoute === 'profile' && <Profile />}
+      {homeRoute === 'menu' && <Menu />}
     </div>
   )
   return (

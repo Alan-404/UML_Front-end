@@ -72,8 +72,8 @@ export const getUserTokenAction = () => async(dispatch) => {
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
-        console.log(config)
         const {data} = await axios.get(`${apiUrl}/account/user/get`, config)
+        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_USER_TOKEN_SUCCESS,
@@ -230,7 +230,7 @@ export const getAllUsersAction = (page) => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/account/manager/viewall`, {page}, config)
+        const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page}, config)
 
         if (data.content){
             dispatch({

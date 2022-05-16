@@ -1,12 +1,22 @@
 import React from "react";
 import "./Dashboard.css";
+import { useNavigate } from "react-router-dom";
 function ProductBox({ product , bootstrapMode }) {
+
+  const navigate = useNavigate()
+  const goToProductPage = (id) => {
+    navigate({
+      pathname: '/product',
+      search: `?id=${id}`
+    })
+  }
+
   return (
-    <div className={bootstrapMode}>
+    <div style={{cursor: 'pointer'}} onClick={() => goToProductPage(product.id)} className={bootstrapMode}>
       <div className="productBox">
         <div className="card">
           <div className="imgBox">
-            <img src={`http://localhost:3456/${product.imageUrls}`} alt="asd" className="mouse" />
+            <img src={`http://localhost:3456/${product.imageUrls}`} alt="" className="mouse" />
           </div>
 
           <div className="contentBox">

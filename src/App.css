@@ -102,8 +102,22 @@ label {
 .authOption:hover{
   background-color: #b9b3b3;
 }
+.headerOption{
+  position:absolute;
+  top: 62px;
+  right: 535px;
+  border-radius: 10px;
+  cursor: pointer;
+  color: red;
+}
 
-
+.buttonAction{
+  position:absolute;
+  display: flex;
+  width: 50px;
+  
+  
+}
 
 
 
