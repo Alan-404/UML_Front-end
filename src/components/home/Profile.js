@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect } from 'react'
 import {Button, Image} from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 const Profile = () => {
     const dispatch = useDispatch()
     const getUserTokenReducer = useSelector(state => state.getUserTokenReducer)
     const {user} = getUserTokenReducer
+
+    const navigate = useNavigate()
 
 
     const convertGender = (gender) =>{
@@ -15,6 +18,11 @@ const Profile = () => {
             return "Nam"
         }
         return 'Nữ'
+    }
+
+
+    const goEditProfilePage = () => {
+        navigate('/edit_profile')
     }
 
     useEffect(() => {
@@ -35,7 +43,7 @@ const Profile = () => {
                         <p style={{fontSize: '20px'}}><i className="fa fa-envelope text-danger" aria-hidden="true"></i> {user.email}</p>
                         <p style={{fontSize: '20px'}}><i className="fa fa-intersex text-info" aria-hidden="true"></i><span className='text-secondary'>Giới tính:</span> {convertGender(user.gender)}</p>
                         <div className='d-flex'>
-                            <Button>Sửa Thông Tin</Button>
+                            <Button onClick={goEditProfilePage}>Sửa Thông Tin</Button>
                             &#160;&#160;&#160;
                             <Button>Đổi Password</Button>
                         </div>

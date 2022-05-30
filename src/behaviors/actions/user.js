@@ -285,7 +285,7 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
     }
 }
 
-export const editUserAction = (id, name, email, address, phone, gender, imageFile, password) => async(dispatch) => {
+export const editUserAction = (id, name, address, phone, gender, imageFile, password) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_EDIT_USER
@@ -296,7 +296,7 @@ export const editUserAction = (id, name, email, address, phone, gender, imageFil
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/account/user/edit`, {id, name, email, address, phone, gender, imageFile, password}, config)
+        const {data} = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, imageFile, password}, config)
 
         if (data.id){
             dispatch({

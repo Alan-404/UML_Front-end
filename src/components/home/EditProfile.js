@@ -79,9 +79,15 @@ const EditProfile = () => {
   }
 
   const submitEditUser = () => {
-    console.log(user.id)
-    console.log(inputUser)
-    console.log(user.email)
+    const name = inputUser.name
+    const phone = inputUser.phone
+    const address = user.address
+    const password = inputUser.password
+    const gender = inputUser.gender
+
+    console.log({id: user.id, name, phone, address, gender, password, imageFile: inputUser.fileImage})
+
+    dispatch(editUserAction(user.id,name, address, phone, gender, inputUser.fileImage, password))
   }
 
   useEffect(() => {
@@ -103,15 +109,15 @@ const EditProfile = () => {
             <h3><span className='text-secondary'>Email Người Dùng:</span> {user.email} </h3>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Tên</span>
-              <input onChange={getInforUser} name="name" type="text" className="form-control" value={user.name} aria-label="Username" aria-describedby="basic-addon1" />
+              <input onChange={getInforUser} name="name" type="text" className="form-control" />
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Số Điện Thoại</span>
-              <input onChange={getInforUser} name="phone" type="text" className="form-control" value={user.phone} aria-label="Username" aria-describedby="basic-addon1" />
+              <input onChange={getInforUser} name="phone" type="text" className="form-control" />
             </div>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Địa Chỉ</span>
-              <input onChange={getInforUser} name="address" type="text" className="form-control" value={user.address} aria-label="Username" aria-describedby="basic-addon1" />
+              <input onChange={getInforUser} name="address" type="text" className="form-control" />
             </div>
             <Form.Select onChange={getInfoOption} className='mb-3 w3-animate-right' aria-label="Default select example">
               <option>Giới Tính</option>
@@ -121,7 +127,7 @@ const EditProfile = () => {
             </Form.Select>
             <div className="input-group mb-3">
               <span className="input-group-text" id="basic-addon1">Password</span>
-              <input onChange={getInforUser} name="password" type="password" className="form-control" aria-label="Username" aria-describedby="basic-addon1" />
+              <input onChange={getInforUser} name="password" type="password" className="form-control" />
             </div>
             <Button onClick={submitEditUser}>Sửa Thông Tin</Button>
           </div>
