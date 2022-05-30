@@ -7,6 +7,7 @@ import Menu from "../components/home/Menu";
 import Manager from "../components/home/Manager";
 import ShowProduct from "../components/home/ShowProduct";
 import Profile from "../components/home/Profile";
+import EditProfile from "../components/home/EditProfile";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
@@ -15,6 +16,7 @@ const HomeView = ({homeRoute}) => {
       {homeRoute === 'manager' && <Manager />}
       {homeRoute === 'profile' && <Profile />}
       {homeRoute === 'menu' && <Menu />}
+      {homeRoute === 'edit_profile' && <EditProfile />}
     </div>
   )
   return (

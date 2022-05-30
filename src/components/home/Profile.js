@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect } from 'react'
-import {Button} from 'react-bootstrap'
+import {Button, Image} from 'react-bootstrap'
 
 const Profile = () => {
     const dispatch = useDispatch()
@@ -11,7 +11,7 @@ const Profile = () => {
 
 
     const convertGender = (gender) =>{
-        if (gender == "MALE"){
+        if (gender === "MALE"){
             return "Nam"
         }
         return 'Nữ'
@@ -25,7 +25,7 @@ const Profile = () => {
         <div className='container p-5 border bg-light'>
             {user && (
                 <div className='d-flex'>
-                    <img style={{width: '10rem', height: '10rem', borderRadius: '50%'}} src={user.imgUrl} class="img-thumbnail"></img>
+                    <Image style={{width: '10rem', height: '10rem', borderRadius: '50%'}} src={user.imgUrl} class="img-thumbnail"/>
                     &#160;&#160;&#160;&#160;
                     <div>
                         <h1>{user.name}</h1>
