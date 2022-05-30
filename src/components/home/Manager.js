@@ -7,10 +7,10 @@ import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
 import { deleteProductReducer } from "../../behaviors/reducers/product";
 import { deleteProductAction } from "../../behaviors/actions/product";
-import {getAllUsersAction} from "../../behaviors/actions/user";
-import {getProductsReducer} from "../../behaviors/reducers/user";
+import { getAllUsersAction } from "../../behaviors/actions/user";
+import { getProductsReducer } from "../../behaviors/reducers/user";
 
-function Manager() {
+function Manager({ types_table }) {
   const dispatch = useDispatch();
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
@@ -32,8 +32,6 @@ function Manager() {
     dispatch(getProductsAction(0));
     dispatch(getAllUsersAction(0));
   }, [dispatch, success]);
-
-
 
   const type_table = false;
   return (
@@ -66,16 +64,14 @@ function Manager() {
           </div>
           <div className="d-md-flex">
             <ul id="navbar-items" className="p-0">
-              <li>
-                {" "}
-                <span className="fas fa-th-list"></span>{" "}
-                <span className="ps-3 name">Product</span>{" "}
-              </li>
-              <li>
-                {" "}
-                <span className="fas fa-chart-line"></span>{" "}
-                <span className="ps-3 name">User</span>{" "}
-              </li>
+              {types_table &&
+                types_table.map((type_table, index) => (
+                  <li key={index}>
+                    {" "}
+                    <span className="fas fa-th-list"></span>{" "}
+                    <span className="ps-3 name">{type_table}</span>{" "}
+                  </li>
+                ))} 
             </ul>
             <div id="topnavbar">
               <div className="d-flex align-items-center mb-3 px-md-3 px-2">
@@ -238,22 +234,20 @@ function Manager() {
                                 <span className="bg-bdark">{user.name}</span>
                               </td>
                               <td>
-                                <span className="bg-blight">
-                                  {user.email}
-                                </span>
+                                <span className="bg-blight">{user.email}</span>
                               </td>
                               <td>
-                                <span className="bg-bdark">
-                                  {user.address}
-                                </span>
+                                <span className="bg-bdark">{user.address}</span>
                               </td>
                               <td>
                                 <span className="bg-blight">{user.phone}</span>
                               </td>
-                              <td className="text-center px-0 bg-bdark">{user.gender}</td>
+                              <td className="text-center px-0 bg-bdark">
+                                {user.gender}
+                              </td>
                               <td className="text-center">
                                 <img
-                                src={`http://localhost:3456/${user.imageUrl}`}
+                                  src={`http://localhost:3456/${user.imageUrl}`}
                                   width={70}
                                   height={50}
                                 ></img>

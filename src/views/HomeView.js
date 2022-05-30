@@ -8,13 +8,16 @@ import Manager from "../components/home/Manager";
 import ShowProduct from "../components/home/ShowProduct";
 import Profile from "../components/home/Profile";
 import EditProfile from "../components/home/EditProfile";
+import AddProduct from "../components/home/AddProduct";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
       {homeRoute === 'dashboard' && <Dashboard />}
       {homeRoute === 'product' && <ShowProduct />}
-      {homeRoute === 'manager' && <Manager />}
+      {homeRoute === 'manager' && <Manager types_table={["Product","User"]} />}
+      {homeRoute === 'manager_user' && <Manager types_table={["Cart","Orders"]} />}
       {homeRoute === 'profile' && <Profile />}
+      {homeRoute === 'add_product' && <AddProduct />}
       {homeRoute === 'menu' && <Menu />}
       {homeRoute === 'edit_profile' && <EditProfile />}
     </div>

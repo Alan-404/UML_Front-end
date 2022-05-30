@@ -52,7 +52,7 @@ const Header = () => {
         <ListGroup.Item className="text-danger" action onClick={logoutAccount}>
           Đăng xuất
         </ListGroup.Item>
-        <ListGroup.Item className="text-danger" action>
+        <ListGroup.Item className="text-danger" action href="/manager_user">
           Giỏ hàng
         </ListGroup.Item>
       </ListGroup>
@@ -118,7 +118,7 @@ const Header = () => {
             <Link to="/manager" className="nav-link mt-1">
               Manager
             </Link>
-            <Link to="/dashboard" className="nav-link mt-1">
+            <Link to="/add_product" className="nav-link mt-1">
               Contact
             </Link>
           </div>
