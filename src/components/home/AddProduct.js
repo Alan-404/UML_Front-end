@@ -11,6 +11,7 @@ const product = {
   quantity: 20,
   warranty: "3 Years",
   brand: "Intel",
+  
   description: "",
   imageUrls: ["image/product/101/product_image_0.jpg"],
 };

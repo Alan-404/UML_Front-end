@@ -10,6 +10,7 @@ import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
 import { getProductsReducer } from "../../behaviors/reducers/user";
 
+
 function Manager({ types_table }) {
   const dispatch = useDispatch();
 
