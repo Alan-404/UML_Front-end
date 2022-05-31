@@ -11,6 +11,7 @@ import EditProfile from "../components/home/EditProfile";
 import AddProduct from "../components/home/AddProduct";
 import SearchScreen from "../components/home/SearchScreen";
 import ManagerUser from "../components/home/ManagerUser";
+import EditProduct from "../components/home/EditProduct";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
@@ -23,6 +24,7 @@ const HomeView = ({homeRoute}) => {
       {homeRoute === 'menu' && <Menu />}
       {homeRoute === 'edit_profile' && <EditProfile />}
       {homeRoute === 'search_product' && <SearchScreen />}
+      {homeRoute === "edit_product" && <EditProduct />}
     </div>
   )
   return (

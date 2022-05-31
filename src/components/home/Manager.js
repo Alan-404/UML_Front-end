@@ -9,9 +9,11 @@ import { deleteProductReducer } from "../../behaviors/reducers/product";
 import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
 import { getProductsReducer } from "../../behaviors/reducers/user";
+import { useNavigate } from "react-router-dom";
 
 function Manager({ types_table }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
@@ -27,6 +29,14 @@ function Manager({ types_table }) {
   const deleteProduct = (id) => {
     dispatch(deleteProductAction(id));
   };
+
+
+  const goEditProductPage = (id) => {
+    navigate({
+      pathname: '/edit_product',
+      search: `?id=${id}`
+    })
+  }
 
   useEffect(() => {
     dispatch(getProductsAction(0));
@@ -155,7 +165,7 @@ function Manager({ types_table }) {
                                     Delete
                                   </Button>
                                   &#160;&#160;
-                                  <Button>Edit</Button>
+                                  <Button onClick={() => goEditProductPage(product.id)}>Edit</Button>
                                 </div>
                               </td>
                             </tr>
@@ -245,7 +255,7 @@ function Manager({ types_table }) {
                               </td>
                               <td className="text-center">
                                 <Image
-                                  src={`http://localhost:3456/${user.imageUrl}`}
+                                  src={`http://localhost:3456/${user.imgUrl}`}
                                   width={70}
                                   height={50}
                                 />

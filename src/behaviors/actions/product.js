@@ -111,7 +111,8 @@ export const getProductByIdAction = (id) => async(dispatch) => {
     }
 }
 
-export const addProductAction = (brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty) => async(dispatch) => {
+export const addProductAction = (brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice) => async(dispatch) => {
+    console.log({brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice})
     try{
         dispatch({
             type: REQUEST_ADD_PRODUCT
@@ -119,11 +120,13 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
 
         const config = {
             headers: {
+                'content-type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty}, config)
+        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice}, config)
+        console.log(data)
         if (data.id){
             dispatch({
                 type: ADD_PRODUCT_SUCCESS
@@ -136,7 +139,7 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: ADD_PRODUCT_FAIL
         })

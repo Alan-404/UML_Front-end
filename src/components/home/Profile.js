@@ -45,8 +45,6 @@ const Profile = () => {
                         <p style={{fontSize: '20px'}}><i className="fa fa-intersex text-info" aria-hidden="true"></i><span className='text-secondary'>Giới tính:</span> {convertGender(user.gender)}</p>
                         <div className='d-flex'>
                             <Button onClick={goEditProfilePage}>Sửa Thông Tin</Button>
-                            &#160;&#160;&#160;
-                            <Button>Đổi Password</Button>
                         </div>
                     </div>
                 </div>
