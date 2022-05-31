@@ -176,18 +176,24 @@ export const deleteProductAction = (id) => async(dispatch) => {
 }
 
 
-export const searchProductsAction = (name) => async(dispatch) => {
+export const searchProductsAction = (name, page) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_SEARCH_PRODUCT
         })
 
-        const {data} = await axios.post(`${apiUrl}/product/search`, {name})
 
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        }
+        const {data} = await axios.post(`${apiUrl}/product/search`, {name, page}, config)
+        console.log(data)
         if (data.content){
             dispatch({
                 type: SEARCH_PRODUCT_SUCCESS,
-                products: data.content
+                payload: data.content
             })
         }
         else{

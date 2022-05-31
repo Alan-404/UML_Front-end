@@ -9,7 +9,7 @@ import {
     EDIT_ORDER_SUCCESS,
     EDIT_ORDER_FAIL,
     REQUEST_GET_ALL_ORDER,
-    GET_ALL_ORDER_SUCCES,
+    GET_ALL_ORDER_SUCCESS,
     GET_ALL_ORDER_FAIL,
     REQUEST_ADD_ORDER_USER,
     ADD_ORDER_USER_SUCCESS,
@@ -67,7 +67,7 @@ export const getAllOrderReducer = (state={}, action) => {
     switch(action.type){
         case REQUEST_GET_ALL_ORDER:
             return {loadingGetAllOrder: true}
-        case GET_ALL_ORDER_SUCCES:
+        case GET_ALL_ORDER_SUCCESS:
             return {loadingGetAllOrder: false, success: true, orders: action.payload}
         case GET_ALL_ORDER_FAIL:
             return {loadingGetAllOrder: false, success: false}
@@ -89,7 +89,7 @@ export const addOrderUserReducer = (state={}, action) => {
     }
 }
 
-export const getOrderInfo = (state={}, action) => {
+export const getOrderInfoReducer = (state={}, action) => {
     switch(action.type){
         case REQUEST_GET_ORDER_INFO:
             return {loadingGetOrderInfo: true}

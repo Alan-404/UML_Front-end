@@ -85,3 +85,104 @@ export const changeNumberProductAction = (cartID, numberOfProduct) => async(disp
         })
     }
 }
+
+
+export const deleteCartAction = (id) => async(dispatch) => {
+    try{
+        dispatch({
+            type: REQUEST_DELETE_CART
+        })
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+            }
+        }
+
+        const {data} = await axios.get(`${apiUrl}/cart/user/delete/${id}`, config)
+
+        if (data == true){
+            dispatch({
+                type: DELETE_CART_SUCCESS
+            })
+        }
+        else{
+            dispatch({
+                type: DELETE_CART_FAIL
+            })
+        }
+    }
+    catch(error){
+        console.log(error.message)
+        dispatch({
+            type: DELETE_CART_FAIL
+        })
+    }
+}
+
+
+export const getCartAction = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: REQUEST_GET_CART
+        })
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+            }
+        }
+
+        const {data} = await axios.get(`${apiUrl}/cart/user/get`, config)
+
+        if (data.length != 0){
+            dispatch({
+                type: GET_CART_SUCCESS,
+                payload: data
+            })
+        }
+        else{
+            dispatch({
+                type: GET_CART_FAIL
+            })
+        }
+    }
+    catch(error){
+        console.log(error.message)
+        dispatch({
+            type: GET_CART_FAIL
+        })
+    }
+}
+
+export const getCartForOrderAction = (listCartID) => async(dispatch) => {
+    try{
+        dispatch({
+            type: REQUEST_GET_CART_FOR_ORDER
+        })
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+            }
+        }
+        
+        const {data} = await axios.post(`${apiUrl}/cart/user/getForOrder/`, {listCartID}, config)
+
+        if (data.length != 0){
+            dispatch({
+                type: GET_CART_FOR_USER_ORDER_SUCCESS
+            })
+        }
+        else{
+            dispatch({
+                type: GET_CART_FOR_USER_ORDER_FAIL
+            })
+        }
+    }   
+    catch(error){
+        console.log(error.message)
+        dispatch({
+            type: GET_CART_FOR_USER_ORDER_FAIL
+        })
+    }
+}

@@ -72,12 +72,12 @@ export const getCartReducer = (state={}, action) => {
 }
 
 
-export const getCartForUserReducer = (state={}, action) => {
+export const getCartForOrderReducer = (state={}, action) => {
     switch(action.type){
         case REQUEST_GET_CART_FOR_ORDER:
             return {loadingGetCart: true}
         case GET_CART_FOR_USER_ORDER_SUCCESS:
-            return {loadingGetCart: false, success: true, cart: action.payload}
+            return {loadingGetCart: false, success: true}
         case GET_CART_FOR_USER_ORDER_FAIL:
             return {loadingGetCart: false, success: false}
         default:

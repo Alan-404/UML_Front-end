@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ListGroup, Button } from "react-bootstrap";
+import { checkTokenAction } from "../behaviors/actions/user";
 
 const Header = () => {
 
@@ -15,6 +16,9 @@ const Header = () => {
   const [info, setInfo] = useState({
     showOptionForm: false
   })
+
+  const checkTokenReducer = useSelector(state=> state.checkTokenReducer)
+  const {result} = checkTokenReducer
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +28,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getUserTokenAction());
+    dispatch(checkTokenAction())
   }, []);
 
   const goToDashboard = () => {
@@ -115,9 +120,11 @@ const Header = () => {
             <Link to="/menu" className="nav-link mt-1">
               Menu
             </Link>
-            <Link to="/manager" className="nav-link mt-1">
-              Manager
-            </Link>
+            {result && (
+              <Link to="/manager" className="nav-link mt-1">
+                Manager
+              </Link>
+            )}
             <Link to="/add_product" className="nav-link mt-1">
               Contact
             </Link>

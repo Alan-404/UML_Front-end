@@ -25,7 +25,9 @@ import {
     ADD_USER_FAIL,
     REQUEST_EDIT_USER,
     EDIT_USER_SUCCESS,
-    EDIT_USER_FAIL
+    EDIT_USER_FAIL,
+    REQUEST_CHECK_TOKEN,
+    RESULT_CHECK_TOKEN
 } from '../../common/constants'
 
 export const loginAccountReducer = (state={}, action) => {
@@ -143,6 +145,17 @@ export const editUserReducer = (state={}, action) => {
             return {loadingEditUser: false, success: true}
         case EDIT_USER_FAIL:
             return {loadingEditUser: false, success: false}
+        default:
+            return state
+    }
+}
+
+export const checkTokenReducer = (state={}, action) => {
+    switch(action.type){
+        case REQUEST_CHECK_TOKEN:
+            return {loadingCheckToken: true}
+        case RESULT_CHECK_TOKEN:
+            return {loadingCheckToken: false, result: action.payload}
         default:
             return state
     }

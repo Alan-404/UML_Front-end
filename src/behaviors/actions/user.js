@@ -26,7 +26,9 @@ import {
     ADD_USER_FAIL,
     REQUEST_EDIT_USER,
     EDIT_USER_SUCCESS,
-    EDIT_USER_FAIL
+    EDIT_USER_FAIL,
+    REQUEST_CHECK_TOKEN,
+    RESULT_CHECK_TOKEN
 } from '../../common/constants'
 
 import axios from 'axios'
@@ -286,18 +288,20 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
 }
 
 export const editUserAction = (id, name, address, phone, gender, imageFile, password) => async(dispatch) => {
+    console.log(imageFile)
     try{
         dispatch({
             type: REQUEST_EDIT_USER
         })
         const config = {
             headers: {
+                'content-type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
         const {data} = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, imageFile, password}, config)
-
+        console.log(data)
         if (data.id){
             dispatch({
                 type: EDIT_USER_SUCCESS
@@ -315,5 +319,30 @@ export const editUserAction = (id, name, address, phone, gender, imageFile, pass
         dispatch({
             type: EDIT_USER_FAIL
         })
+    }
+}
+
+export const checkTokenAction = () => async(dispatch) => {
+    try{
+        dispatch({
+            type: REQUEST_CHECK_TOKEN
+        })
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+            }
+        }
+
+        const {data} = await axios.get(`${apiUrl}/account/checkToken`, config)
+        localStorage.setItem('auth', data)
+
+        dispatch({
+            type: RESULT_CHECK_TOKEN,
+            payload: data
+        })
+    }
+    catch(error){
+        console.log(error.message)
     }
 }

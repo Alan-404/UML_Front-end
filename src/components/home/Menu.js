@@ -1,34 +1,75 @@
 import React from "react";
 import "./Menu.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useDispatch, useSelector } from "react-redux";
 import ProductBox from "./ProductBox";
 import {bootstrapMode2} from "../../common/constants";
+import { useNavigate } from "react-router-dom";
 function Menu() {
+
+  const [info, setInfo] = useState({
+    search: false,
+    inputSearch: ''
+  })
+
+
+  const [infoProduct, setInfoProduct] = useState({
+    products: []
+  })
+
+  const getInforSearch = (event) => {
+    setInfo({
+      ...info,
+      inputSearch: event.target.value
+    })
+  }
+
+  const navigate = useNavigate()
+  
+  const submitSearchProduct = () => {
+    navigate({
+      pathname: '/search_product',
+      search: `?search=${info.inputSearch}`
+    })
+  }
+
+
   const dispatch = useDispatch();
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
+
   useEffect(() => {
     dispatch(getProductsAction(0));
   }, [dispatch]);
+
+
+  useEffect(() => {
+    setInfoProduct({
+      ...infoProduct,
+      products: products
+    })
+  }, [products])
+
+
   return (
     <div className="container">
       <nav className="navbar navbar-expand-sm navbar-light bg-white border-bottom">
         <div className="collapse navbar-collapse" id="navbarColor">
           <ul className="navbar-nav">
             <li className="nav-item rounded bg-light search-nav-item">
-              <form className="d-flex">
+              <div className="d-flex">
                 <input
                   className="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={getInforSearch}
                 />
-                <button className="btn btn-danger" type="submit">
+                <button onClick={submitSearchProduct} className="btn btn-danger">
                   Search
                 </button>
-              </form>
+              </div>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#">
@@ -182,8 +223,8 @@ function Menu() {
             </div>
           </div>
           <div className="row">
-            {products &&
-              products
+            {(products, infoProduct.products) &&
+              infoProduct.products
                 .map((product, index) => (
                   <ProductBox
                       key={product.id}

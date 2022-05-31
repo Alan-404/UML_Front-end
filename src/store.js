@@ -10,7 +10,8 @@ import {
     getUserByIdReducer,
     getAllUsersReducer,
     addUserReducer,
-    editUserReducer
+    editUserReducer,
+    checkTokenReducer
 } from './behaviors/reducers/user'
 import { 
     getProductsReducer,
@@ -20,6 +21,25 @@ import {
     deleteProductReducer,
     searchProductsReducer
 } from "./behaviors/reducers/product";
+
+
+import {
+    addOrderReducer,
+    deleteOrderReducer,
+    editOrderReducer,
+    getAllOrderReducer,
+    addOrderUserReducer,
+    getOrderInfoReducer,
+    getAllOrderUserReducer
+} from "./behaviors/reducers/order"
+
+import {
+    addCartReducer,
+    changeNumberProductReducer,
+    delelteCartReducer,
+    getCartReducer,
+    getCartForOrderReducer
+} from "./behaviors/reducers/cart"
 
 const reducers = combineReducers({
     //user
@@ -33,12 +53,27 @@ const reducers = combineReducers({
     getAllUsersReducer,
     addUserReducer,
     editUserReducer,
+    checkTokenReducer,
     //product
     editProductReducer,
     getProductByIdReducer,
     addProductReducer,
     deleteProductReducer,
-    searchProductsReducer
+    searchProductsReducer,
+    // order
+    addOrderReducer,
+    deleteOrderReducer,
+    editOrderReducer,
+    getAllOrderReducer,
+    addOrderUserReducer,
+    getOrderInfoReducer,
+    getAllOrderUserReducer,
+    // cart
+    addCartReducer,
+    changeNumberProductReducer,
+    delelteCartReducer,
+    getCartReducer,
+    getCartForOrderReducer
 })
 
 const middleware = [thunk]

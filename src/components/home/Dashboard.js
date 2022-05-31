@@ -9,12 +9,12 @@ import { useSelector } from "react-redux";
 import { bootstrapMode1 } from "../../common/constants";
 import { Link } from "react-router-dom";
 
-
 const Dashboard = () => {
   const dispatch = useDispatch();
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
+
 
 
   useEffect(() => {

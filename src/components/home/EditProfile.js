@@ -1,5 +1,5 @@
 import React from 'react'
-import {Image, Button, Form} from 'react-bootstrap'
+import {Image, Button, Form, InputGroup, FormControl} from 'react-bootstrap'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserTokenAction } from '../../behaviors/actions/user'
@@ -8,128 +8,182 @@ import { editUserAction } from '../../behaviors/actions/user'
 
 const EditProfile = () => {
   const dispatch = useDispatch()
-  const getUserTokenReducer = useSelector(state => state.getUserTokenReducer)
-  const {user} = getUserTokenReducer
 
-  const [inputUser, setUser] = useState({
-    email: '',
+  const [infoUser, setInfo] = useState({
+    name: '',
     address: '',
     gender: '',
+    id: '',
     password: '',
     phone: '',
-    name: '',
-    fileImage: ''
+    imgUrl: '',
+    imageFile: File
   })
 
-  const [info, setInfo] = useState({
-    imgShow: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/User-info.svg/768px-User-info.svg.png',
+  const [infor, setState] = useState({
+    click: false
   })
 
 
-  const getInfoOption = (event) => {
-    setUser({
-        ...inputUser,
-        gender: event.target.value
-    })
-}
+  const getUserTokenReducer = useSelector(state => state.getUserTokenReducer)
 
-  const getImage = (event) => {
-    setUser({
-      ...info,
-      fileImage: event.target.files[0]
-    })
-    var reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
+  const {user} = getUserTokenReducer
 
-    reader.onload = (_event) => {
-			setInfo({
-        ...info,
-        imgShow: reader.result
-      })
-		}
-  }
+  const editUserReducer = useSelector(state => state.editUserReducer)
+  const {success} = editUserReducer
 
-  const getInforUser = (event) => {
-    var name = event.target.name
-    var value = event.target.value
-    if (name === "name"){
-      setUser({
-        ...inputUser,
+
+  const getInfor = (event) => {
+    const name = event.target.name
+    const value = event.target.value
+    if (name == "name"){
+      setInfo({
+        ...infoUser,
         name: value
-      })
-    }
-    else if (name === "phone"){
-      setUser({
-        ...inputUser,
-        phone: value
       })
     }
     else if (name === "address"){
       setInfo({
-        ...inputUser,
+        ...infoUser,
         address: value
       })
     }
+    else if (name === "phone"){
+      setInfo({
+        ...infoUser,
+        phone: value
+      })
+    }
     else if (name === "password"){
-      setUser({
-        ...inputUser,
+      setInfo({
+        ...infoUser,
         password: value
       })
     }
   }
 
-  const submitEditUser = () => {
-    const name = inputUser.name
-    const phone = inputUser.phone
-    const address = user.address
-    const password = inputUser.password
-    const gender = inputUser.gender
+  const getImage = (event) => {
+    console.log(event.target.files[0])
 
-    console.log({id: user.id, name, phone, address, gender, password, imageFile: inputUser.fileImage})
+    
+    var reader = new FileReader()
+    reader.readAsDataURL(event.target.files[0]);
 
-    dispatch(editUserAction(user.id,name, address, phone, gender, inputUser.fileImage, password))
+    reader.onload = (_event) => {
+			setInfo({
+        ...infoUser,
+        imgUrl: reader.result,
+        imageFile: event.target.files[0]
+      })
+		}
+
+
   }
+
+  const editUser = () => {
+    setState({
+      ...infor,
+      click: true
+    })
+    dispatch(editUserAction(infoUser.id, infoUser.name, infoUser.address, infoUser.phone, infoUser.gender, infoUser.imageFile, infoUser.password))
+
+  }
+
+  const getInfoOption = (event) => {
+    setInfo({
+      ...infoUser,
+      gender: event.target.value
+    })
+  }
+
+  const convertGender = (gender) => {
+    if (gender === "MALE"){
+      return "Nam"
+    }
+    return "Nữ"
+  }
+
 
   useEffect(() => {
     dispatch(getUserTokenAction())
-  }, [dispatch])
+    
+  }, [dispatch, success === true])
+
+
+  useEffect(() => {
+    if (user){
+      setInfo({
+        ...infoUser,
+        name: user.name,
+        address: user.address,
+        gender: user.gender,
+        id: user.id,
+        imgUrl: `http://localhost:3456/${user.imgUrl}`,
+        password: user.password,
+        phone: user.phone,
+        email: user.email
+      })
+    }
+  }, [user])
 
   return (
     <div className='container p-2'>
-      {user && (
-        <div className='d-flex'>
+      <h1>Sửa Thông Tin Người Dùng</h1>
+      {(success === false && infor.click===true) && (<span className='text-danger' style={{fontSize:"25px"}}>Sửa thông tin thất bại</span>)}
+      {(user && infoUser) && (
+        <div className='d-flex mt-5'>
           <div>
-            <Image style={{width: '10rem', height: '10rem'}} src={info.imgShow}/>
+            <Image style={{width: '10rem', height: '10rem'}} src={infoUser.imgUrl}/>
             <Form.Group controlId="formFile" className="mb-3 mt-3" >
-              <Form.Control onChange={(e) => getImage(e)} type="file" accept='*.jpg.png' />
+              <Form.Control onChange={(e) => getImage(e)} type="file" accept='*.jpg*.png' />
             </Form.Group>
           </div>
           &#160;&#160;&#160;&#160;
           <div style={{width: '50%'}}>
-            <h3><span className='text-secondary'>Email Người Dùng:</span> {user.email} </h3>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Tên</span>
-              <input onChange={getInforUser} name="name" type="text" className="form-control" />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Số Điện Thoại</span>
-              <input onChange={getInforUser} name="phone" type="text" className="form-control" />
-            </div>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Địa Chỉ</span>
-              <input onChange={getInforUser} name="address" type="text" className="form-control" />
-            </div>
-            <Form.Select onChange={getInfoOption} className='mb-3 w3-animate-right' aria-label="Default select example">
-              <option>Giới Tính</option>
+            <h3><span className='text-secondary'>Email Người Dùng: </span>{infoUser.email}</h3>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Tên: </InputGroup.Text>
+              <FormControl
+                placeholder='Enter your name here...'
+                value={infoUser.name}
+                onChange={getInfor}
+                name="name"
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Số Điện Thoại: </InputGroup.Text>
+              <FormControl
+                placeholder='Enter your name here...'
+                value={infoUser.phone}
+                onChange={getInfor}
+                name="phone"
+              />
+            </InputGroup>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Địa Chỉ: </InputGroup.Text>
+              <FormControl
+                placeholder='Enter your name here...'
+                value={infoUser.address}
+                onChange={getInfor}
+                name="address"
+              />
+            </InputGroup>
+            <Form.Select onChange={getInfoOption} className='mb-3 w3-animate-right'>
+              <option value={infoUser.gender}>{convertGender(infoUser.gender)}</option>
               <option value="MALE">Nam</option>
               <option value="FEMALE">Nữ</option>
               <option value="ORDER">Khác...</option>
             </Form.Select>
-            <div className="input-group mb-3">
-              <span className="input-group-text" id="basic-addon1">Password</span>
-              <input onChange={getInforUser} name="password" type="password" className="form-control" />
-            </div>
-            <Button onClick={submitEditUser}>Sửa Thông Tin</Button>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">Password: </InputGroup.Text>
+              <FormControl
+                placeholder='Enter your name here...'
+                onChange={getInfor}
+                name="password"
+                type='password'
+              />
+            </InputGroup>
+            <Button onClick={editUser}>Sửa Thông Tin</Button>
           </div>
         </div>
       )}
