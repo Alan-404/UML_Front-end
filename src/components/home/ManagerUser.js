@@ -1,7 +1,7 @@
 import React from "react";
 import "./Manager.css";
 import { Button, Image } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect , useState} from "react";
 import { useDispatch } from "react-redux";
 import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
@@ -10,7 +10,8 @@ import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
 import { getProductsReducer } from "../../behaviors/reducers/user";
 
-function Manager({ types_table }) {
+
+function ManagerUser({ types_table }) {
   const dispatch = useDispatch();
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
@@ -33,8 +34,8 @@ function Manager({ types_table }) {
     dispatch(getAllUsersAction(0));
   }, [dispatch, success]);
 
-  const [list, setList] = useState(0);
-  console.log(list);
+  const [list,setList] = useState(0)
+  console.log(list)
   const type_table = false;
   return (
     <div>
@@ -59,6 +60,10 @@ function Manager({ types_table }) {
                 TechGear<span className="fs13 pe-2">.com</span>
               </a>{" "}
             </div>
+            <div id="navbar2" className="d-flex justify-content-end pe-4">
+              {" "}
+              <span className="far fa-user-circle "></span>{" "}
+            </div>
           </div>
           <div className="d-md-flex">
             <ul id="navbar-items" className="p-0">
@@ -69,7 +74,7 @@ function Manager({ types_table }) {
                     <span className="fas fa-th-list"></span>{" "}
                     <span className="ps-3 name">{type_table}</span>{" "}
                   </li>
-                ))}
+                ))} 
             </ul>
             <div id="topnavbar">
               <div className="d-flex align-items-center mb-3 px-md-3 px-2">
@@ -91,9 +96,6 @@ function Manager({ types_table }) {
                     <table className="table table-borderless">
                       <thead>
                         <tr>
-                          <th scope="col">
-                            Product<span>ID</span>
-                          </th>
                           <th scope="col">Categories</th>
                           <th scope="col">Brand</th>
                           <th scope="col">
@@ -115,9 +117,7 @@ function Manager({ types_table }) {
                         {products &&
                           products.map((product, index) => (
                             <tr key={product.id} style={{ lineHeight: "3.5" }}>
-                              <td>
-                                <span className="bg-blight">{product.id}</span>
-                              </td>
+                             
                               <td>
                                 <span className="bg-bdark">
                                   {product.productType}
@@ -197,101 +197,9 @@ function Manager({ types_table }) {
                     </nav>
                   </div>
                 ) : (
-                  <div>
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">
-                            User<span>ID</span>
-                          </th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">
-                            Address<span className="ps-1"></span>
-                          </th>
-                          <th scope="col">Phone</th>
-                          <th className="text-center" scope="col">
-                            Gender
-                          </th>
-                          <th className="text-center" scope="col">
-                            Avatar
-                          </th>
-                          <th className="text-center" scope="col">
-                            ACTION
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {users &&
-                          users.map((user, index) => (
-                            <tr key={user.id}>
-                              <td>
-                                <span className="bg-blight">{user.id}</span>
-                              </td>
-                              <td>
-                                <span className="bg-bdark">{user.name}</span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">{user.email}</span>
-                              </td>
-                              <td>
-                                <span className="bg-bdark">{user.address}</span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">{user.phone}</span>
-                              </td>
-                              <td className="text-center px-0 bg-bdark">
-                                {user.gender}
-                              </td>
-                              <td className="text-center">
-                                <Image
-                                  src={`http://localhost:3456/${user.imageUrl}`}
-                                  width={70}
-                                  height={50}
-                                />
-                              </td>
-                              <td className="text-center">
-                                <div className="buttonAction">
-                                  <Button>Delete</Button>
-                                  &#160;&#160;
-                                  <Button>Edit</Button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination justify-content-end">
-                        <li className="page-item disabled">
-                          <a className="page-link" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li className="page-item active">
-                          <a className="page-link" href="#">
-                            1
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            3
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                )}
+                    <div>
+                    </div>)
+                  }
               </div>
             </div>
           </div>
@@ -301,4 +209,4 @@ function Manager({ types_table }) {
   );
 }
 
-export default Manager;
+export default ManagerUser;

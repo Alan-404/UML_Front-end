@@ -233,7 +233,7 @@ export const getAllUsersAction = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page}, config)
-
+        console.log(data)
         if (data.content){
             dispatch({
                 type: GET_ALL_USERS_SUCCESS,

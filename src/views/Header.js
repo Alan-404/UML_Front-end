@@ -11,14 +11,12 @@ import { ListGroup, Button } from "react-bootstrap";
 import { checkTokenAction } from "../behaviors/actions/user";
 
 const Header = () => {
-
-
   const [info, setInfo] = useState({
-    showOptionForm: false
-  })
+    showOptionForm: false,
+  });
 
-  const checkTokenReducer = useSelector(state=> state.checkTokenReducer)
-  const {result} = checkTokenReducer
+  const checkTokenReducer = useSelector((state) => state.checkTokenReducer);
+  const { result } = checkTokenReducer;
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +26,7 @@ const Header = () => {
 
   useEffect(() => {
     dispatch(getUserTokenAction());
-    dispatch(checkTokenAction())
+    dispatch(checkTokenAction());
   }, []);
 
   const goToDashboard = () => {
@@ -38,31 +36,30 @@ const Header = () => {
   const goToProfilePage = () => {
     setInfo({
       ...info,
-      showOptionForm: !info.showOptionForm
-    })
+      showOptionForm: !info.showOptionForm,
+    });
   };
 
   const logoutAccount = () => {
-    localStorage.removeItem('uml')
-    navigate('/login')
-  }
-
+    localStorage.removeItem("uml");
+    navigate("/login");
+  };
 
   let dropDownOption = (
-    <div className="headerOption">
+    <div className="headerOption" style={{ zIndex: 10 }}>
       <ListGroup>
         <ListGroup.Item className="text-danger" action href="/profile">
           Thông tin
         </ListGroup.Item>
-        <ListGroup.Item className="text-danger" action onClick={logoutAccount}>
-          Đăng xuất
-        </ListGroup.Item>
         <ListGroup.Item className="text-danger" action href="/manager_user">
           Giỏ hàng
         </ListGroup.Item>
+        <ListGroup.Item className="text-danger" action onClick={logoutAccount}>
+          Đăng xuất
+        </ListGroup.Item>
       </ListGroup>
     </div>
-  )
+  );
 
   return (
     <nav className="navbar mb-5 navbar-expand-lg navbar-light bg-light">
@@ -100,13 +97,18 @@ const Header = () => {
                 />
                 &#160;&#160;
                 <p className="mt-1">{user.name}</p>
-                <div>
-                  {info.showOptionForm && dropDownOption}
-                </div>
+                <div>{info.showOptionForm && dropDownOption}</div>
               </div>
-            ): (
+            ) : (
               <div className="mt-2">
-                <Button><Link to="/login" className="text-danger text-decoration-none">Đăng nhập</Link></Button>
+                <Button>
+                  <Link
+                    to="/login"
+                    className="text-danger text-decoration-none"
+                  >
+                    Đăng nhập
+                  </Link>
+                </Button>
               </div>
             )}
             &#160;&#160;&#160;&#160;&#160;
