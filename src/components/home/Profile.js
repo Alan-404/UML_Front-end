@@ -42,9 +42,9 @@ const Profile = () => {
                         <p style={{fontSize: '20px'}} className="text-secondary"><i className="fa fa-map-marker text-danger" aria-hidden="true"></i> {user.address}</p>
                         <p style={{fontSize: '20px'}}><i className="fa fa-mobile text-info" aria-hidden="true"></i> {user.phone}</p>
                         <p style={{fontSize: '20px'}}><i className="fa fa-envelope text-danger" aria-hidden="true"></i> {user.email}</p>
-                        <p style={{fontSize: '20px'}}><i className="fa fa-intersex text-info" aria-hidden="true"></i><span className='text-secondary'>Giới tính:</span> {convertGender(user.gender)}</p>
+                        <p style={{fontSize: '20px'}}><i className="fa fa-intersex text-info" aria-hidden="true"></i><span className='text-secondary'>Gender:</span> {convertGender(user.gender)}</p>
                         <div className='d-flex'>
-                            <Button onClick={goEditProfilePage}>Sửa Thông Tin</Button>
+                            <Button onClick={goEditProfilePage}>Edit</Button>
                         </div>
                     </div>
                 </div>

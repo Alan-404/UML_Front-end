@@ -62,7 +62,7 @@ function ManagerUser({ types_table }) {
             </div>
             <div id="navbar2" className="d-flex justify-content-end pe-4">
               {" "}
-              <span className="far fa-user-circle "></span>{" "}
+             
             </div>
           </div>
           <div className="d-md-flex">

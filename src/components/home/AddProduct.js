@@ -324,7 +324,7 @@ function AddProduct() {
               
               <div className="col mt-2">
                 <div className="input-group">
-                  <span className="input-group-text">Decription</span>
+                  <span className="input-group-text">Description</span>
                   <textarea
                     className="form-control"
                     aria-label="With textarea"

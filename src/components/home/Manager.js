@@ -34,6 +34,11 @@ function Manager({ types_table }) {
     navigate('/add_emp')
   }
 
+  const goAddProductPage = ()=>{
+    navigate({
+      pathname: '/add_product'
+    })
+  }
 
   const goEditProductPage = (id) => {
     navigate({
@@ -91,6 +96,7 @@ function Manager({ types_table }) {
                 <span className="text-uppercase fs13 fw-bolder pe-3">
                   search<span className="ps-1"></span>
                 </span>
+
                 <form className="example d-flex align-items-center">
                   {" "}
                   <input type="text" placeholder="...." name="search" />{" "}
@@ -98,10 +104,12 @@ function Manager({ types_table }) {
                     <i className="fa fa-search"></i>
                   </button>{" "}
                 </form>
+               
               </div>
               <div className="table-responsive px-2">
                 {list == 0 ? (
-                  <div>
+                  <div className="mt-3">
+                  <button type="button" className="btn btn-outline-primary" onClick={goAddProductPage}>Add Product</button>
                     <table className="table table-borderless">
                       <thead>
                         <tr>
@@ -211,7 +219,8 @@ function Manager({ types_table }) {
                     </nav>
                   </div>
                 ) : (
-                  <div>
+                  <div className="mt-3">
+                  <button type="button" className="btn btn-outline-primary">Add User</button>
                     <table className="table table-borderless">
                       <thead>
                         <tr>

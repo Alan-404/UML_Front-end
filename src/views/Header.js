@@ -49,13 +49,13 @@ const Header = () => {
     <div className="headerOption" style={{ zIndex: 10 }}>
       <ListGroup>
         <ListGroup.Item className="text-danger" action href="/profile">
-          Thông tin
+          Profile
         </ListGroup.Item>
         <ListGroup.Item className="text-danger" action href="/manager_user">
-          Giỏ hàng
+          Cart List
         </ListGroup.Item>
         <ListGroup.Item className="text-danger" action onClick={logoutAccount}>
-          Đăng xuất
+          Logout
         </ListGroup.Item>
       </ListGroup>
     </div>
@@ -127,7 +127,7 @@ const Header = () => {
                 Manager
               </Link>
             )}
-            <Link to="/add_product" className="nav-link mt-1">
+            <Link to="/add_emp" className="nav-link mt-1">
               Contact
             </Link>
           </div>

@@ -128,8 +128,8 @@ const EditProfile = () => {
 
   return (
     <div className='container p-2'>
-      <h1>Sửa Thông Tin Người Dùng</h1>
-      {(success === false && infor.click===true) && (<span className='text-danger' style={{fontSize:"25px"}}>Sửa thông tin thất bại</span>)}
+      <h1>Edit User Informations</h1>
+      {(success === false && infor.click===true) && (<span className='text-danger' style={{fontSize:"25px"}}>Fail to edit</span>)}
       {(user && infoUser) && (
         <div className='d-flex mt-5'>
           <div>
@@ -140,9 +140,9 @@ const EditProfile = () => {
           </div>
           &#160;&#160;&#160;&#160;
           <div style={{width: '50%'}}>
-            <h3><span className='text-secondary'>Email Người Dùng: </span>{infoUser.email}</h3>
+            <h3><span className='text-secondary'>Email: </span>{infoUser.email}</h3>
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Tên: </InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">Name</InputGroup.Text>
               <FormControl
                 placeholder='Enter your name here...'
                 value={infoUser.name}
@@ -151,7 +151,7 @@ const EditProfile = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Số Điện Thoại: </InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">Phone </InputGroup.Text>
               <FormControl
                 placeholder='Enter your name here...'
                 value={infoUser.phone}
@@ -160,7 +160,7 @@ const EditProfile = () => {
               />
             </InputGroup>
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Địa Chỉ: </InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">Address </InputGroup.Text>
               <FormControl
                 placeholder='Enter your name here...'
                 value={infoUser.address}
@@ -170,20 +170,19 @@ const EditProfile = () => {
             </InputGroup>
             <Form.Select onChange={getInfoOption} className='mb-3 w3-animate-right'>
               <option value={infoUser.gender}>{convertGender(infoUser.gender)}</option>
-              <option value="MALE">Nam</option>
-              <option value="FEMALE">Nữ</option>
-              <option value="ORDER">Khác...</option>
+              <option value="MALE">Man</option>
+              <option value="FEMALE">Woman</option>
+              <option value="ORDER">Else...</option>
             </Form.Select>
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1">Password: </InputGroup.Text>
+              <InputGroup.Text id="basic-addon1">Password </InputGroup.Text>
               <FormControl
-                placeholder='Enter your name here...'
                 onChange={getInfor}
                 name="password"
                 type='password'
               />
             </InputGroup>
-            <Button onClick={editUser}>Sửa Thông Tin</Button>
+            <Button onClick={editUser}>Save changes</Button>
           </div>
         </div>
       )}
