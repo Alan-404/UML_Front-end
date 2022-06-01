@@ -170,8 +170,8 @@ const EditProfile = () => {
             </InputGroup>
             <Form.Select onChange={getInfoOption} className='mb-3 w3-animate-right'>
               <option value={infoUser.gender}>{convertGender(infoUser.gender)}</option>
-              <option value="MALE">Man</option>
-              <option value="FEMALE">Woman</option>
+              <option value="MALE">Male</option>
+              <option value="FEMALE">Female</option>
               <option value="ORDER">Else...</option>
             </Form.Select>
             <InputGroup className="mb-3">

@@ -14,7 +14,6 @@ const product = {
   quantity: 20,
   warranty: "3 Years",
   brand: "Intel",
-  
   description: "",
   imageUrls: ["image/product/101/product_image_0.jpg"],
 };
@@ -159,20 +158,23 @@ function AddProduct() {
 
   const getImage = (event) => {
     var reader = new FileReader();
-    var listImgTemp = info.listImageFile
-    listImgTemp.push(event.target.files[0])
-    setInfo({
-      ...info,
-      listImageFile: listImgTemp
-    })
+    // var listImgTemp = info.listImageFile
+    // listImgTemp.push(event.target.files[0])
+    // setInfo({
+    //   ...info,
+    //   listImageFile: listImgTemp
+    // })
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
       var temp = info.imgArr
       temp.push(reader.result)
+      var tempImage = info.listImageFile
+      tempImage.push(event.target.files[0])
       setInfo({
         ...info,
-        imgArr: temp
+        imgArr: temp,
+        listImageFile:tempImage
       });
     };
   };
@@ -276,15 +278,14 @@ function AddProduct() {
                 <label className="form-label">Product type</label>
                 <select name="productType" id="Product_type" className="form-control" onChange={getBasicInfor}>
                   <option selected>...</option>
-                  <option value="Processor/ CPU">Processor/ CPU</option>
-                  <option value="Ram">Ram</option>
-                  <option value="Graphisc Cards">Graphisc Cards</option>
-                  <option value="Hard Drive/ SSDs">Hard Drive/ SSDs</option>
-                  <option value="Power Supplies">Power Supplies</option>
-                  <option value="PC Case">PC Case</option>
-                  <option value="Memory">Memory</option>
-                  <option value="Monitor">Monitor</option>
-                  <option value="MotherBoards">MotherBoards</option>
+                  <option value="CPU">Processor/ CPU</option>
+                  <option value="RAM">Ram</option>
+                  <option value="VGA">Graphisc Cards</option>
+                  <option value="HARDDRIVE">Hard Drive/ SSDs</option>
+                  <option value="PSU">Power Supplies</option>
+                  <option value="CASE">PC Case</option>
+                  <option value="MONITOR">Monitor</option>
+                  <option value="MAINBOARD">MotherBoards</option>
                 </select>
               </div>
               <div className="col">

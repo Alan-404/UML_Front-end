@@ -100,13 +100,16 @@ export const getUserTokenAction = () => async(dispatch) => {
 
 export const addEmployeeAction = (name, email, address, gender, password, phone) => async(dispatch) => {
     try{
+        console.log({name, email, address, gender, password, phone})
         dispatch({
             type: REQUEST_ADD_EMPLOYEE
         })
 
         const config = {
             headers: {
+                'content-type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
+                
             }
         }
         const {data} = await axios.post(`${apiUrl}/account/manager/add/employee`, {name, email, address, gender, password, phone}, config)
@@ -122,7 +125,7 @@ export const addEmployeeAction = (name, email, address, gender, password, phone)
         }
     }   
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: ADD_EMPLOYEE_FAIL
         })

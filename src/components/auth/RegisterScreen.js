@@ -41,6 +41,7 @@ const RegisterScreen = () => {
     }
 
     const addUser = () => {
+        console.log(inputUser)
         dispatch(addUserAction(name, email, address, phone, gender, password))
     }
 

@@ -92,7 +92,7 @@ const Header = () => {
                 className="d-flex pt-2 px-3 authOption"
               >
                 <Image
-                  style={{ width: "30px", height: "30px" }}
+                  style={{ width: "30px", height: "30px", borderRadius:'50%' }}
                   src={`http://localhost:3456/${user.imgUrl}`}
                 />
                 &#160;&#160;

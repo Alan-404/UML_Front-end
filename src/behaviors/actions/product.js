@@ -125,8 +125,8 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice}, config)
-        console.log(data)
+        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount, listDataProduct:['1','2','3','4','5','6'], listImageFile, name, price, productType, quantity, warranty, originalPrice}, config)
+        console.log("action",data)
         if (data.id){
             dispatch({
                 type: ADD_PRODUCT_SUCCESS

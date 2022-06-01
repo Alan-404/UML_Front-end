@@ -2,7 +2,7 @@ import React from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 function ProductBox({ product , bootstrapMode }) {
-
+  
   const navigate = useNavigate()
   const goToProductPage = (id) => {
     navigate({
