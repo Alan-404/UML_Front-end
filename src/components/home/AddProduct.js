@@ -26,6 +26,8 @@ function AddProduct() {
     imgArr: [],
     listImageFile: [],
     numDetails: 0,
+
+    
     name: '',
     price: 0,
     originalPrice: 0,
@@ -142,7 +144,7 @@ function AddProduct() {
   }
 
   const submitAddProduct = () => {
-    var moreDetails = []
+    /* var moreDetails = []
     for (var i =0; i<details.name.length; i++){
       var key = details.name[i]
       var value = details.value[i]
@@ -150,7 +152,8 @@ function AddProduct() {
       obj[key] = value
       moreDetails.push(obj)
     }
-    dispatch(addProductAction(info.brand, info.description, info.discount, moreDetails, info.listImageFile, info.name, info.price, info.productType, info.quantity, info.warranty, info.originalPrice))
+    console.log(moreDetails) */
+    dispatch(addProductAction(info.brand, info.description, info.discount, details.value, info.listImageFile, info.name, info.price, info.productType, info.quantity, info.warranty, info.originalPrice))
   }
 
 

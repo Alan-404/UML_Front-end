@@ -12,6 +12,7 @@ import AddProduct from "../components/home/AddProduct";
 import SearchScreen from "../components/home/SearchScreen";
 import ManagerUser from "../components/home/ManagerUser";
 import EditProduct from "../components/home/EditProduct";
+import AddEmployee from "../components/home/AddEmployee";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
@@ -25,6 +26,7 @@ const HomeView = ({homeRoute}) => {
       {homeRoute === 'edit_profile' && <EditProfile />}
       {homeRoute === 'search_product' && <SearchScreen />}
       {homeRoute === "edit_product" && <EditProduct />}
+      {homeRoute === "add_emp" && <AddEmployee />}
     </div>
   )
   return (

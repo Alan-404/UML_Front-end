@@ -30,6 +30,10 @@ function Manager({ types_table }) {
     dispatch(deleteProductAction(id));
   };
 
+  const changeAddEmpPage = () => {
+    navigate('/add_emp')
+  }
+
 
   const goEditProductPage = (id) => {
     navigate({
@@ -44,7 +48,6 @@ function Manager({ types_table }) {
   }, [dispatch, success]);
 
   const [list, setList] = useState(0);
-  console.log(list);
   const type_table = false;
   return (
     <div>
@@ -80,6 +83,7 @@ function Manager({ types_table }) {
                     <span className="ps-3 name">{type_table}</span>{" "}
                   </li>
                 ))}
+                <li onClick={changeAddEmpPage}>Test</li>
             </ul>
             <div id="topnavbar">
               <div className="d-flex align-items-center mb-3 px-md-3 px-2">
