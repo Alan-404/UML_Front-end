@@ -26,13 +26,13 @@ import {
 
 import axios from 'axios'
 
-export const getProductsAction = (page) => async (dispatch) => {
+export const getProductsAction = (page, size) => async (dispatch) => {
     try{
         dispatch({
             type: REQUEST_GET_PRODUCTS
         })
 
-        const {data} = await axios.post(`${apiUrl}/product/viewall`, {page})
+        const {data} = await axios.post(`${apiUrl}/product/viewall`, {page, size})
         console.log(data.content.length)
         if (data.content){
             dispatch({
@@ -54,7 +54,8 @@ export const getProductsAction = (page) => async (dispatch) => {
     }
 }
 
-export const editProductAction = (brand, description, discount, id, listDataProduct, listImageFile, name, price, productType, quantity, warranty) => async(dispatch) => {
+export const editProductAction = (brand, description, discount, id, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice) => async(dispatch) => {
+    console.log({brand, description, discount, id, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice})
     try{
         dispatch({
             type: REQUEST_EDIT_PRODUCT
@@ -62,11 +63,20 @@ export const editProductAction = (brand, description, discount, id, listDataProd
 
         const config = {
             headers: {
+                "Content-Type":"multipart/form-data",
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
+        var request
+        if (listImageFile.length === 0){
+            request = await axios.post(`${apiUrl}/product/employee/edit`, {brand, description, discount, id, "listDataProduct[]": listDataProduct, name, price, productType, quantity, warranty, originalPrice}, config)
+        }
+        else{
+            request = await axios.post(`${apiUrl}/product/employee/edit`, {brand, description, discount, id, "listDataProduct[]": listDataProduct, "listImageFile[]": listImageFile, name, price, productType, quantity, warranty, originalPrice}, config)
+        }
 
-        const {data} = await axios.post(`${apiUrl}/product/employee/edit`, {brand, description, discount, id, listDataProduct, listImageFile, name, price, productType, quantity, warranty}, config)
+        const {data} = request
+        console.log(data)
 
         if (data.id){
             dispatch({
@@ -95,7 +105,7 @@ export const getProductByIdAction = (id) => async(dispatch) => {
 
         const {data} = await axios.get(`${apiUrl}/product/get/${id}`)
         
-        
+        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_PRODUCT_BY_ID_SUCCESS,
@@ -116,13 +126,14 @@ export const getProductByIdAction = (id) => async(dispatch) => {
     }
 }
 
-export const getProductByPageAction = (page) => async(dispatch) => {
+export const getProductByPageAction = (page, size) => async(dispatch) => {
+    console.log(page)
     try{
         dispatch({
             type: REQUEST_GET_PRODUCT_BY_PAGE
         })
 
-        const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=5&sort=ASC`)
+        const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=${size}&sort=ASC`)
         console.log(data.content.length)
         if (data.content){
             dispatch({
@@ -154,12 +165,13 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
 
         const config = {
             headers: {
-                'content-type': 'multipart/form-data',
-                Authorization: `Bearer ${localStorage.getItem('uml')}`
+                "Content-Type":"multipart/form-data",
+                Authorization: `Bearer ${localStorage.getItem('uml')}`,
             }
         }
-
-        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount, listDataProduct:['1','2','3','4','5','6'], listImageFile, name, price, productType, quantity, warranty, originalPrice}, config)
+        
+        
+        const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount,"listImageFile[]":listImageFile, "listDataProduct[]": listDataProduct, name, price, productType, quantity, warranty, originalPrice}, config)
         console.log("action",data)
         if (data.id){
             dispatch({
@@ -182,6 +194,7 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
 
 
 export const deleteProductAction = (id) => async(dispatch) => {
+    console.log(id)
     try{
         dispatch({
             type: REQUEST_DELETE_PRODUCT
@@ -192,7 +205,8 @@ export const deleteProductAction = (id) => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.get(`${apiUrl}/product/manager/delete/${id}`, config)
+        const {data} = await axios.get(`${apiUrl}/product/manager/changeState/${id}`, config)
+        console.log(data)
         if (data){
             dispatch({
                 type: DELETE_PRODUCT_SUCCESS

@@ -7,27 +7,16 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addProductAction } from "../../behaviors/actions/product";
-import { useDispatch } from "react-redux";
 import TemplateProductType from "./TemplateProductType";
 import TemplateListBrand from "./TemplateListBrand";
+import { storeDetailAction } from "../../behaviors/actions/constant";
 
-const product = {
-  name: "Intel Core i5 12400",
-  originalPrice: 4699000,
-  price: 4999000,
-  productState: "ON",
-  productType: "CPU",
-  discount: 0,
-  quantity: 20,
-  warranty: "3 Years",
-  brand: "Intel",
-  description: "",
-  imageUrls: ["image/product/101/product_image_0.jpg"],
-};
 function AddProduct() {
-  const dispatch = useDispatch();
+  const {myDetails} = useSelector(state=> state.storeDetailReducer)
+  const dispatch = useDispatch()
   const [info, setInfo] = useState({
     imgShow:
       "https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png",
@@ -47,8 +36,7 @@ function AddProduct() {
   });
 
   const [details, setDetails] = useState({
-    name: [],
-    value: [],
+    infoArr: []
   });
 
   const getInforDetails = (event, index) => {
@@ -82,11 +70,13 @@ function AddProduct() {
         name: value,
       });
     } else if (name === "productType") {
+      console.log(value)
       setInfo({
         ...info,
         productType: value,
       });
     } else if (name === "brand") {
+      console.log(value)
       setInfo({
         ...info,
         brand: value,
@@ -101,7 +91,7 @@ function AddProduct() {
         ...info,
         originalPrice: value,
       });
-    } else if (name == "warranty") {
+    } else if (name === "warranty") {
       setInfo({
         ...info,
         warranty: value,
@@ -135,6 +125,7 @@ function AddProduct() {
 
   const changeTemplate = (event) => {
     setTemplate(event.target.value);
+    dispatch(storeDetailAction([]))
   };
   const [template, setTemplate] = useState(0);
 
@@ -215,6 +206,10 @@ function AddProduct() {
     });
   };
 
+  const testData = () => {
+    console.log(myDetails)
+  }
+
   const submitAddProduct = () => {
     /* var moreDetails = []
     for (var i =0; i<details.name.length; i++){
@@ -230,7 +225,7 @@ function AddProduct() {
         info.brand,
         info.description,
         info.discount,
-        details.value,
+        myDetails,
         info.listImageFile,
         info.name,
         info.price,
@@ -240,19 +235,16 @@ function AddProduct() {
         info.originalPrice
       )
     );
+    console.log(info.brand)
   };
 
   const getImage = (event) => {
     var reader = new FileReader();
-    // var listImgTemp = info.listImageFile
-    // listImgTemp.push(event.target.files[0])
-    // setInfo({
-    //   ...info,
-    //   listImageFile: listImgTemp
-    // })
     reader.readAsDataURL(event.target.files[0]);
+    console.log(event.target.files[0])
 
     reader.onload = (_event) => {
+      
       var temp = info.imgArr;
       temp.push(reader.result);
       var tempImage = info.listImageFile;
@@ -264,6 +256,11 @@ function AddProduct() {
       });
     };
   };
+
+  const submitChangProductTypeOption = (e) => {
+    getBasicInfor(e)
+    changeTemplate(e)
+  }
   return (
     <div className="container">
       <div>
@@ -332,16 +329,19 @@ function AddProduct() {
                 {template === "PSU" && (
                   <TemplateListBrand
                     ListBrands={PSUListBrands}
+                    
                   ></TemplateListBrand>
                 )}
                 {template === "MONITOR" && (
                   <TemplateListBrand
                     ListBrands={MONITORListBrands}
+                   
                   ></TemplateListBrand>
                 )}
                 {template === "RAM" && (
                   <TemplateListBrand
                     ListBrands={RAMListBrands}
+                   
                   ></TemplateListBrand>
                 )}
                 {template === "VGA" && (
@@ -403,7 +403,7 @@ function AddProduct() {
                 name="productType"
                 id="Product_type"
                 className="form-control"
-                onChange={(getBasicInfor, changeTemplate)}
+                onChange={submitChangProductTypeOption}
                 defaultValue={"..."}
               >
                 <option value="...">...</option>
@@ -513,6 +513,7 @@ function AddProduct() {
                     TemplateItems={MONITORtemplate}
                   ></TemplateProductType>
                 )}
+                <Button onClick={testData}>Test</Button>
               </div>
               <div className="d-flex flex-column">
                 <Button onClick={submitAddProduct} className="mt-5">

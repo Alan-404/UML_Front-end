@@ -6,10 +6,11 @@ import { useSelector } from 'react-redux'
 import { getProductByIdAction } from '../../behaviors/actions/product'
 import { Image, Button, Table } from 'react-bootstrap'
 import { apiUrlImg } from "../../common/constants";
+import { addCartAction } from '../../behaviors/actions/cart'
 const ShowProduct = () => {
 
     const [info, setInfo] = useState({
-        firstImage: '',
+        showImage: '',
         productInfo: [],
         productValue: []
     })
@@ -29,6 +30,14 @@ const ShowProduct = () => {
         return arr
     }
 
+    const changeImageShow = (index) => {
+        console.log(product.imageUrls[index])
+        setInfo({
+            ...info,
+            showImage: `${apiUrlImg}/${product.imageUrls[index]}` 
+        })
+    }
+
     useEffect(() => {
         const id = searchParams.get('id')
         if (id){
@@ -36,17 +45,33 @@ const ShowProduct = () => {
         }
     }, [dispatch])
 
+    useEffect(() => {
+        if (product){
+            setInfo({
+                showImage: `${apiUrlImg}/${product.imageUrls[0]}` 
+            })
+        }
+    }, [product])
+
+    const submitAddCart = (id) => {
+        dispatch(addCartAction(1, id))
+    }
+
     return (
         <div className='container'>
             {product && (
                 <div>
                     <div className='d-flex'>
-                        <Image style={{width: '20rem', height: '20rem', borderRadius: '25px'}} src={`${apiUrlImg}/${product.imageUrls[0]}`}/>
+                        <Image style={{width: '20rem', height: '20rem', borderRadius: '25px'}} src={info.showImage}/>
                         &#160;&#160;&#160;
                         <div>
                             <h1>{product.name}</h1>
                             <h3 className='text-primary p-4'>{product.price.toLocaleString()} VND</h3>
-                            <Button>Chọn mua</Button>
+                            {product.productState === "ON" ? (<Button onClick={() => submitAddCart(product.id)} className='mb-4'>Chọn mua</Button>) : (<h3 className='disabled text-secondary'>Sản phẩm đã ngừng kinh doanh</h3>)}
+                            <br />
+                            {product.imageUrls.map((item, index) => (
+                                <Image onClick={() => changeImageShow(index)} style={{width: '5rem', height: '5rem'}} key={index} src={`${apiUrlImg}/${item}`} />
+                            ))}
                         </div>
                     </div>
                     <div className='bg-light p-4 mt-3' style={{borderRadius: '30px'}}>

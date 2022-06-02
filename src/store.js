@@ -42,6 +42,11 @@ import {
     getCartForOrderReducer
 } from "./behaviors/reducers/cart"
 
+import {
+    storeDetailReducer,
+    storeBrandReducer
+} from './behaviors/reducers/constant'
+
 const reducers = combineReducers({
     //user
     loginAccountReducer,
@@ -75,7 +80,10 @@ const reducers = combineReducers({
     changeNumberProductReducer,
     delelteCartReducer,
     getCartReducer,
-    getCartForOrderReducer
+    getCartForOrderReducer,
+    // another
+    storeDetailReducer,
+    storeBrandReducer
 })
 
 const middleware = [thunk]

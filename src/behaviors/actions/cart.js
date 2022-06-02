@@ -20,6 +20,7 @@ import {
 
 
 export const addCartAction = (numberOfProduct, productID) => async(dispatch) => {
+    //console.log({numberOfProduct, productID})
     try{
         dispatch({
             type: REQUEST_ADD_CART
@@ -27,11 +28,13 @@ export const addCartAction = (numberOfProduct, productID) => async(dispatch) => 
 
         const config = {
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
-
-        const {data} = await axios.post(`${apiUrl}/cart/user/add`, {numberOfProduct, productID}, config)
+        var newCartDto = {numberOfProduct, productID}
+        console.log(newCartDto)
+        const {data} = await axios.post(`${apiUrl}/cart/user/add/`, {numberOfProduct, productID}, config)
 
         if (data.id){
             dispatch({
@@ -45,7 +48,7 @@ export const addCartAction = (numberOfProduct, productID) => async(dispatch) => 
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: ADD_CART_FAIL
         })
@@ -64,6 +67,7 @@ export const changeNumberProductAction = (cartID, numberOfProduct) => async(disp
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
+        
 
         const {data} = await axios.post(`${apiUrl}/cart/user/changeNumberOfProduct`, {cartID, numberOfProduct}, config)
 

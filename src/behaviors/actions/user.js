@@ -302,9 +302,16 @@ export const editUserAction = (id, name, address, phone, gender, imageFile, pass
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
-
-        const {data} = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, imageFile, password}, config)
-        console.log(data)
+        var request
+        console.log(imageFile.name)
+        if (imageFile.name!== 'File'){
+            request = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, imageFile, password}, config)
+        }
+        else{
+            console.log("OK")
+            request = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, password}, config)
+        }
+        const {data} = request
         if (data.id){
             dispatch({
                 type: EDIT_USER_SUCCESS

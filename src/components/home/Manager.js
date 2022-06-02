@@ -8,18 +8,20 @@ import {
   getProductByPageAction,
 } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
-import { deleteProductReducer } from "../../behaviors/reducers/product";
+
 import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
-import {
-  getProductsReducer,
-  getProductByPageReducer,
-} from "../../behaviors/reducers/product";
+
 import { useNavigate } from "react-router-dom";
 import { apiUrlImg } from "../../common/constants";
 function Manager({ types_table }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const [info, setInfo] = useState({
+    showProducts: [],
+    pageNow: 1
+  })
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
@@ -58,16 +60,73 @@ function Manager({ types_table }) {
     });
   };
 
+  const goProductPage = (id) => {
+    navigate({
+      pathname: "/product",
+      search: `?id=${id}`
+    })
+  }
+
+  const calculatePage = (allProducts) => {
+    var sizeNumProducts = allProducts.length
+    var num = 0
+    num = sizeNumProducts/5
+    if (sizeNumProducts%5 !== 0){
+      num += 1
+    }
+
+    var arrNum = []
+    for (var i = 0; i<num; i++){
+      arrNum.push(i+1)
+    }
+
+    return arrNum
+  }
+
+  const changePage = (page) => {
+    page--;
+    setInfo({
+      ...info,
+      pageNow: page+1
+    })
+    dispatch(getProductByPageAction(page, 5))
+  }
+
+  const changeNextpage = () => {
+    setInfo({
+      ...info,
+      pageNow: info.pageNow + 1
+    })
+    dispatch(getProductByPageAction(info.pageNow-1, 5))
+  }
+
+  const changePrevPage = () => {
+    setInfo({
+      ...info,
+      pageNow: info.pageNow - 1
+    })
+    dispatch(getProductByPageAction(info.pageNow-1, 5))
+  }
+
   useEffect(() => {
-    dispatch(getProductsAction(0));
+    dispatch(getProductsAction(0, 200));
     dispatch(getAllUsersAction(0));
-    dispatch(getProductByPageAction(0));
+    dispatch(getProductByPageAction(0, 5));
+    
   }, [dispatch, success]);
+
+  useEffect(() => {
+    if (productsPage){
+      setInfo({
+        ...info,
+        showProducts: productsPage
+      })
+    }
+  }, [productsPage])
 
 
 
   const [list, setList] = useState(0);
-  const type_table = false;
   return (
     <div>
       <div>
@@ -123,7 +182,7 @@ function Manager({ types_table }) {
                   <div className="mt-3 productTable">
                     <button
                       type="button"
-                      className="btn btn-outline-primary"
+                      className="btn btn-outline-primary mb-3"
                       onClick={goAddProductPage}
                     >
                       Add Product
@@ -152,43 +211,43 @@ function Manager({ types_table }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {productsPage &&
-                          productsPage.map((productPage) => (
+                        {info.showProducts &&
+                          info.showProducts.map((product) => (
                             <tr
-                              key={productPage.id}
-                              style={{ lineHeight: "3.5" }}
+                              key={product.id}
+                              style={{ lineHeight: "3.5" , cursor: "pointer"}}
                             >
                               <td>
                                 <span className="bg-blight">
-                                  {productPage.id}
+                                  {product.id}
                                 </span>
                               </td>
                               <td>
                                 <span className="bg-bdark">
-                                  {productPage.productType}
+                                  {product.productType}
                                 </span>
                               </td>
                               <td>
                                 <span className="bg-blight">
-                                  {productPage.brand}
+                                  {product.brand}
                                 </span>
                               </td>
                               <td>
                                 <span className="bg-bdark">
-                                  {productPage.name}
+                                  {product.name}
                                 </span>
                               </td>
                               <td>
                                 <span className="bg-blight">
-                                  {productPage.price}
+                                  {product.price}
                                 </span>
                               </td>
                               <td className="text-center px-0 bg-bdark">
-                                {productPage.warranty}
+                                {product.warranty}
                               </td>
                               <td className="text-center">
                                 <Image
-                                  src={`${apiUrlImg}/${productPage.imageUrls[0]}`}
+                                  src={`${apiUrlImg}/${product.imageUrls[0]}`}
                                   width={70}
                                   height={50}
                                   atl=""
@@ -196,21 +255,24 @@ function Manager({ types_table }) {
                               </td>
                               <td className="text-center">
                                 <div className="buttonAction">
+                                  <Button onClick={() => goProductPage(product.id)}>Detail</Button>
+                                  &#160;&#160;
                                   <Button
                                     onClick={() =>
-                                      deleteProduct(productPage.id)
+                                      deleteProduct(product.id)
                                     }
                                   >
-                                    Delete
+                                    Switch
                                   </Button>
                                   &#160;&#160;
                                   <Button
                                     onClick={() =>
-                                      goEditProductPage(productPage.id)
+                                      goEditProductPage(product.id)
                                     }
                                   >
                                     Edit
                                   </Button>
+
                                 </div>
                               </td>
                             </tr>
@@ -220,7 +282,7 @@ function Manager({ types_table }) {
                     <div className="Pagenavigation">
                       <nav aria-label="Page navigation example mr-5">
                         <ul className="pagination justify-content-end">
-                          <li className="page-item disabled">
+                          <li onClick={changePrevPage} className="page-item">
                             <a
                               className="page-link"
                               href="#"
@@ -229,22 +291,14 @@ function Manager({ types_table }) {
                               <span aria-hidden="true">&laquo;</span>
                             </a>
                           </li>
-                          <li className="page-item active">
-                            <a className="page-link" href="#">
-                              1
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              2
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              3
-                            </a>
-                          </li>
-                          <li className="page-item">
+                          {products && calculatePage(products).map((item, index) => (
+                            <li onClick={() => changePage(item)} key={index} className="page-item">
+                              <a className="page-link" href="#">
+                                {item}
+                              </a>
+                            </li>
+                          ))}
+                          <li onClick={changeNextpage} className="page-item">
                             <a className="page-link" href="#" aria-label="Next">
                               <span aria-hidden="true">&raquo;</span>
                             </a>
