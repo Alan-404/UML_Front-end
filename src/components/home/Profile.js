@@ -15,9 +15,9 @@ const Profile = () => {
 
     const convertGender = (gender) =>{
         if (gender === "MALE"){
-            return "Nam"
+            return "Male"
         }
-        return 'Nữ'
+        return 'Female'
     }
 
 

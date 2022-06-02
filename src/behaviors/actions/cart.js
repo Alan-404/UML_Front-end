@@ -33,7 +33,7 @@ export const addCartAction = (numberOfProduct, productID) => async(dispatch) => 
             }
         }
         var newCartDto = {numberOfProduct, productID}
-        console.log(newCartDto)
+        // console.log(newCartDto)
         const {data} = await axios.post(`${apiUrl}/cart/user/add/`, {numberOfProduct, productID}, config)
 
         if (data.id){

@@ -14,25 +14,23 @@ import TemplateListBrand from "./TemplateListBrand";
 import { storeDetailAction } from "../../behaviors/actions/constant";
 import { useSearchParams } from "react-router-dom";
 import { getProductByIdAction } from "../../behaviors/actions/product";
-import {apiUrlImg} from '../../common/constants'
+import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
 function EditProduct() {
-    const [searchParams] = useSearchParams()
-   
-  const {myDetails} = useSelector(state=> state.storeDetailReducer)
-  const dispatch = useDispatch()
+  const [searchParams] = useSearchParams();
+
+  const { myDetails } = useSelector((state) => state.storeDetailReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductByIdAction(searchParams.get('id')))
-    }, [dispatch])
+    dispatch(getProductByIdAction(searchParams.get("id")));
+  }, [dispatch]);
 
-    const getProductByIdReducer = useSelector(state => state.getProductByIdReducer)
-    const {product} = getProductByIdReducer
+  const getProductByIdReducer = useSelector(
+    (state) => state.getProductByIdReducer
+  );
+  const { product } = getProductByIdReducer;
 
-    
-
-
-    
   const [info, setInfo] = useState({
     imgShow:
       "https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png",
@@ -48,56 +46,43 @@ function EditProduct() {
     warranty: "",
     description: "",
     discount: 0,
-    id: '',
+    id: "",
     detailProductInfo: {},
 
-    
-
-    tempBrand: '',
-    tempType: ''
-    
+    tempBrand: "",
+    tempType: "",
   });
   useEffect(() => {
-        
-        if (product){
-            
-            var temp = []
-            for (var i =0; i<product.imageUrls.length; i++){
-                temp.push(`${apiUrlImg}/${product.imageUrls[i]}`)
-            }
-            setInfo({
-                ...info,
-                id: product.id,
-                name: product.name,
-                price: product.price,
-                discount: product.discount,
-                warranty: product.warranty,
-                description: product.description,
-                originalPrice: product.originalPrice,
-                quantity: product.quantity,
-                productType: product.productType,
-                brand: product.brand,
-                imgArr: temp,
-                //
-                tempBrand: product.brand,
-                tempType: product.productType
-            })
-            
-            
+    if (product) {
+      var temp = [];
+      for (var i = 0; i < product.imageUrls.length; i++) {
+        temp.push(`${apiUrlImg}/${product.imageUrls[i]}`);
+      }
+      setInfo({
+        ...info,
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        discount: product.discount,
+        warranty: product.warranty,
+        description: product.description,
+        originalPrice: product.originalPrice,
+        quantity: product.quantity,
+        productType: product.productType,
+        brand: product.brand,
+        imgArr: temp,
+        //
+        tempBrand: product.brand,
+        tempType: product.productType,
+      });
 
-            setTemplate(product.productType)
-        }
-        
-    }, [product])
-
-
-
+      setTemplate(product.productType);
+    }
+  }, [product]);
 
   const [details, setDetails] = useState({
-    infoArr: []
+    infoArr: [],
   });
-
-
 
   const getInforDetails = (event, index) => {
     const name = event.target.name;
@@ -129,12 +114,12 @@ function EditProduct() {
         name: value,
       });
     } else if (name === "productType") {
-        if (info.tempType !== value){
-            setInfo({
-                ...info,
-                brand: '...'
-            })
-        }
+      if (info.tempType !== value) {
+        setInfo({
+          ...info,
+          brand: "...",
+        });
+      }
       setInfo({
         ...info,
         productType: value,
@@ -177,10 +162,9 @@ function EditProduct() {
     }
   };
 
-
   const changeTemplate = (event) => {
     setTemplate(event.target.value);
-    dispatch(storeDetailAction([]))
+    dispatch(storeDetailAction([]));
   };
   const [template, setTemplate] = useState(0);
 
@@ -214,7 +198,7 @@ function EditProduct() {
     "Number Of VGA Slot",
     "Size",
   ];
-  const CASEtemplate = ["Type","Color", "Size",  "Front I/O Input"];
+  const CASEtemplate = ["Type", "Color", "Size", "Front I/O Input"];
   const VGAtemplate = [
     "Number Of Core",
     "Processor Frequency",
@@ -222,7 +206,13 @@ function EditProduct() {
     "Connector",
     "Size",
   ];
-  const MONITORtemplate = ["Size","Resolution","Panel","Refresh rate","Interface"];
+  const MONITORtemplate = [
+    "Size",
+    "Resolution",
+    "Panel",
+    "Refresh rate",
+    "Interface",
+  ];
   const PSUtemplate = [
     "Input Voltage",
     "Output Capacity",
@@ -261,9 +251,23 @@ function EditProduct() {
     });
   };
 
-
   const submitEditProduct = () => {
-    dispatch(editProductAction(info.brand, info.description, info.discount, info.id, myDetails, info.listImageFile, info.name, info.price, info.productType, info.quantity, info.warranty, info.originalPrice))
+    dispatch(
+      editProductAction(
+        info.brand,
+        info.description,
+        info.discount,
+        info.id,
+        myDetails,
+        info.listImageFile,
+        info.name,
+        info.price,
+        info.productType,
+        info.quantity,
+        info.warranty,
+        info.originalPrice
+      )
+    );
   };
 
   const getImage = (event) => {
@@ -271,7 +275,6 @@ function EditProduct() {
     reader.readAsDataURL(event.target.files[0]);
 
     reader.onload = (_event) => {
-      
       var temp = info.imgArr;
       temp.push(reader.result);
       var tempImage = info.listImageFile;
@@ -285,18 +288,17 @@ function EditProduct() {
   };
 
   const submitChangProductTypeOption = (e) => {
-    getBasicInfor(e)
-    changeTemplate(e)
-  }
-
+    getBasicInfor(e);
+    changeTemplate(e);
+  };
 
   const convertToArray = (obj) => {
-    var arr = []
-    for (var i =0; i< Object.keys(obj).length; i++){
-        arr.push(Object.values(obj)[i])
+    var arr = [];
+    for (var i = 0; i < Object.keys(obj).length; i++) {
+      arr.push(Object.values(obj)[i]);
     }
-    return arr
-  }
+    return arr;
+  };
 
   return (
     <div className="container">
@@ -309,7 +311,6 @@ function EditProduct() {
                 height: "20rem",
                 borderRadius: "25px",
               }}
-              
               src={info.imgArr[0]}
             />
             <Form.Group controlId="formFile" className="mb-3 mt-3">
@@ -327,7 +328,7 @@ function EditProduct() {
               {info.imgArr.map((item, index) => (
                 <div>
                   <Image
-                  key={index}
+                    key={index}
                     style={{ width: "100px", height: "100px" }}
                     src={item}
                   />
@@ -354,7 +355,6 @@ function EditProduct() {
             <div className="col">
               <label className="form-label">Brand</label>
               <select
-                
                 name="brand"
                 id="Brand"
                 className="form-control"
@@ -370,19 +370,16 @@ function EditProduct() {
                 {template === "PSU" && (
                   <TemplateListBrand
                     ListBrands={PSUListBrands}
-                    
                   ></TemplateListBrand>
                 )}
                 {template === "MONITOR" && (
                   <TemplateListBrand
                     ListBrands={MONITORListBrands}
-                   
                   ></TemplateListBrand>
                 )}
                 {template === "RAM" && (
                   <TemplateListBrand
                     ListBrands={RAMListBrands}
-                   
                   ></TemplateListBrand>
                 )}
                 {template === "VGA" && (
@@ -443,7 +440,7 @@ function EditProduct() {
             <div className="col">
               <label className="form-label">Product type</label>
               <select
-              disabled={true}
+                disabled={true}
                 name="productType"
                 id="Product_type"
                 className="form-control"
@@ -520,56 +517,56 @@ function EditProduct() {
               <h4>More Details</h4>
               {product && (
                 <div className="d-flex flex-column">
-                {template === "CPU" && (
-                  <TemplateProductType
-                    TemplateItems={CPUtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                    OnChange={getInforDetails}
-                  ></TemplateProductType>
-                )}
-                {template === "RAM" && (
-                  <TemplateProductType
-                    TemplateItems={RAMtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-                {template === "HARDDRIVE" && (
-                  <TemplateProductType
-                    TemplateItems={HARDDRIVEtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-                {template === "MAINBOARD" && (
-                  <TemplateProductType
-                    TemplateItems={MAINBOARDtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-                {template === "PSU" && (
-                  <TemplateProductType
-                    TemplateItems={PSUtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-                {template === "VGA" && (
-                  <TemplateProductType
-                    TemplateItems={VGAtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-                {template === "CASE" && (
-                  <TemplateProductType
-                    TemplateItems={CASEtemplate}
-                    details={convertToArray(product.detailProductInfo)} 
-                  ></TemplateProductType>
-                )}
-                {template === "MONITOR" && (
-                  <TemplateProductType
-                    TemplateItems={MONITORtemplate}
-                    details={convertToArray(product.detailProductInfo)}
-                  ></TemplateProductType>
-                )}
-              </div>
+                  {template === "CPU" && (
+                    <TemplateProductType
+                      TemplateItems={CPUtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
+                    ></TemplateProductType>
+                  )}
+                  {template === "RAM" && (
+                    <TemplateProductType
+                      TemplateItems={RAMtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "HARDDRIVE" && (
+                    <TemplateProductType
+                      TemplateItems={HARDDRIVEtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "MAINBOARD" && (
+                    <TemplateProductType
+                      TemplateItems={MAINBOARDtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "PSU" && (
+                    <TemplateProductType
+                      TemplateItems={PSUtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "VGA" && (
+                    <TemplateProductType
+                      TemplateItems={VGAtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "CASE" && (
+                    <TemplateProductType
+                      TemplateItems={CASEtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                  {template === "MONITOR" && (
+                    <TemplateProductType
+                      TemplateItems={MONITORtemplate}
+                      details={convertToArray(product.detailProductInfo)}
+                    ></TemplateProductType>
+                  )}
+                </div>
               )}
               <div className="d-flex flex-column">
                 <Button onClick={submitEditProduct} className="mt-5">

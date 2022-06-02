@@ -75,7 +75,6 @@ export const getUserTokenAction = () => async(dispatch) => {
             }
         }
         const {data} = await axios.get(`${apiUrl}/account/user/get`, config)
-        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_USER_TOKEN_SUCCESS,
@@ -137,9 +136,15 @@ export const changeStatusAction = (email) => async(dispatch) => {
         dispatch({
             type: REQUEST_CHANGE_STATUS
         })
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+                
+            }
+        }
 
-        const {data} = await axios.post(`${apiUrl}/account/manager/changeStatus/${email}`)
-
+        const {data} = await axios.post(`${apiUrl}/account/manager/changeStatus/${email}`,config)
+        console.log(data)
         if (data){
             dispatch({
                 type: CHANGE_STATUS_SUCCESS
@@ -152,7 +157,7 @@ export const changeStatusAction = (email) => async(dispatch) => {
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: CHANGE_STATUS_FAIL
         })
@@ -175,6 +180,7 @@ export const editEmployeeAction = (id, name,email, address, phone, gender, image
             dispatch({
                 type: EDIT_EMPLOYEE_SUCCESS
             })
+            
         }
         else{
             dispatch({
@@ -198,11 +204,12 @@ export const getUserByIdAction = (id) => async(dispatch) => {
         })
         const config = {
             headers: {
+                'content-type': 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
         const {data} = await axios.get(`${apiUrl}/account/manager/get/${id}`, config)
-
+        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_USER_BY_ID_SUCCESS,
@@ -236,7 +243,7 @@ export const getAllUsersAction = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page}, config)
-        // console.log(data)
+        console.log(data)
         if (data.content){
             dispatch({
                 type: GET_ALL_USERS_SUCCESS,
@@ -316,6 +323,7 @@ export const editUserAction = (id, name, address, phone, gender, imageFile, pass
             dispatch({
                 type: EDIT_USER_SUCCESS
             })
+            
         }
         else{
             dispatch({

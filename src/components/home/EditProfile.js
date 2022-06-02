@@ -36,7 +36,7 @@ const EditProfile = () => {
   const getInfor = (event) => {
     const name = event.target.name
     const value = event.target.value
-    if (name == "name"){
+    if (name === "name"){
       setInfo({
         ...infoUser,
         name: value
@@ -98,9 +98,9 @@ const EditProfile = () => {
 
   const convertGender = (gender) => {
     if (gender === "MALE"){
-      return "Nam"
+      return "Male"
     }
-    return "Nữ"
+    return "Female"
   }
 
 
