@@ -3,6 +3,7 @@ import { InputGroup, Button, FormControl, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addEmployeeAction } from "../../behaviors/actions/user";
+import { apiUrlImg } from "../../common/constants";
 const AddEmployee = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const AddEmployee = () => {
         <div>
           <Image
             style={{ width: "10rem", height: "10rem" }}
-            src={"http://localhost:3456/image/user/default/man.png"}
+            src={`${apiUrlImg}/image/user/default/man.png`}
           />
         </div>
         &#160;&#160;&#160;&#160;

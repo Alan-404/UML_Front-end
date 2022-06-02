@@ -3,20 +3,31 @@ import "./Manager.css";
 import { Button, Image } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getProductsAction } from "../../behaviors/actions/product";
+import {
+  getProductsAction,
+  getProductByPageAction,
+} from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
 import { deleteProductReducer } from "../../behaviors/reducers/product";
 import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
-import { getProductsReducer } from "../../behaviors/reducers/user";
+import {
+  getProductsReducer,
+  getProductByPageReducer,
+} from "../../behaviors/reducers/product";
 import { useNavigate } from "react-router-dom";
-
+import { apiUrlImg } from "../../common/constants";
 function Manager({ types_table }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
   const { products } = getProductsReducer;
+
+  const getProductByPageReducer = useSelector(
+    (state) => state.getProductByPageReducer
+  );
+  const { productsPage } = getProductByPageReducer;
 
   const getAllUsersReducer = useSelector((state) => state.getAllUsersReducer);
   const { users } = getAllUsersReducer;
@@ -31,26 +42,29 @@ function Manager({ types_table }) {
   };
 
   const changeAddEmpPage = () => {
-    navigate('/add_emp')
-  }
+    navigate("/add_emp");
+  };
 
-  const goAddProductPage = ()=>{
+  const goAddProductPage = () => {
     navigate({
-      pathname: '/add_product'
-    })
-  }
+      pathname: "/add_product",
+    });
+  };
 
   const goEditProductPage = (id) => {
     navigate({
-      pathname: '/edit_product',
-      search: `?id=${id}`
-    })
-  }
+      pathname: "/edit_product",
+      search: `?id=${id}`,
+    });
+  };
 
   useEffect(() => {
     dispatch(getProductsAction(0));
     dispatch(getAllUsersAction(0));
+    dispatch(getProductByPageAction(0));
   }, [dispatch, success]);
+
+
 
   const [list, setList] = useState(0);
   const type_table = false;
@@ -74,7 +88,7 @@ function Manager({ types_table }) {
                 <span className="fas fa-bars"></span>{" "}
               </button>{" "}
               <a className="text-decoration-none fs14 ps-2" href="#">
-                TechGear<span className="fs13 pe-2">.com</span>
+                TechGear <span className="fs13 pe-2">.com</span>
               </a>{" "}
             </div>
           </div>
@@ -88,7 +102,7 @@ function Manager({ types_table }) {
                     <span className="ps-3 name">{type_table}</span>{" "}
                   </li>
                 ))}
-                <li onClick={changeAddEmpPage}>Test</li>
+              <li onClick={changeAddEmpPage}>Test</li>
             </ul>
             <div id="topnavbar">
               <div className="d-flex align-items-center mb-3 px-md-3 px-2">
@@ -96,7 +110,6 @@ function Manager({ types_table }) {
                 <span className="text-uppercase fs13 fw-bolder pe-3">
                   search<span className="ps-1"></span>
                 </span>
-
                 <form className="example d-flex align-items-center">
                   {" "}
                   <input type="text" placeholder="...." name="search" />{" "}
@@ -104,12 +117,17 @@ function Manager({ types_table }) {
                     <i className="fa fa-search"></i>
                   </button>{" "}
                 </form>
-               
               </div>
               <div className="table-responsive px-2">
-                {list == 0 ? (
-                  <div className="mt-3">
-                  <button type="button" className="btn btn-outline-primary" onClick={goAddProductPage}>Add Product</button>
+                {list === 0 ? (
+                  <div className="mt-3 productTable">
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={goAddProductPage}
+                    >
+                      Add Product
+                    </button>
                     <table className="table table-borderless">
                       <thead>
                         <tr>
@@ -134,36 +152,43 @@ function Manager({ types_table }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {products &&
-                          products.map((product, index) => (
-                            <tr key={product.id} style={{ lineHeight: "3.5" }}>
+                        {productsPage &&
+                          productsPage.map((productPage) => (
+                            <tr
+                              key={productPage.id}
+                              style={{ lineHeight: "3.5" }}
+                            >
                               <td>
-                                <span className="bg-blight">{product.id}</span>
+                                <span className="bg-blight">
+                                  {productPage.id}
+                                </span>
                               </td>
                               <td>
                                 <span className="bg-bdark">
-                                  {product.productType}
+                                  {productPage.productType}
                                 </span>
                               </td>
                               <td>
                                 <span className="bg-blight">
-                                  {product.brand}
+                                  {productPage.brand}
                                 </span>
                               </td>
                               <td>
-                                <span className="bg-bdark">{product.name}</span>
+                                <span className="bg-bdark">
+                                  {productPage.name}
+                                </span>
                               </td>
                               <td>
                                 <span className="bg-blight">
-                                  {product.price}
+                                  {productPage.price}
                                 </span>
                               </td>
                               <td className="text-center px-0 bg-bdark">
-                                {product.warranty}
+                                {productPage.warranty}
                               </td>
                               <td className="text-center">
                                 <Image
-                                  src={`http://localhost:3456/${product.imageUrls}`}
+                                  src={`${apiUrlImg}/${productPage.imageUrls[0]}`}
                                   width={70}
                                   height={50}
                                   atl=""
@@ -172,55 +197,67 @@ function Manager({ types_table }) {
                               <td className="text-center">
                                 <div className="buttonAction">
                                   <Button
-                                    onClick={() => deleteProduct(product.id)}
+                                    onClick={() =>
+                                      deleteProduct(productPage.id)
+                                    }
                                   >
                                     Delete
                                   </Button>
                                   &#160;&#160;
-                                  <Button onClick={() => goEditProductPage(product.id)}>Edit</Button>
+                                  <Button
+                                    onClick={() =>
+                                      goEditProductPage(productPage.id)
+                                    }
+                                  >
+                                    Edit
+                                  </Button>
                                 </div>
                               </td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination justify-content-end">
-                        <li className="page-item disabled">
-                          <a
-                            className="page-link"
-                            href="#"
-                            aria-label="Previous"
-                          >
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li className="page-item active">
-                          <a className="page-link" href="#">
-                            1
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            3
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
+                    <div className="Pagenavigation">
+                      <nav aria-label="Page navigation example mr-5">
+                        <ul className="pagination justify-content-end">
+                          <li className="page-item disabled">
+                            <a
+                              className="page-link"
+                              href="#"
+                              aria-label="Previous"
+                            >
+                              <span aria-hidden="true">&laquo;</span>
+                            </a>
+                          </li>
+                          <li className="page-item active">
+                            <a className="page-link" href="#">
+                              1
+                            </a>
+                          </li>
+                          <li className="page-item">
+                            <a className="page-link" href="#">
+                              2
+                            </a>
+                          </li>
+                          <li className="page-item">
+                            <a className="page-link" href="#">
+                              3
+                            </a>
+                          </li>
+                          <li className="page-item">
+                            <a className="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </nav>
+                    </div>
                   </div>
                 ) : (
                   <div className="mt-3">
-                  <button type="button" className="btn btn-outline-primary">Add User</button>
+                    <button type="button" className="btn btn-outline-primary">
+                      Add User
+                    </button>
                     <table className="table table-borderless">
                       <thead>
                         <tr>
@@ -268,7 +305,7 @@ function Manager({ types_table }) {
                               </td>
                               <td className="text-center">
                                 <Image
-                                  src={`http://localhost:3456/${user.imgUrl}`}
+                                  src={`${apiUrlImg}/${user.imgUrl}`}
                                   width={70}
                                   height={50}
                                 />

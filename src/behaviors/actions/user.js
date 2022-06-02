@@ -170,7 +170,7 @@ export const editEmployeeAction = (id, name,email, address, phone, gender, image
             }
         }
         const {data} = await axios.post(`${apiUrl}/account/manager/edit/employee`, {id, name, email, address, phone, gender, imageFile, password}, config)
-
+        
         if (data.id){
             dispatch({
                 type: EDIT_EMPLOYEE_SUCCESS
@@ -236,7 +236,7 @@ export const getAllUsersAction = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page}, config)
-        console.log(data)
+        // console.log(data)
         if (data.content){
             dispatch({
                 type: GET_ALL_USERS_SUCCESS,
@@ -270,7 +270,7 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
         }
 
         const {data} = await axios.post(`${apiUrl}/account/add`, {name, email, address, phone, gender, password})
-        console.log(data)
+        // console.log(data)
         if (data.id){
             dispatch({
                 type: ADD_USER_SUCCESS

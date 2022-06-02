@@ -4,7 +4,7 @@ import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect } from 'react'
 import {Button, Image} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-
+import { apiUrlImg } from "../../common/constants";
 const Profile = () => {
     const dispatch = useDispatch()
     const getUserTokenReducer = useSelector(state => state.getUserTokenReducer)
@@ -34,7 +34,7 @@ const Profile = () => {
             {user && console.log(user)}
             {user && (
                 <div className='d-flex'>
-                    <Image style={{width: '10rem', height: '10rem', borderRadius: '50%'}} src={`http://localhost:3456/${user.imgUrl}`} className="img-thumbnail"/>
+                    <Image style={{width: '10rem', height: '10rem', borderRadius: '50%'}} src={`${apiUrlImg}/${user.imgUrl}`} className="img-thumbnail"/>
                     &#160;&#160;&#160;&#160;
                     <div>
                         <h1>{user.name}</h1>

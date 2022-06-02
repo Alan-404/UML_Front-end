@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getProductByIdAction } from '../../behaviors/actions/product'
 import { Image, Button, Table } from 'react-bootstrap'
-
+import { apiUrlImg } from "../../common/constants";
 const ShowProduct = () => {
 
     const [info, setInfo] = useState({
@@ -41,7 +41,7 @@ const ShowProduct = () => {
             {product && (
                 <div>
                     <div className='d-flex'>
-                        <Image style={{width: '20rem', height: '20rem', borderRadius: '25px'}} src={`http://localhost:3456/${product.imageUrls[0]}`}/>
+                        <Image style={{width: '20rem', height: '20rem', borderRadius: '25px'}} src={`${apiUrlImg}/${product.imageUrls[0]}`}/>
                         &#160;&#160;&#160;
                         <div>
                             <h1>{product.name}</h1>

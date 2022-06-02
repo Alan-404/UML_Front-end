@@ -250,7 +250,7 @@ const Dashboard = () => {
       </div>
       <div className="container mt-5 mb-5">
         <h1>
-          Most sale <span className="highlight"> product</span>
+          Best sell <span className="highlight"> product</span>
         </h1>
         <div className="row">
           {products &&

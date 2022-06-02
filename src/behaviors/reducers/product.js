@@ -8,6 +8,9 @@ import {
     REQUEST_GET_PRODUCT_BY_ID,
     GET_PRODUCT_BY_ID_SUCCESS,
     GET_PRODUCT_BY_ID_FAIL,
+    REQUEST_GET_PRODUCT_BY_PAGE,
+    GET_PRODUCT_BY_PAGE_SUCCESS,
+    GET_PRODUCT_BY_PAGE_FAIL,
     REQUEST_ADD_PRODUCT,
     ADD_PRODUCT_SUCCESS,
     ADD_PRODUCT_FAIL,
@@ -54,6 +57,19 @@ export const getProductByIdReducer = (state={}, action) => {
             return {loadingGetProductById: false, success: true, product: action.payload}
         case GET_PRODUCT_BY_ID_FAIL:
             return {loadingGetProductById: false, success: false}
+        default:
+            return state
+    }
+}
+
+export const getProductByPageReducer = (state={}, action) => {
+    switch(action.type){
+        case REQUEST_GET_PRODUCT_BY_PAGE:
+            return {loadingGetProductByPage: true}
+        case GET_PRODUCT_BY_PAGE_SUCCESS:
+            return {loadingGetProductByPage: false, success: true, productsPage: action.payload}
+        case GET_PRODUCT_BY_PAGE_FAIL:
+            return {loadingGetProductByPage: false, success: false}
         default:
             return state
     }

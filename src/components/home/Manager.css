@@ -11,7 +11,16 @@
 body {
     padding: 10px
 }
-
+.productTable{
+    position: relative;
+    
+}
+.Pagenavigation{
+    position:absolute;
+    left: 75%;
+    top: 100%;
+   
+}
 .topnav {
     background-color: #ffff;
     overflow: hidden

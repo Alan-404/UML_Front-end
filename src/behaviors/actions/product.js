@@ -9,6 +9,9 @@ import {
     REQUEST_GET_PRODUCT_BY_ID,
     GET_PRODUCT_BY_ID_SUCCESS,
     GET_PRODUCT_BY_ID_FAIL,
+    REQUEST_GET_PRODUCT_BY_PAGE,
+    GET_PRODUCT_BY_PAGE_SUCCESS,
+    GET_PRODUCT_BY_PAGE_FAIL,
     REQUEST_ADD_PRODUCT,
     ADD_PRODUCT_SUCCESS,
     ADD_PRODUCT_FAIL,
@@ -17,7 +20,8 @@ import {
     DELETE_PRODUCT_FAIL,
     REQUEST_SEARCH_PRODUCT,
     SEARCH_PRODUCT_SUCCESS,
-    SEARCH_PRODUCT_FAIL
+    SEARCH_PRODUCT_FAIL,
+    
 } from '../../common/constants'
 
 import axios from 'axios'
@@ -29,7 +33,7 @@ export const getProductsAction = (page) => async (dispatch) => {
         })
 
         const {data} = await axios.post(`${apiUrl}/product/viewall`, {page})
-        console.log(data)
+        console.log(data.content.length)
         if (data.content){
             dispatch({
                 type: GET_PRODUCTS_SUCCESS,
@@ -90,7 +94,8 @@ export const getProductByIdAction = (id) => async(dispatch) => {
         })
 
         const {data} = await axios.get(`${apiUrl}/product/get/${id}`)
-        console.log(data)
+        
+        
         if (data.id){
             dispatch({
                 type: GET_PRODUCT_BY_ID_SUCCESS,
@@ -110,6 +115,35 @@ export const getProductByIdAction = (id) => async(dispatch) => {
         })
     }
 }
+
+export const getProductByPageAction = (page) => async(dispatch) => {
+    try{
+        dispatch({
+            type: REQUEST_GET_PRODUCT_BY_PAGE
+        })
+
+        const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=5&sort=ASC`)
+        console.log(data.content.length)
+        if (data.content){
+            dispatch({
+                type: GET_PRODUCT_BY_PAGE_SUCCESS,
+                payload: data.content
+            })
+        }
+        else{
+            dispatch({
+                type: GET_PRODUCT_BY_PAGE_FAIL
+            })
+        }
+    }
+    catch(error){
+        console.log(error.message)
+        dispatch({
+            type: GET_PRODUCT_BY_PAGE_FAIL
+        })
+    }
+}
+
 
 export const addProductAction = (brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice) => async(dispatch) => {
     console.log({brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice})

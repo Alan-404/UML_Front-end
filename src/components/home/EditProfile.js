@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect, useState } from 'react'
 import { editUserAction } from '../../behaviors/actions/user'
-
+import { apiUrlImg } from "../../common/constants";
 const EditProfile = () => {
   const dispatch = useDispatch()
 
@@ -118,7 +118,7 @@ const EditProfile = () => {
         address: user.address,
         gender: user.gender,
         id: user.id,
-        imgUrl: `http://localhost:3456/${user.imgUrl}`,
+        imgUrl: `${apiUrlImg}/${user.imgUrl}`,
         password: user.password,
         phone: user.phone,
         email: user.email

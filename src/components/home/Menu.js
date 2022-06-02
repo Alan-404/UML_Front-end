@@ -117,32 +117,32 @@ function Menu() {
             <div className="form-group">
               {" "}
               <input type="checkbox" id="CPU/Processors" />{" "}
-              <label for="CPU/Processors">CPU/Processors</label>{" "}
+              <label htmlFor="CPU/Processors">CPU/Processors</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="GraphiscCards" />{" "}
-              <label for="GraphiscCards">Graphisc Cards</label>{" "}
+              <label htmlFor="GraphiscCards">Graphisc Cards</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="HardDrive/SSds" />{" "}
-              <label for="HardDrive/SSds">Hard Drive /SSds </label>{" "}
+              <label htmlFor="HardDrive/SSds">Hard Drive /SSds </label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="MotherBoards" />{" "}
-              <label for="MotherBoards">MotherBoards </label>{" "}
+              <label htmlFor="MotherBoards">MotherBoards </label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="Monitor" />{" "}
-              <label for="Monitor">Monitor</label>{" "}
+              <label htmlFor="Monitor">Monitor</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="PowerSupplies" />{" "}
-              <label for="PowerSupplies">PowerSupplies</label>{" "}
+              <label htmlFor="PowerSupplies">PowerSupplies</label>{" "}
             </div>
           </form>
         </div>
@@ -155,25 +155,25 @@ function Menu() {
             <div className="form-group">
               {" "}
               <input type="checkbox" id="Asus" />{" "}
-              <label for="Asus">Asus </label>{" "}
+              <label htmlFor="Asus">Asus </label>{" "}
             </div>
             <div className="form-group">
               {" "}
-              <input type="checkbox" id="Dell" /> <label for="Dell">Dell</label>{" "}
+              <input type="checkbox" id="Dell" /> <label htmlFor="Dell">Dell</label>{" "}
             </div>
             <div className="form-group">
               {" "}
-              <input type="checkbox" id="LG" /> <label for="LG">LG</label>{" "}
+              <input type="checkbox" id="LG" /> <label htmlFor="LG">LG</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="Arsock" />{" "}
-              <label for="Arsock">Asrock</label>{" "}
+              <label htmlFor="Arsock">Asrock</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="Gigabyte" />{" "}
-              <label for="Gigabyte">Gigabyte</label>{" "}
+              <label htmlFor="Gigabyte">Gigabyte</label>{" "}
             </div>
           </form>
         </div>
@@ -186,12 +186,12 @@ function Menu() {
             <div className="form-group">
               {" "}
               <input type="checkbox" id="25off" />{" "}
-              <label for="25">25% off</label>{" "}
+              <label htmlFor="25">25% off</label>{" "}
             </div>
             <div className="form-group">
               {" "}
               <input type="checkbox" id="5off" />{" "}
-              <label for="5off" id="off">
+              <label htmlFor="5off" id="off">
                 5% off
               </label>{" "}
             </div>
@@ -210,13 +210,13 @@ function Menu() {
                 <span className="text-muted">Sort by</span>{" "}
                 <select name="sort" id="sort">
                   <option value="popularity">
-                    <b>Popularity</b>
+                    Popularity
                   </option>
                   <option value="prcie">
-                    <b>Price</b>
+                    Price
                   </option>
                   <option value="rating">
-                    <b>Rating</b>
+                    Rating
                   </option>
                 </select>{" "}
               </div>

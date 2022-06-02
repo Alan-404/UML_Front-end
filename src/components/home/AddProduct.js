@@ -139,50 +139,50 @@ function AddProduct() {
   const [template, setTemplate] = useState(0);
 
   const CPUtemplate = [
-    "TDP",
-    "Base Frequency",
-    "Total Cache",
-    "Overclock",
-    "Max Memory Size",
-    "Total Threads",
-    "Max Turbo Frequency",
-    "Memory Type",
-    "Socket",
     "Total Cores",
+    "Total Threads",
+    "Socket",
+    "Base Frequency",
+    "Max Memory Size",
+    "Total Cache",
+    "TDP",
+    "Memory Type",
+    "Max Turbo Frequency",
+    "Overclock",
   ];
   const RAMtemplate = [
     "Type",
-    "Capacity",
-    "Overclock",
-    "Cas Latency",
-    "Voltage",
     "Bus Speed",
+    "Cas Latency",
+    "Overclock",
+    "Capacity",
+    "Voltage",
   ];
   const HARDDRIVEtemplate = ["Type", "Capacity", "Read Speed", "Write Speed"];
   const MAINBOARDtemplate = [
     "Chipset",
+    "Socket",
+    "Number Of Ram Slot",
+    "Memory Type",
     "Max MemorySize",
     "Number Of VGA Slot",
     "Size",
-    "Number Of Ram Slot",
-    "Memory Type",
-    "Socket",
   ];
-  const CASEtemplate = ["Type", "Size", "Color", "Front I/O Input"];
+  const CASEtemplate = ["Type","Color", "Size",  "Front I/O Input"];
   const VGAtemplate = [
-    "Connector",
-    "Memory",
-    "Size",
     "Number Of Core",
     "Processor Frequency",
-  ];
-  const MONITORtemplate = [""];
-  const PSUtemplate = [
+    "Memory",
     "Connector",
-    "Protection Info",
-    "Efficiency",
+    "Size",
+  ];
+  const MONITORtemplate = ["Size","Resolution","Panel","Refresh rate","Interface"];
+  const PSUtemplate = [
     "Input Voltage",
     "Output Capacity",
+    "Efficiency",
+    "Connector",
+    "Protection Info",
   ];
 
   const CPUListBrands = ["INTEL", "AMD"];
@@ -207,7 +207,7 @@ function AddProduct() {
     "INNO3D",
     "EVGA",
   ];
-  const HARDDRIVEListBrands = ['SAMSUNG','INTEL','PLEXTOR','KINGSTON','WD'];
+  const HARDDRIVEListBrands = ["SAMSUNG", "INTEL", "PLEXTOR", "KINGSTON", "WD"];
   const increaseNumDetails = () => {
     setInfo({
       ...info,

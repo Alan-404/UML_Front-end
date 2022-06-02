@@ -17,6 +17,7 @@ import {
     getProductsReducer,
     editProductReducer,
     getProductByIdReducer,
+    getProductByPageReducer,
     addProductReducer,
     deleteProductReducer,
     searchProductsReducer
@@ -57,6 +58,7 @@ const reducers = combineReducers({
     //product
     editProductReducer,
     getProductByIdReducer,
+    getProductByPageReducer,
     addProductReducer,
     deleteProductReducer,
     searchProductsReducer,

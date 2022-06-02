@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { ListGroup, Button } from "react-bootstrap";
 import { checkTokenAction } from "../behaviors/actions/user";
-
+import { apiUrlImg } from "../common/constants";
 const Header = () => {
   const [info, setInfo] = useState({
     showOptionForm: false,
@@ -93,7 +93,7 @@ const Header = () => {
               >
                 <Image
                   style={{ width: "30px", height: "30px", borderRadius:'50%' }}
-                  src={`http://localhost:3456/${user.imgUrl}`}
+                  src={`${apiUrlImg}/${user.imgUrl}`}
                 />
                 &#160;&#160;
                 <p className="mt-1">{user.name}</p>

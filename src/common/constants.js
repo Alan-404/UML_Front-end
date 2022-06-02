@@ -3,8 +3,9 @@ export const bootstrapMode1 = 'col-lg-3 mt-3'
 export const bootstrapMode2 = 'col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1'
 
 // api
-export const apiUrl = 'http://localhost:3456/rest'
+export const apiUrl = 'https://apitechgear.herokuapp.com/rest'
 
+export const apiUrlImg ='https://apitechgear.herokuapp.com'
 
 // user
 export const REQUEST_LOGIN_ACCOUNT = 'REQUEST_LOGIN_ACCOUNT'
@@ -61,6 +62,10 @@ export const EDIT_PRODUCT_FAIL = 'EDIT_PRODUCT_SUCCESS'
 export const REQUEST_GET_PRODUCT_BY_ID = 'REQUEST_GET_PRODUCT_BY_ID'
 export const GET_PRODUCT_BY_ID_SUCCESS = 'GET_PRODUCT_BY_ID_SUCCESS'
 export const GET_PRODUCT_BY_ID_FAIL = 'GET_PRODUCT_BY_ID_FAIL'
+
+export const REQUEST_GET_PRODUCT_BY_PAGE = 'REQUEST_GET_PRODUCT_BY_PAGE'
+export const GET_PRODUCT_BY_PAGE_SUCCESS = 'GET_PRODUCT_BY_PAGE_SUCCESS'
+export const GET_PRODUCT_BY_PAGE_FAIL = 'GET_PRODUCT_BY_PAGE_FAIL'
 
 export const REQUEST_ADD_PRODUCT = 'REQUEST_ADD_PRODUCT'
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS'

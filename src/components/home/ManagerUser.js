@@ -9,7 +9,7 @@ import { deleteProductReducer } from "../../behaviors/reducers/product";
 import { deleteProductAction } from "../../behaviors/actions/product";
 import { getAllUsersAction } from "../../behaviors/actions/user";
 import { getProductsReducer } from "../../behaviors/reducers/user";
-
+import { apiUrlImg } from "../../common/constants";
 
 function ManagerUser({ types_table }) {
   const dispatch = useDispatch();
@@ -141,7 +141,7 @@ function ManagerUser({ types_table }) {
                               </td>
                               <td className="text-center">
                                 <Image
-                                  src={`http://localhost:3456/${product.imageUrls}`}
+                                  src={`${apiUrlImg}/${product.imageUrls[0]}`}
                                   width={70}
                                   height={50}
                                   atl=""
