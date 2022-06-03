@@ -17,7 +17,7 @@ function ProductBox({ product , bootstrapMode }) {
       <div className="productBox">
         <div className="card">
           <div className="imgBox">
-            <img src={`${apiUrlImg}/${product.imageUrls[0]}`} alt="" className="mouse" />
+            <img src={`${apiUrlImg}/${product.imageUrls[0]}`} alt="" className="..." />
           </div>
 
           <div className="contentBox">

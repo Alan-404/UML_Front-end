@@ -4,53 +4,66 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { storeDetailAction } from "../../behaviors/actions/constant";
 
-function TemplateProductType({ TemplateItems, details}) {
-  const dispatch = useDispatch()
-
-
-
+function TemplateProductType({ TemplateItems, details }) {
+  const dispatch = useDispatch();
 
   const [info, setInfo] = useState({
-    arrInfo: Array(TemplateItems.length).fill("")
-  })
+    arrInfo: Array(TemplateItems.length).fill(""),
+  });
 
   const getInfo = (event, index) => {
-    var temp = info.arrInfo
-    temp[index] = event.target.value
+    var temp = info.arrInfo;
+    temp[index] = event.target.value;
     setInfo({
       ...info,
-      arrInfo: temp
-    })
-    dispatch(storeDetailAction(info.arrInfo))
-  }
-
+      arrInfo: temp,
+    });
+    dispatch(storeDetailAction(info.arrInfo));
+    console.log(info.arrInfo)
+  };
 
   useEffect(() => {
-    if (details){
+    if (details) {
       setInfo({
         ...info,
-        arrInfo: details
-      })
-      dispatch(storeDetailAction(details))
+        arrInfo: details,
+      });
+      dispatch(storeDetailAction(details));
+    } else {
+      dispatch(storeDetailAction(info.arrInfo));
     }
-    else{
-      dispatch(storeDetailAction(info.arrInfo))
-    }
-  }, [])
+  }, []);
 
-  
- 
   return (
     <div>
-    {TemplateItems &&
-      TemplateItems.map((TemplateItem, index) => (
-        <div key={index}>
-          <InputGroup className="mb-3" >
-            <InputGroup.Text id="basic-addon1">{TemplateItem} </InputGroup.Text>
-            {(details) ? (<FormControl key={index} onChange={((e) => getInfo(e, index)/* ,setDetails(info) */)} value={info.arrInfo[index]} name={TemplateItem} type="text" placeholder="..."/>) : (<FormControl key={index} onChange={((e) => getInfo(e, index)/* ,setDetails(info) */)} name={TemplateItem} type="text" placeholder="..."/>)}
-          </InputGroup>
-        </div>
-      ))}
+      {TemplateItems &&
+        TemplateItems.map((TemplateItem, index) => (
+          <div key={index}>
+            <InputGroup className="mb-3">
+              <InputGroup.Text id="basic-addon1">
+                {TemplateItem}{" "}
+              </InputGroup.Text>
+              {details ? (
+                <FormControl
+                  key={index}
+                  onChange={(e) => getInfo(e, index) /* ,setDetails(info) */}
+                  value={info.arrInfo[index]}
+                  name={TemplateItem}
+                  type="text"
+                  placeholder="..."
+                />
+              ) : (
+                <FormControl
+                  key={index}
+                  onChange={(e) => getInfo(e, index) /* ,setDetails(info) */}
+                  name={TemplateItem}
+                  type="text"
+                  placeholder="..."
+                />
+              )}
+            </InputGroup>
+          </div>
+        ))}
     </div>
   );
 }

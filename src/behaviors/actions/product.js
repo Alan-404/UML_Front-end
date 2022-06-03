@@ -156,6 +156,7 @@ export const getProductByPageAction = (page, size) => async(dispatch) => {
 
 
 export const addProductAction = (brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice) => async(dispatch) => {
+    console.log({brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice})
     try{
         dispatch({
             type: REQUEST_ADD_PRODUCT

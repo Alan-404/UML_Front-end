@@ -287,7 +287,7 @@ function AddProduct() {
             <br />
             <div className="d-flex">
               {info.imgArr.map((item, index) => (
-                <div>
+                <div key={index}>
                   <Image
                     style={{ width: "100px", height: "100px" }}
                     src={item}
@@ -481,36 +481,43 @@ function AddProduct() {
                 {template === "RAM" && (
                   <TemplateProductType
                     TemplateItems={RAMtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "HARDDRIVE" && (
                   <TemplateProductType
                     TemplateItems={HARDDRIVEtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "MAINBOARD" && (
                   <TemplateProductType
                     TemplateItems={MAINBOARDtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "PSU" && (
                   <TemplateProductType
                     TemplateItems={PSUtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "VGA" && (
                   <TemplateProductType
                     TemplateItems={VGAtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "CASE" && (
                   <TemplateProductType
                     TemplateItems={CASEtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 {template === "MONITOR" && (
                   <TemplateProductType
                     TemplateItems={MONITORtemplate}
+                    OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
                 <Button onClick={testData}>Test</Button>

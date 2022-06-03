@@ -82,7 +82,7 @@ function Manager({ types_table }) {
       pathname: "/register",
     });
   };
-  const goToEditUseProfilePage = (id) => {
+  const goToEditUserProfilePage = (id) => {
     navigate({
       pathname: "/manager_edit_profile",
       search: `?id=${id}`,
@@ -489,7 +489,7 @@ function Manager({ types_table }) {
                                   &#160;&#160;
                                   <Button
                                     onClick={(e) =>
-                                      goToEditUseProfilePage(user.id)
+                                      goToEditUserProfilePage(user.id)
                                     }
                                   >
                                     Edit
