@@ -160,7 +160,7 @@ function Manager({ types_table }) {
   };
 
   useEffect(() => {
-    dispatch(getProductsAction(0, 200));
+    dispatch(getProductsAction(0, 100));
     dispatch(getAllUsersAction(0, 5));
     dispatch(getProductByPageAction(0, pageSize));
   }, [dispatch, success]);

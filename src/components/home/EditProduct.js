@@ -7,6 +7,24 @@ import {
   InputGroup,
   FormControl,
 } from "react-bootstrap";
+import {
+  CPUtemplate,
+  RAMtemplate,
+  HARDDRIVEtemplate,
+  MAINBOARDtemplate,
+  CASEtemplate,
+  VGAtemplate,
+  MONITORtemplate,
+  PSUtemplate,
+  CPUListBrands,
+  RAMListBrands,
+  PSUListBrands,
+  MAINBOARDListBrands,
+  MONITORListBrands,
+  CASEListBrands,
+  VGAListBrands,
+  HARDDRIVEListBrands,
+} from "../../common/constants";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import TemplateProductType from "./TemplateProductType";
@@ -18,7 +36,7 @@ import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
 function EditProduct() {
   const [searchParams] = useSearchParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { myDetails } = useSelector((state) => state.storeDetailReducer);
   const dispatch = useDispatch();
 
@@ -31,14 +49,14 @@ function EditProduct() {
   );
   const { product } = getProductByIdReducer;
 
-  const editProductReducer = useSelector(state => state.editProductReducer)
-  const {success} = editProductReducer
+  const editProductReducer = useSelector((state) => state.editProductReducer);
+  const { success } = editProductReducer;
 
-  useEffect(()=> {
-    if (success){
-      navigate('/manager')
+  useEffect(() => {
+    if (success) {
+      navigate("/manager");
     }
-  }, [success])
+  }, [success]);
 
   const [info, setInfo] = useState({
     imgShow:
@@ -86,6 +104,7 @@ function EditProduct() {
       });
 
       setTemplate(product.productType);
+      console.log("convert",convertToArray(product.detailProductInfo))
     }
   }, [product]);
 
@@ -177,82 +196,6 @@ function EditProduct() {
   };
   const [template, setTemplate] = useState(0);
 
-  const CPUtemplate = [
-    "Total Cores",
-    "Total Threads",
-    "Socket",
-    "Base Frequency",
-    "Max Memory Size",
-    "Total Cache",
-    "TDP",
-    "Memory Type",
-    "Max Turbo Frequency",
-    "Overclock",
-  ];
-  const RAMtemplate = [
-    "Type",
-    "Bus Speed",
-    "Cas Latency",
-    "Overclock",
-    "Capacity",
-    "Voltage",
-  ];
-  const HARDDRIVEtemplate = ["Type", "Capacity", "Read Speed", "Write Speed"];
-  const MAINBOARDtemplate = [
-    "Chipset",
-    "Socket",
-    "Number Of Ram Slot",
-    "Memory Type",
-    "Max MemorySize",
-    "Number Of VGA Slot",
-    "Size",
-  ];
-  const CASEtemplate = ["Type", "Color", "Size", "Front I/O Input"];
-  const VGAtemplate = [
-    "Number Of Core",
-    "Processor Frequency",
-    "Memory",
-    "Connector",
-    "Size",
-  ];
-  const MONITORtemplate = [
-    "Size",
-    "Resolution",
-    "Panel",
-    "Refresh rate",
-    "Interface",
-  ];
-  const PSUtemplate = [
-    "Input Voltage",
-    "Output Capacity",
-    "Efficiency",
-    "Connector",
-    "Protection Info",
-  ];
-
-  const CPUListBrands = ["INTEL", "AMD"];
-  const RAMListBrands = ["GSKILL", "SAMSUNG", "ADATA"];
-  const PSUListBrands = [
-    "SEASONIC",
-    "COOLER MASTER",
-    "EVGA",
-    "MSI",
-    "GIGABYTE",
-  ];
-  const MAINBOARDListBrands = ["ASUS", "GIGABYTE", "MSI", "ASROCK"];
-  const MONITORListBrands = ["DELL", "MSI", "VIEWSONIC", "LG", "SAMSUNG"];
-  const CASEListBrands = ["NZXT", "XIGMATEK", "DEEPCOOL", "ANTEC"];
-  const VGAListBrands = [
-    "NVIDIA",
-    "AMD",
-    "ASUS",
-    "ASROCK",
-    "GIGABYTE",
-    "COLORFUL",
-    "INNO3D",
-    "EVGA",
-  ];
-  const HARDDRIVEListBrands = ["SAMSUNG", "INTEL", "PLEXTOR", "KINGSTON", "WD"];
   const increaseNumDetails = () => {
     setInfo({
       ...info,
@@ -278,7 +221,9 @@ function EditProduct() {
       )
     );
   };
-
+   const test = () =>{
+     console.log(myDetails)
+   }
   const getImage = (event) => {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -302,9 +247,11 @@ function EditProduct() {
   };
 
   const convertToArray = (obj) => {
+    console.log("obj",Object.keys(obj))
     var arr = [];
     for (var i = 0; i < Object.keys(obj).length; i++) {
       arr.push(Object.values(obj)[i]);
+      console.log(i," ",Object.values(obj)[i])
     }
     return arr;
   };
@@ -335,9 +282,8 @@ function EditProduct() {
             <br />
             <div className="d-flex">
               {info.imgArr.map((item, index) => (
-                <div>
+                <div key={index}>
                   <Image
-                    key={index}
                     style={{ width: "100px", height: "100px" }}
                     src={item}
                   />
@@ -537,47 +483,57 @@ function EditProduct() {
                     <TemplateProductType
                       TemplateItems={RAMtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "HARDDRIVE" && (
                     <TemplateProductType
                       TemplateItems={HARDDRIVEtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "MAINBOARD" && (
                     <TemplateProductType
                       TemplateItems={MAINBOARDtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "PSU" && (
                     <TemplateProductType
                       TemplateItems={PSUtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "VGA" && (
                     <TemplateProductType
                       TemplateItems={VGAtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "CASE" && (
                     <TemplateProductType
                       TemplateItems={CASEtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                   {template === "MONITOR" && (
                     <TemplateProductType
                       TemplateItems={MONITORtemplate}
                       details={convertToArray(product.detailProductInfo)}
+                      OnChange={getInforDetails}
                     ></TemplateProductType>
                   )}
                 </div>
               )}
               <div className="d-flex flex-column">
+                <Button onClick={test} className="mt-5">
+                  test
+                </Button>
                 <Button onClick={submitEditProduct} className="mt-5">
                   Save
                 </Button>

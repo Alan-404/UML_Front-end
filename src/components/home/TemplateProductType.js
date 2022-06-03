@@ -19,7 +19,7 @@ function TemplateProductType({ TemplateItems, details }) {
       arrInfo: temp,
     });
     dispatch(storeDetailAction(info.arrInfo));
-    console.log(info.arrInfo)
+    console.log("arr info",info.arrInfo)
   };
 
   useEffect(() => {
@@ -28,6 +28,7 @@ function TemplateProductType({ TemplateItems, details }) {
         ...info,
         arrInfo: details,
       });
+      console.log("arr info 2",info.arrInfo)
       dispatch(storeDetailAction(details));
     } else {
       dispatch(storeDetailAction(info.arrInfo));

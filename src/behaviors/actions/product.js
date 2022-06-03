@@ -32,8 +32,8 @@ export const getProductsAction = (page, size) => async (dispatch) => {
             type: REQUEST_GET_PRODUCTS
         })
 
-        const {data} = await axios.post(`${apiUrl}/product/viewall`, {page, size})
-        // console.log(data.content.length)
+        const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=${size}&sort=ASC`)
+        console.log(data.content)
         if (data.content){
             dispatch({
                 type: GET_PRODUCTS_SUCCESS,
@@ -105,7 +105,7 @@ export const getProductByIdAction = (id) => async(dispatch) => {
 
         const {data} = await axios.get(`${apiUrl}/product/get/${id}`)
         
-        console.log(data)
+        console.log("get product:",data)
         if (data.id){
             dispatch({
                 type: GET_PRODUCT_BY_ID_SUCCESS,

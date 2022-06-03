@@ -13,10 +13,28 @@ import { addProductAction } from "../../behaviors/actions/product";
 import TemplateProductType from "./TemplateProductType";
 import TemplateListBrand from "./TemplateListBrand";
 import { storeDetailAction } from "../../behaviors/actions/constant";
+import {
+  CPUtemplate,
+  RAMtemplate,
+  HARDDRIVEtemplate,
+  MAINBOARDtemplate,
+  CASEtemplate,
+  VGAtemplate,
+  MONITORtemplate,
+  PSUtemplate,
+  CPUListBrands,
+  RAMListBrands,
+  PSUListBrands,
+  MAINBOARDListBrands,
+  MONITORListBrands,
+  CASEListBrands,
+  VGAListBrands,
+  HARDDRIVEListBrands,
+} from "../../common/constants";
 
 function AddProduct() {
-  const {myDetails} = useSelector(state=> state.storeDetailReducer)
-  const dispatch = useDispatch()
+  const { myDetails } = useSelector((state) => state.storeDetailReducer);
+  const dispatch = useDispatch();
   const [info, setInfo] = useState({
     imgShow:
       "https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png",
@@ -36,7 +54,7 @@ function AddProduct() {
   });
 
   const [details, setDetails] = useState({
-    infoArr: []
+    infoArr: [],
   });
 
   const getInforDetails = (event, index) => {
@@ -70,13 +88,13 @@ function AddProduct() {
         name: value,
       });
     } else if (name === "productType") {
-      console.log(value)
+      console.log(value);
       setInfo({
         ...info,
         productType: value,
       });
     } else if (name === "brand") {
-      console.log(value)
+      console.log(value);
       setInfo({
         ...info,
         brand: value,
@@ -125,80 +143,10 @@ function AddProduct() {
 
   const changeTemplate = (event) => {
     setTemplate(event.target.value);
-    dispatch(storeDetailAction([]))
+    dispatch(storeDetailAction([]));
   };
   const [template, setTemplate] = useState(0);
 
-  const CPUtemplate = [
-    "Total Cores",
-    "Total Threads",
-    "Socket",
-    "Base Frequency",
-    "Max Memory Size",
-    "Total Cache",
-    "TDP",
-    "Memory Type",
-    "Max Turbo Frequency",
-    "Overclock",
-  ];
-  const RAMtemplate = [
-    "Type",
-    "Bus Speed",
-    "Cas Latency",
-    "Overclock",
-    "Capacity",
-    "Voltage",
-  ];
-  const HARDDRIVEtemplate = ["Type", "Capacity", "Read Speed", "Write Speed"];
-  const MAINBOARDtemplate = [
-    "Chipset",
-    "Socket",
-    "Number Of Ram Slot",
-    "Memory Type",
-    "Max MemorySize",
-    "Number Of VGA Slot",
-    "Size",
-  ];
-  const CASEtemplate = ["Type","Color", "Size",  "Front I/O Input"];
-  const VGAtemplate = [
-    "Number Of Core",
-    "Processor Frequency",
-    "Memory",
-    "Connector",
-    "Size",
-  ];
-  const MONITORtemplate = ["Size","Resolution","Panel","Refresh rate","Interface"];
-  const PSUtemplate = [
-    "Input Voltage",
-    "Output Capacity",
-    "Efficiency",
-    "Connector",
-    "Protection Info",
-  ];
-
-  const CPUListBrands = ["INTEL", "AMD"];
-  const RAMListBrands = ["GSKILL", "SAMSUNG", "ADATA"];
-  const PSUListBrands = [
-    "SEASONIC",
-    "COOLER MASTER",
-    "EVGA",
-    "MSI",
-    "GIGABYTE",
-  ];
-  const MAINBOARDListBrands = ["ASUS", "GIGABYTE", "MSI", "ASROCK"];
-  const MONITORListBrands = ["DELL", "MSI", "VIEWSONIC", "LG", "SAMSUNG"];
-  const CASEListBrands = ["NZXT", "XIGMATEK", "DEEPCOOL", "ANTEC"];
-  const VGAListBrands = [
-    "NVIDIA",
-    "AMD",
-    "ASUS",
-    "ASROCK",
-    "GIGABYTE",
-    "COLORFUL",
-    "INNO3D",
-    "EVGA",
-  ];
-  const HARDDRIVEListBrands = ["SAMSUNG", "INTEL", "PLEXTOR", "KINGSTON", "WD"];
   const increaseNumDetails = () => {
     setInfo({
       ...info,
@@ -207,8 +155,8 @@ function AddProduct() {
   };
 
   const testData = () => {
-    console.log(myDetails)
-  }
+    console.log(myDetails);
+  };
 
   const submitAddProduct = () => {
     /* var moreDetails = []
@@ -235,16 +183,15 @@ function AddProduct() {
         info.originalPrice
       )
     );
-    console.log(info.brand)
+    console.log(info.brand);
   };
 
   const getImage = (event) => {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    console.log(event.target.files[0])
+    console.log(event.target.files[0]);
 
     reader.onload = (_event) => {
-      
       var temp = info.imgArr;
       temp.push(reader.result);
       var tempImage = info.listImageFile;
@@ -258,9 +205,9 @@ function AddProduct() {
   };
 
   const submitChangProductTypeOption = (e) => {
-    getBasicInfor(e)
-    changeTemplate(e)
-  }
+    getBasicInfor(e);
+    changeTemplate(e);
+  };
   return (
     <div className="container">
       <div>
@@ -329,19 +276,16 @@ function AddProduct() {
                 {template === "PSU" && (
                   <TemplateListBrand
                     ListBrands={PSUListBrands}
-                    
                   ></TemplateListBrand>
                 )}
                 {template === "MONITOR" && (
                   <TemplateListBrand
                     ListBrands={MONITORListBrands}
-                   
                   ></TemplateListBrand>
                 )}
                 {template === "RAM" && (
                   <TemplateListBrand
                     ListBrands={RAMListBrands}
-                   
                   ></TemplateListBrand>
                 )}
                 {template === "VGA" && (
