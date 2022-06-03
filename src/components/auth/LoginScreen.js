@@ -6,13 +6,14 @@ import logo from '../../images/logo.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import MySpinner from '../effects/MySpinner'
 const LoginScreen = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const loginAccountReducer = useSelector(state => state.loginAccountReducer)
-  const {success} = loginAccountReducer
+  const {success, loadingLoginAccount} = loginAccountReducer
 
   const [account, setAccount] = useState({
     email: '',
@@ -85,6 +86,7 @@ const LoginScreen = () => {
           <Button className='w-100 mt-1 text-light' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
         </div>
       </div>
+      {loadingLoginAccount && (<MySpinner />)}
     </div>
   )
 }

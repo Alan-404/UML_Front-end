@@ -134,7 +134,6 @@ export const getProductByPageAction = (page, size) => async(dispatch) => {
         })
 
         const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=${size}&sort=ASC`)
-        console.log(data.content.length)
         if (data.content){
             dispatch({
                 type: GET_PRODUCT_BY_PAGE_SUCCESS,
@@ -148,7 +147,6 @@ export const getProductByPageAction = (page, size) => async(dispatch) => {
         }
     }
     catch(error){
-        console.log(error.message)
         dispatch({
             type: GET_PRODUCT_BY_PAGE_FAIL
         })
@@ -157,7 +155,6 @@ export const getProductByPageAction = (page, size) => async(dispatch) => {
 
 
 export const addProductAction = (brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice) => async(dispatch) => {
-    console.log({brand, description, discount, listDataProduct, listImageFile, name, price, productType, quantity, warranty, originalPrice})
     try{
         dispatch({
             type: REQUEST_ADD_PRODUCT
@@ -172,7 +169,6 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
         
         
         const {data} = await axios.post(`${apiUrl}/product/manager/add`, {brand, description, discount,"listImageFile[]":listImageFile, "listDataProduct[]": listDataProduct, name, price, productType, quantity, warranty, originalPrice}, config)
-        console.log("action",data)
         if (data.id){
             dispatch({
                 type: ADD_PRODUCT_SUCCESS
@@ -194,7 +190,6 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
 
 
 export const deleteProductAction = (id) => async(dispatch) => {
-    console.log(id)
     try{
         dispatch({
             type: REQUEST_DELETE_PRODUCT
@@ -206,7 +201,6 @@ export const deleteProductAction = (id) => async(dispatch) => {
         }
 
         const {data} = await axios.get(`${apiUrl}/product/manager/changeState/${id}`, config)
-        console.log(data)
         if (data){
             dispatch({
                 type: DELETE_PRODUCT_SUCCESS
@@ -240,7 +234,6 @@ export const searchProductsAction = (name, page) => async(dispatch) => {
             }
         }
         const {data} = await axios.post(`${apiUrl}/product/search`, {name, page}, config)
-        console.log(data)
         if (data.content){
             dispatch({
                 type: SEARCH_PRODUCT_SUCCESS,

@@ -6,6 +6,7 @@ import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect, useState } from 'react'
 import { editUserAction } from '../../behaviors/actions/user'
 import { apiUrlImg } from "../../common/constants";
+import MySpinner from '../effects/MySpinner'
 const EditProfile = () => {
   const dispatch = useDispatch()
 
@@ -30,7 +31,7 @@ const EditProfile = () => {
   const {user} = getUserTokenReducer
 
   const editUserReducer = useSelector(state => state.editUserReducer)
-  const {success} = editUserReducer
+  const {success, loadingGetUserToken} = editUserReducer
 
 
   const getInfor = (event) => {
@@ -130,6 +131,7 @@ const EditProfile = () => {
     <div className='container p-2'>
       <h1>Edit User Informations</h1>
       {(success === false && infor.click===true) && (<span className='text-danger' style={{fontSize:"25px"}}>Fail to edit</span>)}
+      {(success === true && infor.click===true) && (<span className='text-success' style={{fontSize:"25px"}}>Edit User Successfully</span>)}
       {(user && infoUser) && (
         <div className='d-flex mt-5'>
           <div>
@@ -186,6 +188,7 @@ const EditProfile = () => {
           </div>
         </div>
       )}
+      {loadingGetUserToken && (<MySpinner />)}
     </div>
   )
 }

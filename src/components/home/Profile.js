@@ -5,10 +5,11 @@ import { useEffect } from 'react'
 import {Button, Image} from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { apiUrlImg } from "../../common/constants";
+import MySpinner from '../effects/MySpinner'
 const Profile = () => {
     const dispatch = useDispatch()
     const getUserTokenReducer = useSelector(state => state.getUserTokenReducer)
-    const {user} = getUserTokenReducer
+    const {user, loadingGetUserToken} = getUserTokenReducer
 
     const navigate = useNavigate()
 
@@ -49,6 +50,7 @@ const Profile = () => {
                     </div>
                 </div>
             )}
+            {loadingGetUserToken && (<MySpinner />)}
         </div>
     )
 }

@@ -3,208 +3,62 @@ import "./Manager.css";
 import { Button, Image } from "react-bootstrap";
 import { useEffect , useState} from "react";
 import { useDispatch } from "react-redux";
-import { getProductsAction } from "../../behaviors/actions/product";
 import { useSelector } from "react-redux";
-import { deleteProductReducer } from "../../behaviors/reducers/product";
-import { deleteProductAction } from "../../behaviors/actions/product";
-import { getAllUsersAction } from "../../behaviors/actions/user";
-import { getProductsReducer } from "../../behaviors/reducers/user";
-import { apiUrlImg } from "../../common/constants";
+import { getCartAction } from "../../behaviors/actions/cart";
+import {apiUrlImg, apiUrl} from '../../common/constants'
 
 function ManagerUser({ types_table }) {
   const dispatch = useDispatch();
 
-  const getProductsReducer = useSelector((state) => state.getProductsReducer);
-  const { products } = getProductsReducer;
 
-  const getAllUsersReducer = useSelector((state) => state.getAllUsersReducer);
-  const { users } = getAllUsersReducer;
+  const getCartReducer = useSelector(state => state.getCartReducer)
+  const {cart} = getCartReducer
+
 
   const deleteProductReducer = useSelector(
     (state) => state.deleteProductReducer
   );
   const { success } = deleteProductReducer;
 
-  const deleteProduct = (id) => {
-    dispatch(deleteProductAction(id));
-  };
 
   useEffect(() => {
-    dispatch(getProductsAction(0));
-    dispatch(getAllUsersAction(0));
+    dispatch(getCartAction())
   }, [dispatch, success]);
 
-  const [list,setList] = useState(0)
-  console.log(list)
-  const type_table = false;
+  const increaseNumOfProducts = (id) => {
+    
+  }
+
   return (
-    <div>
-      <div>
-        <div className="px-0 bg-light">
-          <div className="d-flex">
-            <div className="d-flex align-items-center " id="navbar">
-              {" "}
-              <button
-                className="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbar-items"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="true"
-                aria-label="Toggle navigation"
-              >
-                {" "}
-                <span className="fas fa-bars"></span>{" "}
-              </button>{" "}
-              <a className="text-decoration-none fs14 ps-2" href="#">
-                TechGear<span className="fs13 pe-2">.com</span>
-              </a>{" "}
-            </div>
-            <div id="navbar2" className="d-flex justify-content-end pe-4">
-              {" "}
-             
-            </div>
-          </div>
-          <div className="d-md-flex">
-            <ul id="navbar-items" className="p-0">
-              {types_table &&
-                types_table.map((type_table, index) => (
-                  <li key={index} onClick={() => setList(index)}>
-                    {" "}
-                    <span className="fas fa-th-list"></span>{" "}
-                    <span className="ps-3 name">{type_table}</span>{" "}
-                  </li>
-                ))} 
-            </ul>
-            <div id="topnavbar">
-              <div className="d-flex align-items-center mb-3 px-md-3 px-2">
-                {" "}
-                <span className="text-uppercase fs13 fw-bolder pe-3">
-                  search<span className="ps-1"></span>
-                </span>
-                <form className="example d-flex align-items-center">
-                  {" "}
-                  <input type="text" placeholder="...." name="search" />{" "}
-                  <button type="submit">
-                    <i className="fa fa-search"></i>
-                  </button>{" "}
-                </form>
+    <div className="p-3">
+      <h2>Cart</h2>
+      <hr />
+      {cart && (
+        cart.map((item, index) => (
+          <div key={index} className="p-3 bg-light w-75 mb-4" style={{borderRadius: '25px'}}>
+            <h4>{item.product.brand}</h4>
+            <hr />
+            <div className="d-flex justify-content-between">
+              <div className="d-flex w-50">
+                <Image style={{width: '100px', height: '100px', borderRadius: '10px'}} src={`${apiUrlImg}/${item.product.imageUrls[0]}`}/>
+                &#160;&#160;&#160;&#160;&#160;
+                <div>
+                  <h3>{item.product.name}</h3>
+                  <p className="text-info" style={{fontSize: '17px'}}>{item.product.price.toLocaleString()} VND</p>
+                </div>
               </div>
-              <div className="table-responsive px-2">
-                {list == 0 ? (
-                  <div>
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">Categories</th>
-                          <th scope="col">Brand</th>
-                          <th scope="col">
-                            Name<span className="ps-1"></span>
-                          </th>
-                          <th scope="col">Price</th>
-                          <th className="text-center" scope="col">
-                            Warranty
-                          </th>
-                          <th className="text-center" scope="col">
-                            Image
-                          </th>
-                          <th className="text-center" scope="col">
-                            ACTION
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {products &&
-                          products.map((product, index) => (
-                            <tr key={product.id} style={{ lineHeight: "3.5" }}>
-                             
-                              <td>
-                                <span className="bg-bdark">
-                                  {product.productType}
-                                </span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">
-                                  {product.brand}
-                                </span>
-                              </td>
-                              <td>
-                                <span className="bg-bdark">{product.name}</span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">
-                                  {product.price}
-                                </span>
-                              </td>
-                              <td className="text-center px-0 bg-bdark">
-                                {product.warranty}
-                              </td>
-                              <td className="text-center">
-                                <Image
-                                  src={`${apiUrlImg}/${product.imageUrls[0]}`}
-                                  width={70}
-                                  height={50}
-                                  atl=""
-                                />
-                              </td>
-                              <td className="text-center">
-                                <div className="buttonAction">
-                                  <Button
-                                    onClick={() => deleteProduct(product.id)}
-                                  >
-                                    Delete
-                                  </Button>
-                                  &#160;&#160;
-                                  <Button>Edit</Button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                      <ul className="pagination justify-content-end">
-                        <li className="page-item disabled">
-                          <a
-                            className="page-link"
-                            href="#"
-                            aria-label="Previous"
-                          >
-                            <span aria-hidden="true">&laquo;</span>
-                          </a>
-                        </li>
-                        <li className="page-item active">
-                          <a className="page-link" href="#">
-                            1
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            2
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#">
-                            3
-                          </a>
-                        </li>
-                        <li className="page-item">
-                          <a className="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                          </a>
-                        </li>
-                      </ul>
-                    </nav>
-                  </div>
-                ) : (
-                    <div>
-                    </div>)
-                  }
+              <div>
+                <button className="p-1 px-2 bg-light">+</button>
+                <input className="px-2" style={{width: '40px', height: '35px'}} value={item.numberOfProduct}/>
+                <button className="p-1 px-2 bg-light">-</button>
+              </div>
+              <div>
+                <i style={{fontSize: '25px', cursor: 'pointer'}} className="fa fa-trash text-danger" aria-hidden="true"></i>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        ))
+      )}
     </div>
   );
 }

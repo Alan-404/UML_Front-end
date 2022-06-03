@@ -136,8 +136,8 @@ export const getCartAction = () => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.get(`${apiUrl}/cart/user/get`, config)
-
+        const {data} = await axios.get(`${apiUrl}/cart/user/get/`, config)
+        console.log(data)
         if (data.length != 0){
             dispatch({
                 type: GET_CART_SUCCESS,

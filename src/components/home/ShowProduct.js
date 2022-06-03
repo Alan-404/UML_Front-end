@@ -7,6 +7,7 @@ import { getProductByIdAction } from '../../behaviors/actions/product'
 import { Image, Button, Table } from 'react-bootstrap'
 import { apiUrlImg } from "../../common/constants";
 import { addCartAction } from '../../behaviors/actions/cart'
+import MySpinner from '../effects/MySpinner'
 const ShowProduct = () => {
 
     const [info, setInfo] = useState({
@@ -59,7 +60,7 @@ const ShowProduct = () => {
 
     return (
         <div className='container'>
-            {product && (
+            {product ? (
                 <div>
                     <div className='d-flex'>
                         <Image style={{width: '20rem', height: '20rem', borderRadius: '25px'}} src={info.showImage}/>
@@ -95,7 +96,8 @@ const ShowProduct = () => {
                         </Table>
                     </div>
                 </div>
-            )}
+            ) : (<MySpinner />)}
+            
         </div>
     )
 }
