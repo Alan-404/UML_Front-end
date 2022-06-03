@@ -4,11 +4,11 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAction } from "../../behaviors/actions/user";
 import { useEffect, useState } from "react";
-import { editUserAction } from "../../behaviors/actions/user";
+import { editEmployeeAction } from "../../behaviors/actions/user";
 import { apiUrlImg } from "../../common/constants";
 const ManagerEditProfile = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   useEffect(() => {
     dispatch(getUserByIdAction(searchParams.get("id")));
   }, [dispatch]);
@@ -17,12 +17,16 @@ const ManagerEditProfile = () => {
 
   const { user } = getUserByIdReducer;
 
-  const editUserReducer = useSelector((state) => state.editUserReducer);
-  const { success } = editUserReducer;
+  const editEmployeeReducer = useSelector((state) => state.editEmployeeReducer);
+  const { successEdit } = editEmployeeReducer;
 
-  
-
-
+  useEffect(() => {
+    if (successEdit) {
+      navigate({
+        pathname: "/manager",
+      });
+    }
+  }, [successEdit]);
 
   const [searchParams] = useSearchParams();
 
@@ -87,9 +91,10 @@ const ManagerEditProfile = () => {
       click: true,
     });
     dispatch(
-      editUserAction(
+      editEmployeeAction(
         infoUser.id,
         infoUser.name,
+        infoUser.email,
         infoUser.address,
         infoUser.phone,
         infoUser.gender,
@@ -132,7 +137,7 @@ const ManagerEditProfile = () => {
   return (
     <div className="container p-2">
       <h1>Edit User Informations</h1>
-      {success === false && infor.click === true && (
+      {successEdit === false && infor.click === true && (
         <span className="text-danger" style={{ fontSize: "25px" }}>
           Fail to edit
         </span>

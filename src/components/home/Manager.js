@@ -3,6 +3,7 @@ import "./Manager.css";
 import { Button, Image } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import MySpinner from "../effects/MySpinner";
 import {
   getProductsAction,
   getProductByPageAction,
@@ -17,6 +18,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { apiUrlImg } from "../../common/constants";
 function Manager({ types_table }) {
+  const pageSize = 5;
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -43,7 +45,7 @@ function Manager({ types_table }) {
   );
 
   const changeStatusReducer = useSelector((state) => state.changeStatusReducer);
-  
+
   const { success } = changeStatusReducer;
 
   const deleteProduct = (id) => {
@@ -91,13 +93,19 @@ function Manager({ types_table }) {
       pathname: "/add_emp",
     });
   };
-
+  const changeList = (index) => {
+    setList(index);
+    info.pageNow = 1;
+    dispatch(getProductByPageAction(0, pageSize));
+    dispatch(getAllUsersAction(0, pageSize));
+  };
   const calculatePage = (allProducts) => {
     var sizeNumProducts = allProducts.length;
-    var num = 0;
-    num = sizeNumProducts / 5;
+    var num = sizeNumProducts / 5;
+    num = parseInt(num);
+
     if (sizeNumProducts % 5 !== 0) {
-      num += 1;
+      num = num + 1;
     }
 
     var arrNum = [];
@@ -108,37 +116,53 @@ function Manager({ types_table }) {
     return arrNum;
   };
 
-  const changePage = (page) => {
-    page--;
-    setInfo({
-      ...info,
-      pageNow: page + 1,
-    });
-    dispatch(getProductByPageAction(page, 5));
-    console.log(info.showClientUser);
-    console.log(info.showEmployeeUser);
+  const changePage = (page, type) => {
+    info.pageNow = page;
+    page = page - 1;
+    if (type === "product") {
+      dispatch(getProductByPageAction(page, pageSize));
+    }
+    if (type === "user") {
+      dispatch(getAllUsersAction(page, pageSize));
+    }
   };
 
-  const changeNextpage = () => {
-    setInfo({
-      ...info,
-      pageNow: info.pageNow + 1,
-    });
-    dispatch(getProductByPageAction(info.pageNow - 1, 5));
+  const changeNextpage = (arr, type) => {
+    //console.log("NEXT: " + info.pageNow)
+    //console.log("size page " + calculatePage(products).length)
+    if (info.pageNow === calculatePage(arr).length) {
+      return;
+    }
+    var temp = info.pageNow;
+    temp = temp + 1;
+    info.pageNow = temp;
+    if (type === "product") {
+      dispatch(getProductByPageAction(info.pageNow - 1, pageSize));
+    }
+    if (type === "user") {
+      dispatch(getAllUsersAction(info.pageNow - 1, pageSize));
+    }
   };
 
-  const changePrevPage = () => {
-    setInfo({
-      ...info,
-      pageNow: info.pageNow - 1,
-    });
-    dispatch(getProductByPageAction(info.pageNow - 1, 5));
+  const changePrevPage = (type) => {
+    if (info.pageNow === 1) {
+      return;
+    }
+    var temp = info.pageNow;
+    temp = temp - 1;
+    info.pageNow = temp;
+    if (type === "product") {
+      dispatch(getProductByPageAction(info.pageNow - 1, pageSize));
+    }
+    if (type === "user") {
+      dispatch(getAllUsersAction(info.pageNow - 1, pageSize));
+    }
   };
 
   useEffect(() => {
     dispatch(getProductsAction(0, 200));
-    dispatch(getAllUsersAction(0));
-    dispatch(getProductByPageAction(0, 5));
+    dispatch(getAllUsersAction(0, 5));
+    dispatch(getProductByPageAction(0, pageSize));
   }, [dispatch, success]);
   const checkEmployee = (role) => role === "EMPLOYEE" || role === "MANAGER";
   useEffect(() => {
@@ -186,7 +210,7 @@ function Manager({ types_table }) {
             <ul id="navbar-items" className="p-0">
               {types_table &&
                 types_table.map((type_table, index) => (
-                  <li key={index} onClick={() => setList(index)}>
+                  <li key={index} onClick={() => changeList(index)}>
                     {" "}
                     <span className="fas fa-th-list"></span>{" "}
                     <span className="ps-3 name">{type_table}</span>{" "}
@@ -228,8 +252,8 @@ function Manager({ types_table }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {info.showProducts &&
-                          info.showProducts.map((product) => (
+                        {productsPage &&
+                          productsPage.map((product) => (
                             <tr
                               key={product.id}
                               style={{ lineHeight: "3.5", cursor: "pointer" }}
@@ -296,32 +320,99 @@ function Manager({ types_table }) {
                     <div className="">
                       <nav aria-label="Page navigation example mr-5">
                         <ul className="pagination justify-content-end">
-                          <li onClick={changePrevPage} className="page-item">
-                            <a
-                              className="page-link"
-                              href="#"
-                              aria-label="Previous"
+                          {products && info.pageNow === 1 ? (
+                            <li
+                              onClick={() => changePrevPage("product")}
+                              className="page-item disabled"
                             >
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          {products &&
-                            calculatePage(products).map((item, index) => (
-                              <li
-                                onClick={() => changePage(item)}
-                                key={index}
-                                className="page-item"
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Previous"
                               >
-                                <a className="page-link" href="#">
-                                  {item}
-                                </a>
-                              </li>
-                            ))}
-                          <li onClick={changeNextpage} className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={() => changePrevPage("product")}
+                              className="page-item"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Previous"
+                              >
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          )}
+                          {products && (
+                            <div className="d-flex">
+                              {calculatePage(products).map((item, index) => {
+                                if (info.pageNow === item)
+                                  return (
+                                    <li
+                                      onClick={() =>
+                                        changePage(item, "product")
+                                      }
+                                      key={index}
+                                      className="page-item active"
+                                    >
+                                      <a className="page-link" href="#">
+                                        {item}
+                                      </a>
+                                    </li>
+                                  );
+                                else
+                                  return (
+                                    <li
+                                      onClick={() =>
+                                        changePage(item, "product")
+                                      }
+                                      key={index}
+                                      className="page-item"
+                                    >
+                                      <a className="page-link" href="#">
+                                        {item}
+                                      </a>
+                                    </li>
+                                  );
+                              })}
+                            </div>
+                          )}
+                          {products &&
+                          info.pageNow === calculatePage(products).length ? (
+                            <li
+                              onClick={() =>
+                                changeNextpage(products, "product")
+                              }
+                              className="page-item disabled"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Next"
+                              >
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={() =>
+                                changeNextpage(products, "product")
+                              }
+                              className="page-item"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Next"
+                              >
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          )}
                         </ul>
                       </nav>
                     </div>
@@ -360,8 +451,8 @@ function Manager({ types_table }) {
                         </tr>
                       </thead>
                       <tbody>
-                        {info.showClientUser &&
-                          info.showClientUser.map((user) => (
+                        {users &&
+                          users.map((user) => (
                             <tr key={user.id}>
                               <td>
                                 <span className="bg-blight">{user.id}</span>
@@ -412,136 +503,99 @@ function Manager({ types_table }) {
                     <div className="">
                       <nav aria-label="Page navigation example">
                         <ul className="pagination justify-content-end">
-                          <li className="page-item disabled">
-                            <a className="page-link" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li className="page-item active">
-                            <a className="page-link" href="#">
-                              1
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              2
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              3
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
-                        </ul>
-                      </nav>
-                    </div>
-                  </div>
-                )}
-                {list === 2 && (
-                  <div className="mt-3">
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary"
-                      onClick={goToAddEmployeePage}
-                    >
-                      Add Employee
-                    </button>
-                    <table className="table table-borderless">
-                      <thead>
-                        <tr>
-                          <th scope="col">
-                            User<span>ID</span>
-                          </th>
-                          <th scope="col">Name</th>
-                          <th scope="col">Email</th>
-                          <th scope="col">
-                            Address<span className="ps-1"></span>
-                          </th>
-                          <th scope="col">Phone</th>
-                          <th className="text-center" scope="col">
-                            Gender
-                          </th>
-                          <th className="text-center" scope="col">
-                            Avatar
-                          </th>
-                          <th className="text-center" scope="col">
-                            ACTION
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {info.showEmployeeUser &&
-                          info.showEmployeeUser.map((user, index) => (
-                            <tr key={user.id}>
-                              <td>
-                                <span className="bg-blight">{user.id}</span>
-                              </td>
-                              <td>
-                                <span className="bg-bdark">{user.name}</span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">{user.email}</span>
-                              </td>
-                              <td>
-                                <span className="bg-bdark">{user.address}</span>
-                              </td>
-                              <td>
-                                <span className="bg-blight">{user.phone}</span>
-                              </td>
-                              <td className="text-center px-0 bg-bdark">
-                                {user.gender}
-                              </td>
-                              <td className="text-center">
-                                <Image
-                                  src={`${apiUrlImg}/${user.imgUrl}`}
-                                  width={70}
-                                  height={50}
-                                />
-                              </td>
-                              <td className="text-center">
-                                <div className="buttonAction">
-                                  <Button>Delete</Button>
-                                  &#160;&#160;
-                                  <Button>Edit</Button>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                    <div className="">
-                      <nav aria-label="Page navigation example">
-                        <ul className="pagination justify-content-end">
-                          <li className="page-item disabled">
-                            <a className="page-link" aria-label="Previous">
-                              <span aria-hidden="true">&laquo;</span>
-                            </a>
-                          </li>
-                          <li className="page-item active">
-                            <a className="page-link" href="#">
-                              1
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              2
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#">
-                              3
-                            </a>
-                          </li>
-                          <li className="page-item">
-                            <a className="page-link" href="#" aria-label="Next">
-                              <span aria-hidden="true">&raquo;</span>
-                            </a>
-                          </li>
+                          {users && info.pageNow === 1 ? (
+                            <li
+                              onClick={() => changePrevPage("user")}
+                              className="page-item disabled"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Previous"
+                              >
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={() => changePrevPage("user")}
+                              className="page-item"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Previous"
+                              >
+                                <span aria-hidden="true">&laquo;</span>
+                              </a>
+                            </li>
+                          )}
+                          {users && (
+                            <div className="d-flex">
+                              {calculatePage(users).map((item, index) => {
+                                if (info.pageNow === item)
+                                  return (
+                                    <li
+                                      onClick={() =>
+                                        changePage(item, "user")
+                                      }
+                                      key={index}
+                                      className="page-item active"
+                                    >
+                                      <a className="page-link" href="#">
+                                        {item}
+                                      </a>
+                                    </li>
+                                  );
+                                else
+                                  return (
+                                    <li
+                                      onClick={() =>
+                                        changePage(item, "user")
+                                      }
+                                      key={index}
+                                      className="page-item"
+                                    >
+                                      <a className="page-link" href="#">
+                                        {item}
+                                      </a>
+                                    </li>
+                                  );
+                              })}
+                            </div>
+                          )}
+                          {users &&
+                          info.pageNow === calculatePage(users).length ? (
+                            <li
+                              onClick={() =>
+                                changeNextpage(users, "user")
+                              }
+                              className="page-item disabled"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Next"
+                              >
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          ) : (
+                            <li
+                              onClick={() =>
+                                changeNextpage(users, "user")
+                              }
+                              className="page-item"
+                            >
+                              <a
+                                className="page-link"
+                                href="#"
+                                aria-label="Next"
+                              >
+                                <span aria-hidden="true">&raquo;</span>
+                              </a>
+                            </li>
+                          )}
                         </ul>
                       </nav>
                     </div>
@@ -552,6 +606,7 @@ function Manager({ types_table }) {
           </div>
         </div>
       </div>
+      {!(products && users) && <MySpinner />}
     </div>
   );
 }

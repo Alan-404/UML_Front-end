@@ -19,7 +19,7 @@ const HomeView = ({homeRoute}) => {
     <div>
       {homeRoute === 'dashboard' && <Dashboard />}
       {homeRoute === 'product' && <ShowProduct />}
-      {homeRoute === 'manager' && <Manager types_table={["Product","User","Employee"]} />}
+      {homeRoute === 'manager' && <Manager types_table={["Product","User"]} />}
       {homeRoute === 'manager_user' && <ManagerUser types_table={["Cart List","Order List"]} />}
       {homeRoute === 'profile' && <Profile />}
       {homeRoute === 'add_product' && <AddProduct />}

@@ -12,13 +12,13 @@ import { useEffect, useState } from "react";
 import TemplateProductType from "./TemplateProductType";
 import TemplateListBrand from "./TemplateListBrand";
 import { storeDetailAction } from "../../behaviors/actions/constant";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getProductByIdAction } from "../../behaviors/actions/product";
 import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
 function EditProduct() {
   const [searchParams] = useSearchParams();
-
+  const navigate = useNavigate()
   const { myDetails } = useSelector((state) => state.storeDetailReducer);
   const dispatch = useDispatch();
 
@@ -30,6 +30,15 @@ function EditProduct() {
     (state) => state.getProductByIdReducer
   );
   const { product } = getProductByIdReducer;
+
+  const editProductReducer = useSelector(state => state.editProductReducer)
+  const {success} = editProductReducer
+
+  useEffect(()=> {
+    if (success){
+      navigate('/manager')
+    }
+  }, [success])
 
   const [info, setInfo] = useState({
     imgShow:

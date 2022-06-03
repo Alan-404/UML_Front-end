@@ -23,7 +23,10 @@ const Profile = () => {
 
 
     const goEditProfilePage = () => {
-        navigate('/edit_profile')
+        navigate({
+            pathname: '/edit_profile',
+            search: 'action=user'
+        })
     }
 
     useEffect(() => {

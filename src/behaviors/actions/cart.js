@@ -57,6 +57,7 @@ export const addCartAction = (numberOfProduct, productID) => async(dispatch) => 
 
 
 export const changeNumberProductAction = (cartID, numberOfProduct) => async(dispatch) => {
+    console.log({cartID, numberOfProduct})
     try{
         dispatch({
             type: REQUEST_CHANGE_NUMBER_PRODUCT
@@ -64,13 +65,14 @@ export const changeNumberProductAction = (cartID, numberOfProduct) => async(disp
 
         const config = {
             headers: {
+                "content-type": 'application/json',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
         
 
-        const {data} = await axios.post(`${apiUrl}/cart/user/changeNumberOfProduct`, {cartID, numberOfProduct}, config)
-
+        const {data} = await axios.post(`${apiUrl}/cart/user/changeNumberOfProduct/`, {cartID, numberOfProduct}, config)
+        console.log(data)
         if (data.id){
             dispatch({
                 type: CHANGE_NUMBER_PRODUCT_SUCCESS

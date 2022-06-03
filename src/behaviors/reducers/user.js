@@ -90,9 +90,9 @@ export const editEmployeeReducer = (state={}, action) => {
         case REQUEST_EDIT_EMPLOYEE:
             return {loadingEditEmployee: true}
         case EDIT_EMPLOYEE_SUCCESS:
-            return {loadingEditEmployee: false, success: true}
+            return {loadingEditEmployee: false, successEdit: true}
         case EDIT_EMPLOYEE_FAIL:
-            return {loadingEditEmployee: false, success: false}
+            return {loadingEditEmployee: false, successEdit: false}
         default:
             return state
     }

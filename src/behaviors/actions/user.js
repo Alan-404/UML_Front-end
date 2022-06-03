@@ -143,7 +143,7 @@ export const changeStatusAction = (email) => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/account/manager/changeStatus/${email}`,config)
+        const {data} = await axios.get(`${apiUrl}/account/manager/changeStatus/${email}`,config)
         console.log(data)
         if (data){
             dispatch({
@@ -171,11 +171,12 @@ export const editEmployeeAction = (id, name,email, address, phone, gender, image
         })
         const config = {
             headers: {
+                'content-type': 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
         const {data} = await axios.post(`${apiUrl}/account/manager/edit/employee`, {id, name, email, address, phone, gender, imageFile, password}, config)
-        
+        console.log(data)
         if (data.id){
             dispatch({
                 type: EDIT_EMPLOYEE_SUCCESS
@@ -230,7 +231,7 @@ export const getUserByIdAction = (id) => async(dispatch) => {
     }
 }
 
-export const getAllUsersAction = (page) => async(dispatch) => {
+export const getAllUsersAction = (page,size) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_GET_ALL_USERS
@@ -238,12 +239,13 @@ export const getAllUsersAction = (page) => async(dispatch) => {
 
         const config = {
             headers: {
+                'content-type':"multipart/form-data",
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page}, config)
-        console.log(data)
+        const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page,size}, config)
+        
         if (data.content){
             dispatch({
                 type: GET_ALL_USERS_SUCCESS,

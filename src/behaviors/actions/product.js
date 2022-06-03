@@ -134,6 +134,7 @@ export const getProductByPageAction = (page, size) => async(dispatch) => {
         })
 
         const {data} = await axios.post(`${apiUrl}/product/viewall?column=id&page=${page}&size=${size}&sort=ASC`)
+        console.log(data)
         if (data.content){
             dispatch({
                 type: GET_PRODUCT_BY_PAGE_SUCCESS,
