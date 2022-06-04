@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllOrderUserAction } from '../../behaviors/actions/order'
 import { Image } from 'react-bootstrap'
 import { apiUrlImg } from '../../common/constants'
-
+import { useNavigate } from 'react-router-dom'
 const AllOrders = () => {
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const getAllOrderUserReducer = useSelector(state => state.getAllOrderUserReducer)
@@ -34,14 +35,30 @@ const AllOrders = () => {
         return sum
     }
 
+    const goDetailOrderPage = (id) => {
+        navigate({
+            pathname: '/detail_order',
+            search:`?id=${id}`
+        })
+    }
+
+    const showProduct = (id) => {
+        navigate({
+            pathname: "/product",
+            search: `?id=${id}`
+        })
+    } 
+
     return (
         <div className='p-3 mx-5'>
             {order && order.map((item, index) => (
                 <div className='bg-light p-3 mb-4'>
-                    Mã Đơn Hàng: <span className='text-danger'>{item.id}</span>
+                    <div style={{cursor: "pointer"}} onClick={() => goDetailOrderPage(item.id)}>
+                        Mã Đơn Hàng: <span className='text-danger'>{item.id}</span> <span className='text-primary'>({item.orderState})</span>
+                    </div>
                     <hr />
                     {item.embeddedProducts.map((emProduct, productIndex) => (
-                        <div className='mb-2'>
+                        <div onClick={() => showProduct(emProduct.product.id)} className='mb-2'>
                             <div className='d-flex'>
                                 <Image src={`${apiUrlImg}/${emProduct.product.imageUrls}`} style={{width: '100px', height: '100px'}}/>
                                 &#160;&#160;&#160;&#160;&#160;

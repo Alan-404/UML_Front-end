@@ -194,7 +194,7 @@ export const addOrderUserAction = (listProduct) => async(dispatch) => {
     }
 }
 
-export const getOrderInfo = (orderID) => async(dispatch) => {
+export const getOrderInfoAction = (orderID) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_GET_ORDER_INFO
@@ -202,16 +202,16 @@ export const getOrderInfo = (orderID) => async(dispatch) => {
 
         const config = {
             headers: {
+                "Content-type": 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
         const {data} = await axios.post(`${apiUrl}/order/user/getOrderInfo`, {orderID}, config)
-
         if (data.embeddedProducts){
             dispatch({
                 type: GET_ORDER_INFO_SUCCESS,
-                order: data.embeddedProducts
+                payload: data
             })
         }
         else{
@@ -221,7 +221,6 @@ export const getOrderInfo = (orderID) => async(dispatch) => {
         }
     }
     catch(error){
-        console.log(error.message)
         dispatch({
             type: GET_ORDER_INFO_FAIL
         })
@@ -241,7 +240,6 @@ export const getAllOrderUserAction = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/order/user/viewAll`, {page}, config)
-        console.log(data)
         if (data.content){
             dispatch({
                 type:GET_ALL_ORDER_USER_SUCCESS,

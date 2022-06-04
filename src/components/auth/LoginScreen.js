@@ -22,6 +22,15 @@ const LoginScreen = () => {
 
   const {email, password} = account
 
+  const checkEmail = (email) => { 
+    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
+    if (!filter.test(email)) { 
+             alert('Hay nhap dia chi email hop le.\nExample@gmail.com');
+             return false; 
+    }
+    return true 
+  } 
+
   const getInfoAccount = (event) => {
     setAccount({
       ...account,
@@ -30,6 +39,9 @@ const LoginScreen = () => {
   }
 
   const loginAccount = () => {
+    if (!checkEmail(email)){
+      return
+    }
     dispatch(loginAccountAction(email, password))
   }
 

@@ -494,6 +494,14 @@ function Manager({ types_table }) {
                                   >
                                     Edit
                                   </Button>
+                                  &#160;&#160;
+                                  <Button
+                                    onClick={(e) =>
+                                      goToEditUserProfilePage(user.id)
+                                    }
+                                  >
+                                    Order
+                                  </Button>
                                 </div>
                               </td>
                             </tr>

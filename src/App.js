@@ -22,6 +22,7 @@ function App() {
         <Route path='/manager_user' element={<HomeView homeRoute="manager_user" />}/>
         <Route path='/edit_product' element={<HomeView homeRoute="edit_product" />}/>
         <Route path='/add_emp' element={<HomeView homeRoute="add_emp" />}/>
+        <Route path='/detail_order' element={<HomeView homeRoute="detail_order" />}/>
         <Route exact path='/' element={<HomeView homeRoute="dashboard" />}/>
         
       </Routes>
