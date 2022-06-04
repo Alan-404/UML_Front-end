@@ -9,6 +9,7 @@ import { apiUrlImg, apiUrl } from "../../common/constants";
 import { changeNumberProductAction } from "../../behaviors/actions/cart";
 import { deleteCartAction } from "../../behaviors/actions/cart";
 import MySpinner from "../effects/MySpinner";
+import { addOrderUserAction } from "../../behaviors/actions/order";
 
 function ManagerUser({ types_table }) {
   const [info, setInfo] = useState({
@@ -65,13 +66,19 @@ function ManagerUser({ types_table }) {
     }
   }, [cart])
 
+
+  const makeOrder = () => {
+    var listProducts = []
+    for (var i = 0; i<cart.length; i++){
+      var obj = {}
+      obj.productID = cart[i].product.id
+      obj.numberOfProduct = cart[i].numberOfProduct
+      listProducts.push(obj)
+    }
+    dispatch(addOrderUserAction(listProducts))
+  }
+
   const increaseNumOfProducts = (id, index) => {
-    /* var temp = info.arrNum
-    temp[index] = temp[index] + 1
-    setInfo({
-      ...info,
-      arrNum: temp
-    }) */
     var temp = info.arrNum
     temp[index] = temp[index] + 1
     dispatch(changeNumberProductAction(id, temp[index]))
@@ -178,6 +185,7 @@ function ManagerUser({ types_table }) {
             <hr />
             <h4>{calculateSumPrice(cart).toLocaleString()} VND</h4>
           </div>)}
+      {cart && <Button onClick={makeOrder} className="mt-5">Make Order</Button>}
     </div>
   );
 }

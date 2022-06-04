@@ -255,3 +255,9 @@ export const searchProductsAction = (name, page) => async(dispatch) => {
         })
     }
 }
+
+export const changeEditSuccessAction = () => (dispatch) => {
+    dispatch({
+        type: EDIT_PRODUCT_FAIL
+    })
+}

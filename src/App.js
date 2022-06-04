@@ -16,6 +16,7 @@ function App() {
         <Route path='/edit_profile' element={<HomeView homeRoute="edit_profile" />}/>
         <Route path='/manager_edit_profile' element={<HomeView homeRoute="manager_edit_profile" />}/>
         <Route path='/menu' element={<HomeView homeRoute="menu" />}/>
+        <Route path='/allOrdersUser' element={<HomeView homeRoute="allOrdersUser" />}/>
         <Route path='/manager' element={<HomeView homeRoute="manager" />}/>
         <Route path='/search_product' element={<HomeView homeRoute="search_product" />}/>
         <Route path='/manager_user' element={<HomeView homeRoute="manager_user" />}/>

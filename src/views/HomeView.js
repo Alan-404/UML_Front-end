@@ -14,6 +14,7 @@ import ManagerUser from "../components/home/ManagerUser";
 import EditProduct from "../components/home/EditProduct";
 import AddEmployee from "../components/home/AddEmployee";
 import ManagerEditProfile from "../components/home/ManagerEditProfile";
+import AllOrders from "../components/home/AllOrders";
 const HomeView = ({homeRoute}) => {
   let body = (
     <div>
@@ -29,6 +30,7 @@ const HomeView = ({homeRoute}) => {
       {homeRoute === 'search_product' && <SearchScreen />}
       {homeRoute === "edit_product" && <EditProduct />}
       {homeRoute === "add_emp" && <AddEmployee />}
+      {homeRoute === "allOrdersUser" && <AllOrders />}
     </div>
   )
   return (

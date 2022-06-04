@@ -132,61 +132,58 @@ export const STORE_DETAIL = "STORE_DETAIL";
 export const STORE_BRAND = "STORE_BRAND";
 
 export const CPUtemplate = [
-  "Total Cores",
-  "Total Threads",
-  "Socket",
-  "Base Frequency",
-  "Max Memory Size",
-  "Total Cache",
-  "TDP",
-  "Memory Type",
-  "Max Turbo Frequency",
-  "Overclock",
+    "TDP",
+    "Base Frequency",
+    "Total Cache",
+    "Base Frequency",
+    "Overclock",
+    "Max Memory Size",
+    "Total Threads",
+    "Max Turbo Frequency",
+    "Memory Type",
+    "Socket",
 ];
 export const RAMtemplate = [
   "Type",
-  "Bus Speed",
-  "Cas Latency",
-  "Overclock",
-  "Capacity",
-  "Voltage",
+    "Capacity",
+    "Overclock",
+    "Cas Latency",
+    "Voltage",
+    "Bus Speed",
 ];
 export const HARDDRIVEtemplate = [
-  "Type",
-  "Capacity",
-  "Read Speed",
-  "Write Speed",
+  "Type", "Capacity", "Read Speed", "Write Speed"
 ];
 export const MAINBOARDtemplate = [
   "Chipset",
-  "Socket",
-  "Number Of Ram Slot",
-  "Memory Type",
-  "Max MemorySize",
-  "Number Of VGA Slot",
-  "Size",
+    "Max MemorySize",
+    "Number Of VGA Slot",
+    "Size",
+    "Number Of Ram Slot",
+    "Memory Type",
+    "Socket",
 ];
-export const CASEtemplate = ["Type", "Color", "Size", "Front I/O Input"];
+export const CASEtemplate = ["Type", "Size", "Color", "Front I/O Input"];
 export const VGAtemplate = [
-  "Number Of Core",
-  "Processor Frequency",
-  "Memory",
   "Connector",
-  "Size",
+    "Memory",
+    "Size",
+    "Number Of Core",
+    "Processor Frequency",
 ];
 export const MONITORtemplate = [
-  "Size",
-  "Resolution",
   "Panel",
-  "Refresh rate",
-  "Interface",
+    "Refresh rate",
+    "Size",
+    "Interface",
+    "Resolution",
 ];
 export const PSUtemplate = [
-  "Input Voltage",
-  "Output Capacity",
-  "Efficiency",
   "Connector",
-  "Protection Info",
+    "Protection Info",
+    "Efficiency",
+    "Input Voltage",
+    "Output Capacity",
 ];
 
 export const CPUListBrands = ["INTEL", "AMD"];

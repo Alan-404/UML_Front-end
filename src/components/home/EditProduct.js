@@ -34,6 +34,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { getProductByIdAction } from "../../behaviors/actions/product";
 import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
+import { changeEditSuccessAction } from "../../behaviors/actions/product";
+
 function EditProduct() {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -54,6 +56,7 @@ function EditProduct() {
 
   useEffect(() => {
     if (success) {
+      dispatch(changeEditSuccessAction())
       navigate("/manager");
     }
   }, [success]);

@@ -228,7 +228,7 @@ export const getOrderInfo = (orderID) => async(dispatch) => {
     }
 }
 
-export const getAllOrderUser = (page) => async(dispatch) => {
+export const getAllOrderUserAction = (page) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_GET_ALL_ORDER_USER
@@ -241,7 +241,7 @@ export const getAllOrderUser = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/order/user/viewAll`, {page}, config)
-
+        console.log(data)
         if (data.content){
             dispatch({
                 type:GET_ALL_ORDER_USER_SUCCESS,

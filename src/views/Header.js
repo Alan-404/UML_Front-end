@@ -54,6 +54,9 @@ const Header = () => {
         <ListGroup.Item className="text-danger" action href="/manager_user">
           Cart List
         </ListGroup.Item>
+        <ListGroup.Item className="text-danger" action href="/allOrdersUser">
+          Order
+        </ListGroup.Item>
         <ListGroup.Item className="text-danger" action onClick={logoutAccount}>
           Logout
         </ListGroup.Item>

@@ -108,7 +108,7 @@ export const getAllOrderUserReducer = (state={}, action) => {
         case REQUEST_GET_ALL_ORDER_USER:
             return {loadingGetAllOrderUser: true}
         case GET_ALL_ORDER_USER_SUCCESS:
-            return {loadingGetAllOrderUser: false, success: true, oroder: action.payload}
+            return {loadingGetAllOrderUser: false, success: true, order: action.payload}
         case GET_ALL_ORDER_USER_FAIL:
             return {loadingGetAllOrderUser: false, success: false}
         default:
