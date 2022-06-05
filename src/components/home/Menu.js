@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ProductBox from "./ProductBox";
 import { bootstrapMode2 } from "../../common/constants";
 import { useNavigate } from "react-router-dom";
+import MySpinner from "../effects/MySpinner";
 function Menu() {
   const [info, setInfo] = useState({
     search: false,
@@ -34,7 +35,7 @@ function Menu() {
 
   const dispatch = useDispatch();
   const getProductsReducer = useSelector((state) => state.getProductsReducer);
-  const { products } = getProductsReducer;
+  const { products, loadingGetProducts } = getProductsReducer;
 
   useEffect(() => {
     dispatch(getProductsAction(0,100));
@@ -92,6 +93,7 @@ function Menu() {
           </div>
         </div>
       </section>
+      {loadingGetProducts && (<MySpinner />)}
     </div>
   );
 }

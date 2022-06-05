@@ -1,14 +1,14 @@
 .dark-overlay{
-    position:absolute;
+    position:fixed;
     background-color: rgba(88, 86, 86, 0.5);
     width: 100vw;
-    height: 100vh;
+    height: 100vw;
     top: 0;
     left: 0;
 }
 
 .mySpinner{
-    position:absolute;
+    position:fixed;
     top: 45vh;
     left: 47vw;
 }

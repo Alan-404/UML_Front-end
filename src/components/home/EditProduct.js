@@ -34,7 +34,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { getProductByIdAction } from "../../behaviors/actions/product";
 import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
-import { changeEditSuccessAction } from "../../behaviors/actions/product";
+import MySpinner from "../effects/MySpinner";
+
 
 function EditProduct() {
   const [searchParams] = useSearchParams();
@@ -52,18 +53,11 @@ function EditProduct() {
   const { product } = getProductByIdReducer;
 
   const editProductReducer = useSelector((state) => state.editProductReducer);
-  const { success } = editProductReducer;
+  const { success, loadingEditProduct } = editProductReducer;
 
-  useEffect(() => {
-    if (success) {
-      dispatch(changeEditSuccessAction())
-      navigate("/manager");
-    }
-  }, [success]);
+  
 
   const [info, setInfo] = useState({
-    imgShow:
-      "https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png",
     imgArr: [],
     listImageFile: [],
     numDetails: 0,
@@ -81,7 +75,17 @@ function EditProduct() {
 
     tempBrand: "",
     tempType: "",
+    checkEditProduct: false
   });
+
+  useEffect(() => {
+    if (success){
+      alert("Edit Product Successfully")
+      window.location.reload()
+    }
+  }, [success]);
+
+  
   useEffect(() => {
     if (product) {
       var temp = [];
@@ -107,7 +111,6 @@ function EditProduct() {
       });
 
       setTemplate(product.productType);
-      console.log("convert",convertToArray(product.detailProductInfo))
     }
   }, [product]);
 
@@ -199,12 +202,6 @@ function EditProduct() {
   };
   const [template, setTemplate] = useState(0);
 
-  const increaseNumDetails = () => {
-    setInfo({
-      ...info,
-      numDetails: info.numDetails + 1,
-    });
-  };
 
   const submitEditProduct = () => {
     dispatch(
@@ -224,10 +221,12 @@ function EditProduct() {
       )
     );
   };
-   const test = () =>{
-     console.log(myDetails)
-   }
+
   const getImage = (event) => {
+    setInfo({
+      ...info,
+      imgArr: []
+    })
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
 
@@ -281,7 +280,7 @@ function EditProduct() {
             </Form.Group>
           </div>
           <div className="mx-4">
-            <h1>Add New Product</h1>
+            <h1>Edit Product</h1>
             <br />
             <div className="d-flex">
               {info.imgArr.map((item, index) => (
@@ -534,9 +533,6 @@ function EditProduct() {
                 </div>
               )}
               <div className="d-flex flex-column">
-                <Button onClick={test} className="mt-5">
-                  test
-                </Button>
                 <Button onClick={submitEditProduct} className="mt-5">
                   Save
                 </Button>
@@ -545,6 +541,7 @@ function EditProduct() {
           </div>
         </div>
       </div>
+      {loadingEditProduct && (<MySpinner />)}
     </div>
   );
 }

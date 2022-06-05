@@ -181,6 +181,11 @@ function Manager({ types_table }) {
     }
   }, [productsPage, users]);
 
+
+  const addEmpPage = () => {
+    navigate('/add_emp')
+  }
+
   const [list, setList] = useState(0);
   return (
     <div>
@@ -426,6 +431,14 @@ function Manager({ types_table }) {
                       onClick={goToAddUserPage}
                     >
                       Add User
+                    </button>
+                    &#160;&#160;&#160;&#160;&#160;
+                    <button
+                      type="button"
+                      className="btn btn-outline-primary"
+                      onClick={addEmpPage}
+                    >
+                      Add Employee
                     </button>
                     <table className="table table-borderless">
                       <thead>

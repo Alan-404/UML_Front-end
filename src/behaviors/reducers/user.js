@@ -131,7 +131,7 @@ export const addUserReducer = (state={}, action) => {
         case ADD_USER_SUCCESS:
             return {loadingAddUser: false, success: true}
         case ADD_USER_FAIL:
-            return {loadingAddUser: false, success: false}
+            return {loadingAddUser: false, success: false, error: "Email has been token"}
         default:
             return state
     }

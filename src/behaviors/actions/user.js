@@ -56,7 +56,7 @@ export const loginAccountAction = (email, password) => async(dispatch) => {
 
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: LOGIN_ACCOUNT_FAIL
         })
@@ -292,9 +292,10 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
-            type: ADD_USER_FAIL
+            type: ADD_USER_FAIL,
+            payload: error.response.data.message
         })
     }
 }

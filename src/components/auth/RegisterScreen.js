@@ -7,13 +7,14 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import {addUserAction} from '../../behaviors/actions/user'
 import { useNavigate } from 'react-router-dom'
+import { checkEmail, checkPhone } from '../../common/libs'
 const RegisterScreen = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const addUserReducer = useSelector(state => state.addUserReducer)
-    const {success} = addUserReducer
+    const {success, error} = addUserReducer
 
     const [inputUser, setUser] = useState({
         email: '',
@@ -41,13 +42,25 @@ const RegisterScreen = () => {
     }
 
     const addUser = () => {
-        console.log(inputUser)
+        if (!checkEmail(email)){
+            return;
+        }
+        if (!checkPhone(phone)){
+            return;
+        }
+        if (!name || !email || !address || !phone || !gender || !password){
+            alert("Empty Fields")
+            return
+        }
         dispatch(addUserAction(name, email, address, phone, gender, password))
     }
 
     useEffect(() => {
         if (success){
             navigate('/login')
+        }
+        else if (success === false){
+            swal(error)
         }
     }, [success, navigate])
 
