@@ -295,7 +295,7 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
         console.log(error)
         dispatch({
             type: ADD_USER_FAIL,
-            payload: error.response.data.message
+            payload: "Tài Khoản hoặc mật khẩu không đúng, vui lòng nhập lại"
         })
     }
 }

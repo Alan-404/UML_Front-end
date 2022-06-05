@@ -31,7 +31,7 @@ const EditProfile = () => {
   const {user} = getUserTokenReducer
 
   const editUserReducer = useSelector(state => state.editUserReducer)
-  const {success, loadingGetUserToken} = editUserReducer
+  const {success, loadingEditUser} = editUserReducer
 
 
   const getInfor = (event) => {
@@ -188,7 +188,7 @@ const EditProfile = () => {
           </div>
         </div>
       )}
-      {loadingGetUserToken && (<MySpinner />)}
+      {loadingEditUser && (<MySpinner />)}
     </div>
   )
 }

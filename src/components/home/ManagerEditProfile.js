@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserByIdAction } from "../../behaviors/actions/user";
 import { useEffect, useState } from "react";
 import { editEmployeeAction } from "../../behaviors/actions/user";
+import { checkPhone } from "../../common/libs";
 import { apiUrlImg } from "../../common/constants";
 const ManagerEditProfile = () => {
   const dispatch = useDispatch();
@@ -22,9 +23,7 @@ const ManagerEditProfile = () => {
 
   useEffect(() => {
     if (successEdit) {
-      navigate({
-        pathname: "/manager",
-      });
+      window.location.reload()
     }
   }, [successEdit]);
 
@@ -71,7 +70,6 @@ const ManagerEditProfile = () => {
   };
 
   const getImage = (event) => {
-    console.log(event.target.files[0]);
 
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
@@ -86,6 +84,9 @@ const ManagerEditProfile = () => {
   };
 
   const editUser = () => {
+    if (!checkPhone(infoUser.phone)){
+      return
+    }
     setState({
       ...infor,
       click: true,

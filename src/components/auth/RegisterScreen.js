@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux'
 import {addUserAction} from '../../behaviors/actions/user'
 import { useNavigate } from 'react-router-dom'
 import { checkEmail, checkPhone } from '../../common/libs'
+import swal from 'sweetalert';
 const RegisterScreen = () => {
 
     const dispatch = useDispatch()
@@ -60,7 +61,12 @@ const RegisterScreen = () => {
             navigate('/login')
         }
         else if (success === false){
-            swal(error)
+            swal({
+                title: "Error System",
+                text: error,
+                icon: "error",
+                dangerMode: true
+            })
         }
     }, [success, navigate])
 

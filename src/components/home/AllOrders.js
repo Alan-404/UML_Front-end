@@ -5,12 +5,13 @@ import { getAllOrderUserAction } from '../../behaviors/actions/order'
 import { Image } from 'react-bootstrap'
 import { apiUrlImg } from '../../common/constants'
 import { useNavigate } from 'react-router-dom'
+import MySpinner from '../effects/MySpinner'
 const AllOrders = () => {
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const getAllOrderUserReducer = useSelector(state => state.getAllOrderUserReducer)
-    const {order} = getAllOrderUserReducer
+    const {order, loadingGetAllOrderUser} = getAllOrderUserReducer
 
     const [info, setInfo] = useState({
         orders: []
@@ -74,6 +75,7 @@ const AllOrders = () => {
                     <h5>Sumary Price: <span className='text-danger'>{calculateSumPrice(item.embeddedProducts).toLocaleString()} VND</span></h5>
                 </div>
             ))}
+            {loadingGetAllOrderUser && (<MySpinner />)}
         </div>
     )
 }

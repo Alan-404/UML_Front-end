@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getOrderInfoAction } from '../../behaviors/actions/order'
 import { Table, Image } from 'react-bootstrap'
 import { apiUrlImg } from '../../common/constants'
-
+import MySpinner from '../effects/MySpinner'
 const DetailOrder = () => {
     const [searchParams] = useSearchParams()
     const dispatch = useDispatch()
     const getOrderInfoReducer = useSelector(state => state.getOrderInfoReducer)
-    const {order} = getOrderInfoReducer
+    const {order, loadingGetOrderInfo} = getOrderInfoReducer
 
     
     useEffect(() => {
@@ -72,6 +72,7 @@ const DetailOrder = () => {
                     </div>
                 </div>
             )}
+            {loadingGetOrderInfo && (<MySpinner />)}
         </div>
     )
 }

@@ -7,13 +7,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import MySpinner from '../effects/MySpinner'
+import { checkEmail } from '../../common/libs'
+import swal from 'sweetalert';
 const LoginScreen = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const loginAccountReducer = useSelector(state => state.loginAccountReducer)
-  const {success, loadingLoginAccount} = loginAccountReducer
+  const {success, loadingLoginAccount, error} = loginAccountReducer
+
+  
 
   const [account, setAccount] = useState({
     email: '',
@@ -22,14 +26,7 @@ const LoginScreen = () => {
 
   const {email, password} = account
 
-  const checkEmail = (email) => { 
-    var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
-    if (!filter.test(email)) { 
-             alert('Hay nhap dia chi email hop le.\nExample@gmail.com');
-             return false; 
-    }
-    return true 
-  } 
+
 
   const getInfoAccount = (event) => {
     setAccount({
@@ -54,6 +51,14 @@ const LoginScreen = () => {
   useEffect(() => {
     if (success){
       navigate('/dashboard')
+    }
+    else if (success === false){
+      swal({
+        title: "Error System",
+        text: "Tài Khoản hoặc Mật Khẩu sai, vui lòng thử lại!",
+        icon: 'error',
+        dangerMode: true
+      })
     }
   }, [success,navigate])
 

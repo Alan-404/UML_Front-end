@@ -35,7 +35,7 @@ import { getProductByIdAction } from "../../behaviors/actions/product";
 import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
 import MySpinner from "../effects/MySpinner";
-
+import swal from 'sweetalert';
 
 function EditProduct() {
   const [searchParams] = useSearchParams();
@@ -80,7 +80,11 @@ function EditProduct() {
 
   useEffect(() => {
     if (success){
-      alert("Edit Product Successfully")
+      swal({
+        title: "Notification",
+        text: "Edit Product Successfully",
+        icon: "success"
+      })
       window.location.reload()
     }
   }, [success]);

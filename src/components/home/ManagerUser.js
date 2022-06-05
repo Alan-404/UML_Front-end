@@ -19,7 +19,7 @@ function ManagerUser({ types_table }) {
   const dispatch = useDispatch();
 
   const getCartReducer = useSelector((state) => state.getCartReducer);
-  const { cart } = getCartReducer;
+  const { cart, loadingGetCart } = getCartReducer;
 
   const changeNumberOfProductReducer = useSelector(state => state.changeNumberProductReducer)
   const {loadingChangeNumberProduct} = changeNumberOfProductReducer
@@ -186,6 +186,7 @@ function ManagerUser({ types_table }) {
             <h4>{calculateSumPrice(cart).toLocaleString()} VND</h4>
           </div>)}
       {cart && <Button onClick={makeOrder} className="mt-5">Make Order</Button>}
+      {loadingGetCart && (<MySpinner />)}
     </div>
   );
 }
