@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import MySpinner from '../effects/MySpinner'
 import { checkEmail } from '../../common/libs'
 import swal from 'sweetalert';
+import GoogleLogin from 'react-google-login'
+
 const LoginScreen = () => {
 
   const dispatch = useDispatch()
@@ -62,6 +64,10 @@ const LoginScreen = () => {
     }
   }, [success,navigate])
 
+  const getResponseGoogle = (response) => {
+    console.log(response)
+  }
+
   return (
     <div>
       
@@ -100,7 +106,14 @@ const LoginScreen = () => {
             <Link style={{fontSize: '5px !important'}} to='/register'>Đăng ký</Link>
           </div>
           
-          <Button className='w-100 mt-1 text-light' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
+          <Button className='w-100 mt-1 text-light mb-4' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
+          <GoogleLogin
+            clientId="510817171393-46042nleupp0fqlop2dv99v6qdnmhukg.apps.googleusercontent.com"
+            buttonText='Login with Google'
+            cookiePolicy={"single_host_origin"}
+            onSuccess={getResponseGoogle}
+            onFailure={getResponseGoogle}
+             />
         </div>
       </div>
       {loadingLoginAccount && (<MySpinner />)}

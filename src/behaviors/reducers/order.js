@@ -116,4 +116,17 @@ export const getAllOrderUserReducer = (state={}, action) => {
     }
 }
 
+export const getInfoOrderManagerReducer = (state={}, action) => {
+    switch(action.type){
+        case 'GET_ALL_ORDER_MANAGER':
+            return {loadingGet: true}
+        case 'GET_ALL_ORDER_MANAGER_SUCCESS':
+            return {loadingGet: false, order: action.payload}
+        case 'GET_ALL_ORDER_MANAGER_FAIL':
+            return {loadingGet: false}
+        default:
+            return state
+    }
+}
+
 

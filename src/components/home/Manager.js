@@ -116,6 +116,10 @@ function Manager({ types_table }) {
     return arrNum;
   };
 
+  const goOrderPage = () => {
+    navigate('/manager_order')
+  }
+
   const changePage = (page, type) => {
     info.pageNow = page;
     page = page - 1;
@@ -221,6 +225,11 @@ function Manager({ types_table }) {
                     <span className="ps-3 name">{type_table}</span>{" "}
                   </li>
                 ))}
+                <li onClick={goOrderPage}>
+                    {" "}
+                    <span className="fas fa-th-list"></span>{" "}
+                    <span className="ps-3 name">Order</span>{" "}
+                </li>
             </ul>
             <div id="topnavbar">
               <div className="table-responsive px-2">

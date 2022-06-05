@@ -31,7 +31,8 @@ import {
     getAllOrderReducer,
     addOrderUserReducer,
     getOrderInfoReducer,
-    getAllOrderUserReducer
+    getAllOrderUserReducer,
+    getInfoOrderManagerReducer
 } from "./behaviors/reducers/order"
 
 import {
@@ -75,6 +76,7 @@ const reducers = combineReducers({
     addOrderUserReducer,
     getOrderInfoReducer,
     getAllOrderUserReducer,
+    getInfoOrderManagerReducer,
     // cart
     addCartReducer,
     changeNumberProductReducer,

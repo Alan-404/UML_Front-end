@@ -38,7 +38,7 @@ export const addOrderAction = (listProduct, userId) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/order/employee/add`, {listProduct, userId}, config)
-
+    
         if (data.id){
             dispatch({
                 type: ADD_ORDER_SUCCESS
@@ -67,13 +67,14 @@ export const deleteOrderAction = (id) => async(dispatch) => {
 
         const config = {
             headers: {
+                "Content-type": "multipart/form-data",
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
         const {data} = await axios.post(`${apiUrl}/order/employee/delete`, {id}, config)
 
-        if (data === 'READY'){
+        if (data){
             dispatch({
                 type: DELETE_ORDER_SUCCESS
             })
@@ -85,7 +86,7 @@ export const deleteOrderAction = (id) => async(dispatch) => {
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: DELETE_ORDER_FAIL
         })
@@ -139,7 +140,7 @@ export const getAllOrderAction = (page) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/order/employee/viewAll`, {page}, config)
-
+        console.log(data)
         if (data.content){
             dispatch({
                 type: GET_ALL_ORDER_SUCCESS,
@@ -153,7 +154,7 @@ export const getAllOrderAction = (page) => async(dispatch) => {
         }
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: GET_ALL_ORDER_FAIL
         })
@@ -258,5 +259,34 @@ export const getAllOrderUserAction = (page) => async(dispatch) => {
             type: GET_ALL_ORDER_USER_FAIL
         })
 
+    }
+}
+
+export const getInfoOrderManagerAction = (id) => async(dispatch) => {
+    try{
+        dispatch({
+            type: 'GET_INFO_ORDER_MANAGER'
+        })
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('uml')}`
+            }
+        }
+        const {data} = await axios.post(`https://apitechgear.herokuapp.com/rest/order/employee/getOrderInfo/629ac790b2a1be39e7649c6d`, config)
+        console.log(data)
+        if (data.id){
+            dispatch({
+                type: 'GET_INFO_ORDER_MANAGER_SUCCESS',
+                payload: data
+            })
+        }
+
+    }
+    catch(error){
+        console.log(error)
+        dispatch({
+            type: 'GET_INFO_ORDER_MANAGER_FAIL'
+        })
     }
 }
