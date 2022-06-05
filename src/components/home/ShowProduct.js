@@ -8,18 +8,25 @@ import { Image, Button, Table } from 'react-bootstrap'
 import { apiUrlImg } from "../../common/constants";
 import { addCartAction } from '../../behaviors/actions/cart'
 import MySpinner from '../effects/MySpinner'
+import swal from 'sweetalert'
 const ShowProduct = () => {
 
     const [info, setInfo] = useState({
         showImage: '',
         productInfo: [],
-        productValue: []
+        productValue: [],
+        submit: false,
+        statusBtn:'',
+        textShow: 'Chọn Mua'
     })
+
+    const addCartReducer = useSelector(state => state.addCartReducer)
+    const {success} = addCartReducer
 
     const [searchParams] = useSearchParams()
 
     const getProductByIdReducer = useSelector(state => state.getProductByIdReducer)
-    const {product,success} = getProductByIdReducer
+    const {product} = getProductByIdReducer
 
     const dispatch = useDispatch()
 
@@ -51,10 +58,30 @@ const ShowProduct = () => {
             setInfo({
                 showImage: `${apiUrlImg}/${product.imageUrls[0]}` 
             })
+            if (product.quantity === 0){
+                setInfo({
+                    ...info,
+                    statusBtn: "disabled"
+                })
+            }
         }
     }, [product])
 
+    useEffect(() => {
+        if (success && info.submit){
+            swal({
+                title: "Notification",
+                icon: 'success',
+                text: "Đã Thêm Sản Phẩm Vào Giỏ Hàng"
+            })
+        }
+    }, [success])
+
     const submitAddCart = (id) => {
+        setInfo({
+            ...info,
+            submit: true
+        })
         dispatch(addCartAction(1, id))
     }
 
@@ -68,7 +95,8 @@ const ShowProduct = () => {
                         <div>
                             <h1>{product.name}</h1>
                             <h3 className='text-primary p-4'>{product.price.toLocaleString()} VND</h3>
-                            {product.productState === "ON" ? (<Button onClick={() => submitAddCart(product.id)} className='mb-4'>Chọn mua</Button>) : (<h3 className='disabled text-secondary'>Sản phẩm đã ngừng kinh doanh</h3>)}
+                            {product.productState === "ON" ? (<Button onClick={() => submitAddCart(product.id)} className={`mb-4 ${info.statusBtn}`}>Chọn Mua</Button>) : (<h3 className='disabled text-secondary'>Sản phẩm đã ngừng kinh doanh</h3>)}
+                            
                             <br />
                             {product.imageUrls.map((item, index) => (
                                 <Image onClick={() => changeImageShow(index)} style={{width: '5rem', height: '5rem'}} key={index} src={`${apiUrlImg}/${item}`} />

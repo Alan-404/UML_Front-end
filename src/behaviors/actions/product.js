@@ -76,7 +76,6 @@ export const editProductAction = (brand, description, discount, id, listDataProd
         }
 
         const {data} = request
-        console.log(data)
 
         if (data.id){
             dispatch({
@@ -90,9 +89,10 @@ export const editProductAction = (brand, description, discount, id, listDataProd
         }
     }
     catch(error){
-        console.log(error.message)
+        //console.log(error.message)
         dispatch({
-            type: EDIT_PRODUCT_FAIL
+            type: EDIT_PRODUCT_FAIL,
+            payload: error.response.data.message
         })
     }
 }
@@ -185,7 +185,8 @@ export const addProductAction = (brand, description, discount, listDataProduct, 
     catch(error){
         console.log(error)
         dispatch({
-            type: ADD_PRODUCT_FAIL
+            type: ADD_PRODUCT_FAIL,
+            payload: error.response.data.message
         })
     }
 }

@@ -162,7 +162,7 @@ export const getAllOrderAction = (page) => async(dispatch) => {
 } 
 
 
-export const addOrderUserAction = (listProduct) => async(dispatch) => {
+export const addOrderUserAction = (listCart, listProduct) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_ADD_ORDER_USER
@@ -174,7 +174,7 @@ export const addOrderUserAction = (listProduct) => async(dispatch) => {
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/order/user/add`, {listProduct}, config)
+        const {data} = await axios.post(`${apiUrl}/order/user/add`, {listCart, listProduct}, config)
 
         if (data.id){
             dispatch({
@@ -188,9 +188,10 @@ export const addOrderUserAction = (listProduct) => async(dispatch) => {
         }
     }
     catch(error){   
-        console.log(error.message)
+        console.log(error)
         dispatch({
-            type: ADD_ORDER_USER_FAIL
+            type: ADD_ORDER_USER_FAIL,
+            payload: error.response.data.message
         })
     }
 }
@@ -273,9 +274,10 @@ export const getInfoOrderManagerAction = (id) => async(dispatch) => {
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
-        const {data} = await axios.post(`https://apitechgear.herokuapp.com/rest/order/employee/getOrderInfo/629ac790b2a1be39e7649c6d`, config)
+        const {data} = await axios.get(`https://apitechgear.herokuapp.com/rest/order/employee/getOrderInfo/629ac790b2a1be39e7649c6d`, config)
         console.log(data)
         if (data.id){
+            console.log(data.id)
             dispatch({
                 type: 'GET_INFO_ORDER_MANAGER_SUCCESS',
                 payload: data

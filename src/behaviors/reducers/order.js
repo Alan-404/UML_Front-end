@@ -81,9 +81,9 @@ export const addOrderUserReducer = (state={}, action) => {
         case REQUEST_ADD_ORDER_USER:
             return {loadingAddOrderUser: true}
         case ADD_ORDER_USER_SUCCESS:
-            return {loadingAddOrderUser: false, success: true}
+            return {loadingAddOrderUser: false, successAddOrderUser: true}
         case ADD_ORDER_USER_FAIL:
-            return {loadingAddOrderUser: false, success: false}
+            return {loadingAddOrderUser: false, successAddOrderUser: false, error:action.payload}
         default:
             return state
     }
@@ -118,11 +118,11 @@ export const getAllOrderUserReducer = (state={}, action) => {
 
 export const getInfoOrderManagerReducer = (state={}, action) => {
     switch(action.type){
-        case 'GET_ALL_ORDER_MANAGER':
+        case 'GET_INFO_ORDER_MANAGER':
             return {loadingGet: true}
-        case 'GET_ALL_ORDER_MANAGER_SUCCESS':
+        case 'GET_INFO_ORDER_MANAGER_SUCCESS':
             return {loadingGet: false, order: action.payload}
-        case 'GET_ALL_ORDER_MANAGER_FAIL':
+        case 'GET_INFO_ORDER_MANAGER_FAIL':
             return {loadingGet: false}
         default:
             return state

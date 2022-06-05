@@ -10,11 +10,12 @@ import { changeNumberProductAction } from "../../behaviors/actions/cart";
 import { deleteCartAction } from "../../behaviors/actions/cart";
 import MySpinner from "../effects/MySpinner";
 import { addOrderUserAction } from "../../behaviors/actions/order";
-
+import swal from "sweetalert";
 function ManagerUser({ types_table }) {
   const [info, setInfo] = useState({
     arrNum: [],
-    reload: false
+    reload: false,
+    cartShow: []
   })
   const dispatch = useDispatch();
 
@@ -30,6 +31,10 @@ function ManagerUser({ types_table }) {
   const deleteProductReducer = useSelector(
     (state) => state.deleteProductReducer
   );
+
+
+  const addOrderUserReducer = useSelector(state => state.addOrderUserReducer)
+  const {successAddOrderUser, error, loadingAddOrderUser} = addOrderUserReducer
   const { success } = deleteProductReducer;
 
 
@@ -66,16 +71,35 @@ function ManagerUser({ types_table }) {
     }
   }, [cart])
 
+  useEffect(() => {
+    if (successAddOrderUser){
+      swal({
+        text: 'Thêm Đơn Hàng Thành Công'
+      })
+    }
+    else if (successAddOrderUser === false){
+      swal({
+        text: error,
+        title: "Error System",
+        icon:"error",
+        dangerMode: true
+      })
+    }
+  }, [successAddOrderUser])
+
 
   const makeOrder = () => {
     var listProducts = []
+    var listCart = []
     for (var i = 0; i<cart.length; i++){
       var obj = {}
       obj.productID = cart[i].product.id
       obj.numberOfProduct = cart[i].numberOfProduct
       listProducts.push(obj)
+
+      listCart.push(cart[i].id)
     }
-    dispatch(addOrderUserAction(listProducts))
+    dispatch(addOrderUserAction(listCart,listProducts))
   }
 
   const increaseNumOfProducts = (id, index) => {

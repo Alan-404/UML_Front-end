@@ -35,3 +35,18 @@ export const checkPhone = (phone) => {
     }
     return true
 }
+
+export const checkPrice = (price) => {
+    for (var i=0; i<price.length; i++){
+        if (isNaN(parseInt(price[i]))){
+            swal({
+                title: "Error System",
+                text: 'Price number must not have character',
+                icon: "error",
+                dangerMode: true
+            })
+            return false
+        }
+    }
+    return true
+} 

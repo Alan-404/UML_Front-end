@@ -36,6 +36,7 @@ import { apiUrlImg } from "../../common/constants";
 import { editProductAction } from "../../behaviors/actions/product";
 import MySpinner from "../effects/MySpinner";
 import swal from 'sweetalert';
+import { checkPrice } from "../../common/libs";
 
 function EditProduct() {
   const [searchParams] = useSearchParams();
@@ -75,17 +76,20 @@ function EditProduct() {
 
     tempBrand: "",
     tempType: "",
-    checkEditProduct: false
+    checkEditProduct: false,
+    submit: false
   });
 
   useEffect(() => {
-    if (success){
+    if (success && info.submit){
       swal({
         title: "Notification",
-        text: "Edit Product Successfully",
-        icon: "success"
+        text: "Chỉnh Sửa Sản Phẩm Thành Công",
+        icon:"success"
       })
-      window.location.reload()
+    }
+    else if (success === false){
+      
     }
   }, [success]);
 
@@ -208,6 +212,22 @@ function EditProduct() {
 
 
   const submitEditProduct = () => {
+    if (info.brand === "" || info.productType === "" || info.name === "" || info.warranty === ""){
+      swal({
+        title: "Error System",
+        icon:"error",
+        text: "Empty Fields",
+        dangerMode: true
+      })
+      return
+    }
+    if (!checkPrice(info.price) || !checkPrice(info.originalPrice)){
+      return;
+    }
+    setInfo({
+      ...info,
+      submit: true
+    })
     dispatch(
       editProductAction(
         info.brand,

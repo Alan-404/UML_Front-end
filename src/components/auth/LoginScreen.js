@@ -13,6 +13,10 @@ import GoogleLogin from 'react-google-login'
 
 const LoginScreen = () => {
 
+  const [info, setInfo] = useState({
+    submit: false
+  })
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -38,9 +42,22 @@ const LoginScreen = () => {
   }
 
   const loginAccount = () => {
+    if(email === "" || password=== ""){
+      swal({
+        title: "Error System",
+        text: "Tài Khoản và Mật Khẩu không được để trống",
+        icon: 'error',
+        dangerMode: true
+      })
+      return
+    }
     if (!checkEmail(email)){
       return
     }
+    setInfo({
+      ...info,
+      submit: true
+    })
     dispatch(loginAccountAction(email, password))
   }
 
@@ -55,6 +72,10 @@ const LoginScreen = () => {
       navigate('/dashboard')
     }
     else if (success === false){
+      setInfo({
+        ...info,
+        submit: false
+      })
       swal({
         title: "Error System",
         text: "Tài Khoản hoặc Mật Khẩu sai, vui lòng thử lại!",

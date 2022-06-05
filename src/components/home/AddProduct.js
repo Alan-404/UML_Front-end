@@ -2,10 +2,7 @@ import React from "react";
 import {
   Image,
   Button,
-  Table,
-  Form,
-  InputGroup,
-  FormControl,
+  Form
 } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
@@ -13,6 +10,9 @@ import { addProductAction } from "../../behaviors/actions/product";
 import TemplateProductType from "./TemplateProductType";
 import TemplateListBrand from "./TemplateListBrand";
 import { storeDetailAction } from "../../behaviors/actions/constant";
+import MySpinner from '../effects/MySpinner'
+import { checkPrice } from "../../common/libs";
+
 import {
   CPUtemplate,
   RAMtemplate,
@@ -32,9 +32,18 @@ import {
   HARDDRIVEListBrands,
 } from "../../common/constants";
 
+import swal from 'sweetalert';
+
 function AddProduct() {
   const { myDetails } = useSelector((state) => state.storeDetailReducer);
   const dispatch = useDispatch();
+
+
+  const addProductReducer = useSelector(state => state.addProductReducer)
+  const {success, loadingAddProduct, error} = addProductReducer
+
+  
+
   const [info, setInfo] = useState({
     imgShow:
       "https://cdn4.iconfinder.com/data/icons/refresh_cl/256/System/Box_Empty.png",
@@ -47,11 +56,30 @@ function AddProduct() {
     originalPrice: 0,
     productType: "",
     quantity: 0,
-    quantity: 0,
     warranty: "",
     description: "",
     discount: 0,
+    submit: false
   });
+
+
+  useEffect(() => {
+    if (success && info.submit){
+      swal({
+        title: "Notification",
+        text: "Thêm Sản Phẩm Thành Công",
+        icon:"success"
+      })
+    }
+    else if (success === false){
+      swal({
+        title: "Error System",
+        text: error,
+        icon:"error",
+        dangerMode: true
+      })
+    }
+  }, [success])
 
   const [details, setDetails] = useState({
     infoArr: [],
@@ -76,7 +104,6 @@ function AddProduct() {
         value: tempArr,
       });
     }
-    console.log(details);
   };
 
   const getBasicInfor = (event) => {
@@ -132,14 +159,6 @@ function AddProduct() {
     }
   };
 
-  const convertArr = (num) => {
-    var arr = [];
-    for (var i = 0; i < num; i++) {
-      arr.push(i);
-    }
-
-    return arr;
-  };
 
   const changeTemplate = (event) => {
     setTemplate(event.target.value);
@@ -147,27 +166,25 @@ function AddProduct() {
   };
   const [template, setTemplate] = useState(0);
 
-  const increaseNumDetails = () => {
-    setInfo({
-      ...info,
-      numDetails: info.numDetails + 1,
-    });
-  };
 
-  const testData = () => {
-    console.log(myDetails);
-  };
 
   const submitAddProduct = () => {
-    /* var moreDetails = []
-    for (var i =0; i<details.name.length; i++){
-      var key = details.name[i]
-      var value = details.value[i]
-      var obj = {}
-      obj[key] = value
-      moreDetails.push(obj)
+    if (info.brand === "" || info.productType === "" || info.name === "" || info.warranty === ""){
+      swal({
+        title: "Error System",
+        icon:"error",
+        text: "Empty Fields",
+        dangerMode: true
+      })
+      return
     }
-    console.log(moreDetails) */
+    if (!checkPrice(info.price) || !checkPrice(info.originalPrice)){
+      return;
+    }
+    setInfo({
+      ...info,
+      submit: true
+    })
     dispatch(
       addProductAction(
         info.brand,
@@ -183,7 +200,6 @@ function AddProduct() {
         info.originalPrice
       )
     );
-    console.log(info.brand);
   };
 
   const getImage = (event) => {
@@ -464,7 +480,6 @@ function AddProduct() {
                     OnChange={getInforDetails}
                   ></TemplateProductType>
                 )}
-                <Button onClick={testData}>Test</Button>
               </div>
               <div className="d-flex flex-column">
                 <Button onClick={submitAddProduct} className="mt-5">
@@ -475,6 +490,7 @@ function AddProduct() {
           </div>
         </div>
       </div>
+      {loadingAddProduct && <MySpinner />}
     </div>
   );
 }

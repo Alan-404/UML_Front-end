@@ -14,7 +14,7 @@ const ManagerOrder = () => {
   const {orders, loadingGetAllOrder} = getAllOrderReducer
 
   const deleteOrderReducer = useSelector(state => state.deleteOrderReducer)
-  const {success} = deleteOrderReducer
+  const {success, loadingDeleteOrder} = deleteOrderReducer
 
 
   const navigate = useNavigate()
@@ -38,7 +38,6 @@ useEffect(() => {
 }, [success])
 
 const deleteOrder = (id) => {
-  console.log(id)
   dispatch(deleteOrderAction(id))
 }
 
@@ -73,10 +72,11 @@ const showOrderPage = (id) => {
               </div>
             ))}
             <hr />
-            <h4>Sum of Price: <span>{calculateSumPrice(item.embeddedProducts).toLocaleString()} VND</span></h4>
+            <h4>Sum of Price: <span className='text-danger'>{calculateSumPrice(item.embeddedProducts).toLocaleString()} VND</span></h4>
           </div>
         ))}
         {loadingGetAllOrder && (<MySpinner />)}
+        {loadingDeleteOrder && <MySpinner />}
     </div>
   )
 }

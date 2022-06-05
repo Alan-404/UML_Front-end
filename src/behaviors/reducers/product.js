@@ -43,7 +43,7 @@ export const editProductReducer = (state = {}, action) => {
         case EDIT_PRODUCT_SUCCESS:
             return {loadingEditProduct: false, success: true}
         case EDIT_PRODUCT_FAIL:
-            return {loadingEditProduct: false, success: false}
+            return {loadingEditProduct: false, success: false, error: action.payload}
         default:
             return state
     }
@@ -82,7 +82,7 @@ export const addProductReducer = (state={}, action) => {
         case ADD_PRODUCT_SUCCESS:
             return {loadingAddProduct: false, success: true}
         case ADD_PRODUCT_FAIL:
-            return {loadingAddProduct: false, success: false}
+            return {loadingAddProduct: false, success: false, error: action.payload}
         default:
             return state
     }
