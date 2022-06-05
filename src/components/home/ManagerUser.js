@@ -15,7 +15,8 @@ function ManagerUser({ types_table }) {
   const [info, setInfo] = useState({
     arrNum: [],
     reload: false,
-    cartShow: []
+    cartShow: [],
+    showConfirm: false
   })
   const dispatch = useDispatch();
 
@@ -130,6 +131,8 @@ function ManagerUser({ types_table }) {
       reload: true
     })
   }
+
+
 
   return (
     <div className="p-3">

@@ -9,13 +9,14 @@ import {addUserAction} from '../../behaviors/actions/user'
 import { useNavigate } from 'react-router-dom'
 import { checkEmail, checkPhone } from '../../common/libs'
 import swal from 'sweetalert';
+import MySpinner from '../effects/MySpinner'
 const RegisterScreen = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const addUserReducer = useSelector(state => state.addUserReducer)
-    const {success, error} = addUserReducer
+    const {success, error, loadingAddUser} = addUserReducer
 
     const [inputUser, setUser] = useState({
         email: '',
@@ -24,6 +25,10 @@ const RegisterScreen = () => {
         password: '',
         phone: '',
         name: ''
+    })
+
+    const [info, setInfo] = useState({
+        submit: false
     })
 
     const {email, address, gender, password, phone, name} = inputUser
@@ -43,16 +48,27 @@ const RegisterScreen = () => {
     }
 
     const addUser = () => {
+        if (!name || !email || !address || !phone || !gender || !password){
+            swal({
+                title: "Error System",
+                text: "Không được để trống.",
+                icon: "error",
+                dangerMode: true
+            })
+            return
+        }
         if (!checkEmail(email)){
             return;
         }
         if (!checkPhone(phone)){
             return;
         }
-        if (!name || !email || !address || !phone || !gender || !password){
-            alert("Empty Fields")
-            return
-        }
+
+        setInfo({
+            ...info,
+            submit: true
+        })
+        
         dispatch(addUserAction(name, email, address, phone, gender, password))
     }
 
@@ -60,7 +76,11 @@ const RegisterScreen = () => {
         if (success){
             navigate('/login')
         }
-        else if (success === false){
+        else if (success === false && info.submit){
+            setInfo({
+                ...info,
+                submit: false
+            })
             swal({
                 title: "Error System",
                 text: error,
@@ -140,6 +160,7 @@ const RegisterScreen = () => {
                     
                 </div>
             </div>
+            {loadingAddUser && <MySpinner />}
         </div>
     )
 }

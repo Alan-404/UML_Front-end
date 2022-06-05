@@ -4,19 +4,21 @@ export const checkEmail = (email) => {
     if (!filter.test(email)) { 
         swal({
             title: "Error System",
-            text: 'Please Enter valid email',
+            text: 'Định Dạng Email Không Hợp Lệ',
             icon: "error",
             dangerMode: true
         })
+        return false
     }
     return true 
 }
 
 export const checkPhone = (phone) => {
+    
     if (!(phone.length === 10 || phone.length === 11)){
         swal({
             title: "Error System",
-            text: 'Phone number must have 10 or 11 numbers',
+            text: 'Số Điện Thoại Phải có 10 hoặc 11 chữ số.',
             icon: "error",
             dangerMode: true
         })
@@ -26,7 +28,7 @@ export const checkPhone = (phone) => {
         if (isNaN(parseInt(phone[i]))){
             swal({
                 title: "Error System",
-                text: 'Phone number must not have character',
+                text: 'Số điện thoại không được có chữ.',
                 icon: "error",
                 dangerMode: true
             })

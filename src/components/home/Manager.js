@@ -164,6 +164,12 @@ function Manager({ types_table }) {
   };
 
   useEffect(() => {
+    if (localStorage.getItem('auth') === "false"){
+      navigate('/forbidden')
+    }
+  }, [])
+
+  useEffect(() => {
     dispatch(getProductsAction(0, 100));
     dispatch(getAllUsersAction(0, 5));
     dispatch(getProductByPageAction(0, pageSize));

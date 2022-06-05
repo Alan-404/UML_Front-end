@@ -104,6 +104,11 @@ const ManagerEditProfile = () => {
       )
     );
   };
+  useEffect(() => {
+    if (localStorage.getItem('auth') === "false"){
+      navigate('/forbidden')
+    }
+  }, [])
 
   const getInfoOption = (event) => {
     setInfo({

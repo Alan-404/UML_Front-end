@@ -52,7 +52,7 @@ const AllOrders = () => {
 
     return (
         <div className='p-3 mx-5'>
-            {order && order.map((item, index) => (
+            {(order && order.length !== 0) ? order.map((item, index) => (
                 <div className='bg-light p-3 mb-4'>
                     <div style={{cursor: "pointer"}} onClick={() => goDetailOrderPage(item.id)}>
                         Mã Đơn Hàng: <span className='text-danger'>{item.id}</span> <span className='text-primary'>({item.orderState})</span>
@@ -74,7 +74,7 @@ const AllOrders = () => {
                     ))}
                     <h5>Sumary Price: <span className='text-danger'>{calculateSumPrice(item.embeddedProducts).toLocaleString()} VND</span></h5>
                 </div>
-            ))}
+            )): (<h1>Hiện Không Có Đơn Hàng Nào</h1>)}
             {loadingGetAllOrderUser && (<MySpinner />)}
         </div>
     )

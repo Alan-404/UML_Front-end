@@ -8,8 +8,10 @@ import { apiUrlImg } from '../../common/constants'
 import swal from 'sweetalert';
 import { editOrderAction } from '../../behaviors/actions/order'
 import MySpinner from '../effects/MySpinner'
+import { useNavigate } from 'react-router-dom'
 const ShowOrder = () => {
     const [searchParams] = useSearchParams()
+    const navigate = useNavigate()
 
     const [info, setInfo] = useState({
         orderState: '',
@@ -25,6 +27,9 @@ const ShowOrder = () => {
     const {success, loadingEditOrder} = editOrderReducer
 
     useEffect(() => {
+        if (localStorage.getItem('auth') === "false"){
+            navigate('/forbidden')
+          }
         dispatch(getInfoOrderManagerAction(searchParams.get('id')))
     }, [dispatch])
 
@@ -37,6 +42,8 @@ const ShowOrder = () => {
               })
         }
     }, [success])
+
+    
 
 
     const submitChangeOrder = () => {

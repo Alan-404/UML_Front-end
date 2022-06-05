@@ -49,10 +49,10 @@ const LoginScreen = () => {
         icon: 'error',
         dangerMode: true
       })
-      return
+      return;
     }
     if (!checkEmail(email)){
-      return
+      return;
     }
     setInfo({
       ...info,
@@ -68,10 +68,11 @@ const LoginScreen = () => {
   }
 
   useEffect(() => {
+    console.log(info.submit)
     if (success){
       navigate('/dashboard')
     }
-    else if (success === false){
+    else if (success === false && info.submit === true){
       setInfo({
         ...info,
         submit: false
@@ -85,9 +86,6 @@ const LoginScreen = () => {
     }
   }, [success,navigate])
 
-  const getResponseGoogle = (response) => {
-    console.log(response)
-  }
 
   return (
     <div>
@@ -128,13 +126,6 @@ const LoginScreen = () => {
           </div>
           
           <Button className='w-100 mt-1 text-light mb-4' style={{borderRadius: '25px', backgroundColor: 'red', borderColor: 'red'}} onClick={loginAccount} variant="primary">Login Account</Button>{' '}
-          <GoogleLogin
-            clientId="510817171393-46042nleupp0fqlop2dv99v6qdnmhukg.apps.googleusercontent.com"
-            buttonText='Login with Google'
-            cookiePolicy={"single_host_origin"}
-            onSuccess={getResponseGoogle}
-            onFailure={getResponseGoogle}
-             />
         </div>
       </div>
       {loadingLoginAccount && (<MySpinner />)}

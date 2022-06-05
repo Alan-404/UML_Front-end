@@ -41,6 +41,12 @@ const deleteOrder = (id) => {
   dispatch(deleteOrderAction(id))
 }
 
+useEffect(() => {
+  if (localStorage.getItem('auth') === "false"){
+    navigate('/forbidden')
+  }
+}, [])
+
 const showOrderPage = (id) => {
   navigate({
     pathname: '/show_order',

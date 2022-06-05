@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import AuthView from './views/AuthView';
 import HomeView from './views/HomeView';
+import Forbidden from './components/errors/Forbidden';
 function App() {
   return (
     <BrowserRouter>
@@ -25,6 +26,7 @@ function App() {
         <Route path='/detail_order' element={<HomeView homeRoute="detail_order" />}/>
         <Route path='/manager_order' element={<HomeView homeRoute="manager_order" />}/>
         <Route path='/show_order' element={<HomeView homeRoute="show_order" />}/>
+        <Route path='/forbidden' element={<Forbidden />}/>
         <Route exact path='/*' element={<HomeView homeRoute="dashboard" />}/>
         
       </Routes>

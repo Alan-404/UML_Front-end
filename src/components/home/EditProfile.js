@@ -1,12 +1,13 @@
 import React from 'react'
 import {Image, Button, Form, InputGroup, FormControl} from 'react-bootstrap'
-
+import swal from 'sweetalert'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserTokenAction } from '../../behaviors/actions/user'
 import { useEffect, useState } from 'react'
 import { editUserAction } from '../../behaviors/actions/user'
 import { apiUrlImg } from "../../common/constants";
 import MySpinner from '../effects/MySpinner'
+import { checkPhone } from '../../common/libs'
 const EditProfile = () => {
   const dispatch = useDispatch()
 
@@ -82,6 +83,19 @@ const EditProfile = () => {
   }
 
   const editUser = () => {
+    console.log(infoUser.password)
+    if (infoUser.phone === "" || infoUser.name === "" || infoUser.password === "" ||infoUser.address === "" ){
+      swal({
+        title: "Error System",
+        text: 'Không được để trống.',
+        icon: "error",
+        dangerMode: true
+      })
+      return
+    }
+    if (!checkPhone(infoUser.phone)){
+      return
+    }
     setState({
       ...infor,
       click: true
