@@ -58,7 +58,8 @@ export const loginAccountAction = (email, password) => async(dispatch) => {
     catch(error){
         console.log(error)
         dispatch({
-            type: LOGIN_ACCOUNT_FAIL
+            type: LOGIN_ACCOUNT_FAIL,
+            payload: error.response.data.message
         })
     }
 } 
@@ -89,7 +90,7 @@ export const getUserTokenAction = () => async(dispatch) => {
         
     }
     catch(error){
-        console.log(error.message)
+        console.log(error)
         dispatch({
             type: GET_USER_TOKEN_FAIL
         })
@@ -209,7 +210,6 @@ export const getUserByIdAction = (id) => async(dispatch) => {
             }
         }
         const {data} = await axios.get(`${apiUrl}/account/manager/get/${id}`, config)
-        console.log(data)
         if (data.id){
             dispatch({
                 type: GET_USER_BY_ID_SUCCESS,
@@ -244,7 +244,7 @@ export const getAllUsersAction = (page,size) => async(dispatch) => {
         }
 
         const {data} = await axios.post(`${apiUrl}/account/manager/viewAll`, {page,size}, config)
-        
+        console.log(data)
         if (data.content){
             dispatch({
                 type: GET_ALL_USERS_SUCCESS,

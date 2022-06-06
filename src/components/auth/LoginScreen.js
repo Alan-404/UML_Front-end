@@ -79,7 +79,7 @@ const LoginScreen = () => {
       })
       swal({
         title: "Error System",
-        text: "Tài Khoản hoặc Mật Khẩu sai, vui lòng thử lại!",
+        text: error,
         icon: 'error',
         dangerMode: true
       })

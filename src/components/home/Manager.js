@@ -97,7 +97,7 @@ function Manager({ types_table }) {
     setList(index);
     info.pageNow = 1;
     dispatch(getProductByPageAction(0, pageSize));
-    dispatch(getAllUsersAction(0, pageSize));
+    dispatch(getAllUsersAction(0, 500));
   };
   const calculatePage = (allProducts) => {
     var sizeNumProducts = allProducts.length;
@@ -127,13 +127,11 @@ function Manager({ types_table }) {
       dispatch(getProductByPageAction(page, pageSize));
     }
     if (type === "user") {
-      dispatch(getAllUsersAction(page, pageSize));
+      dispatch(getAllUsersAction(page, 500));
     }
   };
 
   const changeNextpage = (arr, type) => {
-    //console.log("NEXT: " + info.pageNow)
-    //console.log("size page " + calculatePage(products).length)
     if (info.pageNow === calculatePage(arr).length) {
       return;
     }
@@ -144,7 +142,7 @@ function Manager({ types_table }) {
       dispatch(getProductByPageAction(info.pageNow - 1, pageSize));
     }
     if (type === "user") {
-      dispatch(getAllUsersAction(info.pageNow - 1, pageSize));
+      dispatch(getAllUsersAction(info.pageNow - 1, 500));
     }
   };
 
@@ -159,7 +157,7 @@ function Manager({ types_table }) {
       dispatch(getProductByPageAction(info.pageNow - 1, pageSize));
     }
     if (type === "user") {
-      dispatch(getAllUsersAction(info.pageNow - 1, pageSize));
+      dispatch(getAllUsersAction(info.pageNow - 1, 500));
     }
   };
 
@@ -171,7 +169,7 @@ function Manager({ types_table }) {
 
   useEffect(() => {
     dispatch(getProductsAction(0, 100));
-    dispatch(getAllUsersAction(0, 5));
+    dispatch(getAllUsersAction(0, 500));
     dispatch(getProductByPageAction(0, pageSize));
   }, [dispatch, success]);
   const checkEmployee = (role) => role === "EMPLOYEE" || role === "MANAGER";

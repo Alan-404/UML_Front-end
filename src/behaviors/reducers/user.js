@@ -37,7 +37,7 @@ export const loginAccountReducer = (state={}, action) => {
         case LOGIN_ACCOUNT_SUCCESS:
             return {loadingLoginAccount:false, success: true, token: action.payload}
         case LOGIN_ACCOUNT_FAIL:
-            return {loadingLoginAccount: false, success: false}
+            return {loadingLoginAccount: false, success: false, error: action.payload}
         default:
             return state
     }
