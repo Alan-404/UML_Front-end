@@ -128,18 +128,19 @@ export const editOrderAction = (id, orderState) => async(dispatch) => {
 }
 
 
-export const getAllOrderAction = (page) => async(dispatch) => {
+export const getAllOrderAction = (page, size) => async(dispatch) => {
     try{
         dispatch({
             type: REQUEST_GET_ALL_ORDER
         })
         const config = {
             headers: {
+                "Content-type": 'multipart/form-data',
                 Authorization: `Bearer ${localStorage.getItem('uml')}`
             }
         }
 
-        const {data} = await axios.post(`${apiUrl}/order/employee/viewAll`, {page}, config)
+        const {data} = await axios.post(`${apiUrl}/order/employee/viewAll`, {page, size}, config)
         console.log(data)
         if (data.content){
             dispatch({

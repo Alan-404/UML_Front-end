@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { InputGroup, Button, FormControl, Form, Image } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 import { addEmployeeAction } from "../../behaviors/actions/user";
 import { apiUrlImg } from "../../common/constants";
+import { checkEmail, checkPhone } from "../../common/libs";
+import MySpinner from "../effects/MySpinner";
 const AddEmployee = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const addEmployeeReducer = useSelector((state) => state.addEmployeeReducer);
-  const { success } = addEmployeeReducer;
+  const { success, error, loadingAddEmployee } = addEmployeeReducer;
 
+  const [info, setInfo] = useState({
+    submit: false
+  })
   
 
   const [inputEmployee, setEmployeee] = useState({
@@ -34,9 +39,46 @@ const AddEmployee = () => {
     });
   };
   const addEmployee = () => {
-    console.log(inputEmployee)
+    if (name === "" || email === "" || address === "" || gender === "" || password ==="" || phone===""){
+      swal({
+        title: "System Error",
+        text: "Vui lòng nhập đầy đủ thông tin.",
+        icon:'error',
+        dangerMode: true
+      })
+      return
+    }
+    if (!checkEmail(email) || !checkPhone(phone)){
+      return;
+    }
+    setInfo({
+      ...info,
+      submit: true
+    })
     dispatch(addEmployeeAction(name,email, address,gender,password,phone));
   };
+
+  useEffect(() => {
+    if (success){
+      swal({
+        title: "Notification",
+        text: "Thêm nhân viên thành công.",
+        icon:'success'
+      })
+    }
+    else if (success === false && info.submit){
+      setInfo({
+        ...info,
+        submit: false
+      })
+      swal({
+        title: "System Error",
+        text: error,
+        icon:'error',
+        dangerMode: true
+      })
+    }
+  }, [success])
 
   return (
     <div className="container p-2">
@@ -102,6 +144,7 @@ const AddEmployee = () => {
           <Button onClick={addEmployee}>Add</Button>
         </div>
       </div>
+      {loadingAddEmployee && <MySpinner />}
     </div>
   );
 };

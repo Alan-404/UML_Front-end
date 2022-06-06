@@ -75,7 +75,9 @@ function ManagerUser({ types_table }) {
   useEffect(() => {
     if (successAddOrderUser){
       swal({
-        text: 'Thêm Đơn Hàng Thành Công'
+        text: 'Thêm Đơn Hàng Thành Công',
+        title: "Notificaton",
+        icon:'success'
       })
     }
     else if (successAddOrderUser === false){
@@ -101,6 +103,10 @@ function ManagerUser({ types_table }) {
       listCart.push(cart[i].id)
     }
     dispatch(addOrderUserAction(listCart,listProducts))
+    setInfo({
+      ...info,
+      reload: true
+    })
   }
 
   const increaseNumOfProducts = (id, index) => {
@@ -115,6 +121,15 @@ function ManagerUser({ types_table }) {
 
   const decreseNumOfProduct = (id, index) => {
     var temp = info.arrNum
+    if (temp[index] == 1){
+      swal({
+        text: "Số lượng sản phẩm không thể bằng 0.",
+        title: "Error System",
+        icon:"error",
+        dangerMode: true
+      })
+      return; 
+    }
     temp[index] = temp[index] - 1
     dispatch(changeNumberProductAction(id, temp[index]))
     setInfo({
@@ -214,6 +229,7 @@ function ManagerUser({ types_table }) {
           </div>)}
       {cart && <Button onClick={makeOrder} className="mt-5">Make Order</Button>}
       {loadingGetCart && (<MySpinner />)}
+      {loadingAddOrderUser && <MySpinner />}
     </div>
   );
 }

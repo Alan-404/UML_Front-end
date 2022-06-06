@@ -65,7 +65,6 @@ const EditProfile = () => {
   }
 
   const getImage = (event) => {
-    console.log(event.target.files[0])
 
     
     var reader = new FileReader()
@@ -83,7 +82,6 @@ const EditProfile = () => {
   }
 
   const editUser = () => {
-    console.log(infoUser.password)
     if (infoUser.phone === "" || infoUser.name === "" || infoUser.password === "" ||infoUser.address === "" ){
       swal({
         title: "Error System",

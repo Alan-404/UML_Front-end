@@ -43,7 +43,7 @@ export const checkPrice = (price) => {
         if (isNaN(parseInt(price[i]))){
             swal({
                 title: "Error System",
-                text: 'Price number must not have character',
+                text: 'Tiền không được có ký tự.',
                 icon: "error",
                 dangerMode: true
             })

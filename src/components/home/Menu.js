@@ -38,7 +38,7 @@ function Menu() {
   const { products, loadingGetProducts } = getProductsReducer;
 
   useEffect(() => {
-    dispatch(getProductsAction(0,100));
+    dispatch(getProductsAction(0,300));
   }, [dispatch]);
 
   useEffect(() => {

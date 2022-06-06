@@ -39,7 +39,6 @@ const ShowProduct = () => {
     }
 
     const changeImageShow = (index) => {
-        console.log(product.imageUrls[index])
         setInfo({
             ...info,
             showImage: `${apiUrlImg}/${product.imageUrls[index]}` 
@@ -55,9 +54,8 @@ const ShowProduct = () => {
 
     useEffect(() => {
         if (product){
-            setInfo({
-                showImage: `${apiUrlImg}/${product.imageUrls[0]}` 
-            })
+            var temp = `${apiUrlImg}/${product.imageUrls[0]}` 
+            info.showImage = temp
             if (product.quantity === 0){
                 setInfo({
                     ...info,
@@ -65,6 +63,7 @@ const ShowProduct = () => {
                 })
             }
         }
+        
     }, [product])
 
     useEffect(() => {
@@ -99,7 +98,8 @@ const ShowProduct = () => {
                             
                             <br />
                             {product.imageUrls.map((item, index) => (
-                                <Image onClick={() => changeImageShow(index)} style={{width: '5rem', height: '5rem'}} key={index} src={`${apiUrlImg}/${item}`} />
+                                <Image className='mx-2' onClick={() => changeImageShow(index)} style={{width: '5rem', height: '5rem'}} key={index} src={`${apiUrlImg}/${item}`} />
+                                
                             ))}
                         </div>
                     </div>

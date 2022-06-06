@@ -87,9 +87,19 @@ function EditProduct() {
         text: "Chỉnh Sửa Sản Phẩm Thành Công",
         icon:"success"
       })
+      dispatch(getProductByIdAction(searchParams.get("id")));
     }
-    else if (success === false){
-      
+    else if (success === false && info.submit){
+      setInfo({
+        ...info,
+        submit: false
+      })
+      swal({
+        title: "System Error",
+        text: "Chỉnh Sửa Sản Phẩm Thất Bại",
+        icon:"error",
+        dangerMode: true
+      })
     }
   }, [success]);
 
@@ -216,7 +226,7 @@ function EditProduct() {
       swal({
         title: "Error System",
         icon:"error",
-        text: "Empty Fields",
+        text: "Không được để trống.",
         dangerMode: true
       })
       return
@@ -273,11 +283,9 @@ function EditProduct() {
   };
 
   const convertToArray = (obj) => {
-    console.log("obj",Object.keys(obj))
     var arr = [];
     for (var i = 0; i < Object.keys(obj).length; i++) {
       arr.push(Object.values(obj)[i]);
-      console.log(i," ",Object.values(obj)[i])
     }
     return arr;
   };

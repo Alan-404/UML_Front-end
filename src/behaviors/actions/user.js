@@ -99,7 +99,6 @@ export const getUserTokenAction = () => async(dispatch) => {
 
 export const addEmployeeAction = (name, email, address, gender, password, phone) => async(dispatch) => {
     try{
-        console.log({name, email, address, gender, password, phone})
         dispatch({
             type: REQUEST_ADD_EMPLOYEE
         })
@@ -124,9 +123,9 @@ export const addEmployeeAction = (name, email, address, gender, password, phone)
         }
     }   
     catch(error){
-        console.log(error)
         dispatch({
-            type: ADD_EMPLOYEE_FAIL
+            type: ADD_EMPLOYEE_FAIL,
+            payload: error.response.data.message
         })
     }
 }
@@ -292,10 +291,9 @@ export const addUserAction = (name, email, address, phone, gender, password) => 
         }
     }
     catch(error){
-        console.log(error)
         dispatch({
             type: ADD_USER_FAIL,
-            payload: "Tài Khoản hoặc mật khẩu không đúng, vui lòng nhập lại"
+            payload: error.response.data.message
         })
     }
 }
@@ -313,7 +311,6 @@ export const editUserAction = (id, name, address, phone, gender, imageFile, pass
             }
         }
         var request
-        console.log(imageFile.name)
         if (imageFile.name!== 'File'){
             request = await axios.post(`${apiUrl}/account/user/edit`, {id, name, address, phone, gender, imageFile, password}, config)
         }

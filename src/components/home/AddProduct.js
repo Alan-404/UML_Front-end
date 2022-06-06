@@ -115,13 +115,11 @@ function AddProduct() {
         name: value,
       });
     } else if (name === "productType") {
-      console.log(value);
       setInfo({
         ...info,
         productType: value,
       });
     } else if (name === "brand") {
-      console.log(value);
       setInfo({
         ...info,
         brand: value,
@@ -205,7 +203,6 @@ function AddProduct() {
   const getImage = (event) => {
     var reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    console.log(event.target.files[0]);
 
     reader.onload = (_event) => {
       var temp = info.imgArr;

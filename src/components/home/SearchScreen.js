@@ -34,14 +34,8 @@ const SearchScreen = () => {
   }
 
   const goSearchPage = () => {
-    setInfo({
-      ...info,
-      reload: true
-    })
-    navigate({
-      pathname: '/search_product',
-      search: `?id=${searchValue}`
-    })
+    
+    dispatch(searchProductsAction(searchValue,0))  
   }
 
 

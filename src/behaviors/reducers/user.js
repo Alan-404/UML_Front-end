@@ -66,7 +66,7 @@ export const addEmployeeReducer = (state = {}, action) => {
         case ADD_EMPLOYEE_SUCCESS:
             return {loadingAddEmployee: false, success: true}
         case ADD_EMPLOYEE_FAIL:
-            return {loadingAddEmployee: false, success: false}
+            return {loadingAddEmployee: false, success: false, error: action.payload}
         default:
             return state
     }
