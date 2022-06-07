@@ -4,9 +4,9 @@ export const bootstrapMode2 =
   "col-lg-3 col-md-6 col-sm-10 offset-md-0 offset-sm-1";
 
 // api
-export const apiUrl = "https://apitechgear.herokuapp.com/rest";
+export const apiUrl = "http://localhost:3456/rest";
 
-export const apiUrlImg = "https://apitechgear.herokuapp.com";
+export const apiUrlImg = "http://localhost:3456";
 
 // user
 export const REQUEST_LOGIN_ACCOUNT = "REQUEST_LOGIN_ACCOUNT";

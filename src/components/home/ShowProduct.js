@@ -54,8 +54,10 @@ const ShowProduct = () => {
 
     useEffect(() => {
         if (product){
-            var temp = `${apiUrlImg}/${product.imageUrls[0]}` 
-            info.showImage = temp
+            setInfo({
+                ...info,
+                showImage: `${apiUrlImg}/${product.imageUrls[0]}` 
+            })
             if (product.quantity === 0){
                 setInfo({
                     ...info,

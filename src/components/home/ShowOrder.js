@@ -43,6 +43,16 @@ const ShowOrder = () => {
         }
     }, [success])
 
+
+    const calculateSumPrice = (arrCart) => {
+        var sum = 0
+        for (var i = 0; i<arrCart.length; i++){
+        sum += arrCart[i].product.price*arrCart[i].numberOfProduct
+        }
+        return sum
+        
+    }
+
     
 
 
@@ -104,10 +114,12 @@ const ShowOrder = () => {
                                 <hr />
                                 <p className='text-danger'>{(emProduct.numberOfProduct*emProduct.product.price).toLocaleString()}</p>
                             </div>
+                            
                         </div>
                     ))}
-                    
-                    <Button onClick={submitChangeOrder}>Save</Button>
+                    <hr />
+                    <h4>Tổng Giá Trị Đơn Hàng: <span className='text-primary'>{calculateSumPrice(order.embeddedProducts).toLocaleString()} VND</span></h4>
+                    <Button className='mt-3' onClick={submitChangeOrder}>Save</Button>
                 </div>
                 
             )}
